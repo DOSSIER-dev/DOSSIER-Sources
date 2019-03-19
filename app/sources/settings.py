@@ -20,16 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8t3h8=)6ipii1*1o_1hs!c-y10m_2u(0yt=02oyzzpma4%i9#r'
+SECRET_KEY = os.environ['SOURCES_DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = DEBUG = (os.environ['SOURCES_DJANGO_DEBUG'] == 'True')
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'sources',
-]
+ALLOWED_HOSTS = os.environ['SOURCES_DJANGO_ALLOWED_HOSTS'].split(',')
 
 
 # Application definition
@@ -114,16 +110,17 @@ WSGI_APPLICATION = 'sources.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sources',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'db',
-        'PORT': 3306,
+        'NAME': os.environ['SOURCES_MYSQL_DATABASE'],
+        'USER': os.environ['SOURCES_MYSQL_USER'],
+        'PASSWORD': os.environ['SOURCES_MYSQL_PASSWORD'],
+        'HOST': os.environ['SOURCES_MYSQL_HOST'],
+        'PORT': os.environ['SOURCES_MYSQL_PORT'],
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 }
+
 
 # django-elasticsearch-dsl
 # https://github.com/sabricot/django-elasticsearch-dsl

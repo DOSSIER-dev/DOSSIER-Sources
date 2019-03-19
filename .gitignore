@@ -47,3 +47,6 @@ testem.log
 Thumbs.db
 .vscode
 local-docs
+
+# secrets and the like
+.env
