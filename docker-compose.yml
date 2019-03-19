@@ -69,6 +69,18 @@ services:
     # Celery queue for deferring pdf/document extraction
     #
     build: app
+    environment:
+      # exposing config vars fron .env
+      # inside the container
+      SOURCES_MYSQL_HOST: ${SOURCES_MYSQL_HOST}
+      SOURCES_MYSQL_USER: ${SOURCES_MYSQL_USER}
+      SOURCES_MYSQL_PASSWORD: ${SOURCES_MYSQL_PASSWORD}
+      SOURCES_MYSQL_PORT: ${SOURCES_MYSQL_PORT}
+      SOURCES_MYSQL_DATABASE: ${SOURCES_MYSQL_DATABASE}
+      SOURCES_DJANGO_SECRET_KEY: ${SOURCES_DJANGO_SECRET_KEY}
+      SOURCES_DJANGO_ALLOWED_HOSTS: ${SOURCES_DJANGO_ALLOWED_HOSTS}
+      SOURCES_DJANGO_DEBUG: ${SOURCES_DJANGO_DEBUG}
+
     command: celery -A sources worker -l info
     volumes:
       # Uploads

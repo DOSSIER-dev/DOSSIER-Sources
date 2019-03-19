@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SOURCES_DJANGO_SECRET_KEY']
+SECRET_KEY = os.environ.get('SOURCES_DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DEBUG = (os.environ['SOURCES_DJANGO_DEBUG'] == 'True')
+DEBUG = DEBUG = (os.environ.get('SOURCES_DJANGO_DEBUG') == 'True')
 
-ALLOWED_HOSTS = os.environ['SOURCES_DJANGO_ALLOWED_HOSTS'].split(',')
+ALLOWED_HOSTS = os.environ.get('SOURCES_DJANGO_ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -110,11 +110,11 @@ WSGI_APPLICATION = 'sources.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['SOURCES_MYSQL_DATABASE'],
-        'USER': os.environ['SOURCES_MYSQL_USER'],
-        'PASSWORD': os.environ['SOURCES_MYSQL_PASSWORD'],
-        'HOST': os.environ['SOURCES_MYSQL_HOST'],
-        'PORT': os.environ['SOURCES_MYSQL_PORT'],
+        'NAME': os.environ.get('SOURCES_MYSQL_DATABASE'),
+        'USER': os.environ.get('SOURCES_MYSQL_USER'),
+        'PASSWORD': os.environ.get('SOURCES_MYSQL_PASSWORD'),
+        'HOST': os.environ.get('SOURCES_MYSQL_HOST'),
+        'PORT': os.environ.get('SOURCES_MYSQL_PORT'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
