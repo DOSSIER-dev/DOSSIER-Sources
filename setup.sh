@@ -11,7 +11,7 @@ set -e
 source .env
 
 # Create database
-docker-compose exec db mysqladmin create "${SOURCES_MYSQL_DATABASE}" --user "${SOURCES_MYSQL_USER}" --password="${SOURCES_MYSQL_PASSWORD}"
+docker-compose exec db mysqladmin create "${SOURCES_MYSQL_DATABASE}" --user "${SOURCES_MYSQL_USER}" --password="${SOURCES_MYSQL_PASSWORD}" || echo "database already exists"
 
 # Attempt to drop database + import test database afterwards
 docker-compose exec db bash -c "mysqladmin -u ${SOURCES_MYSQL_USER} --password=${SOURCES_MYSQL_PASSWORD} drop ${SOURCES_MYSQL_DATABASE}"
