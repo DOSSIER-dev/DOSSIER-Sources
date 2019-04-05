@@ -105,7 +105,8 @@ end-to-end / integration tests using the Cypress project.
      - start the frontend project(s) (e.g. `npm run start`).
      - finally run tests `npm run cypress` , or open cypress browser `npm run cypress:open`
 
-### Contributing
+Contributing
+------------
 
 You can contribute to Sources by
 
