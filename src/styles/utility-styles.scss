@@ -1,0 +1,239 @@
+@import './colors.scss';
+
+$firstcol-width: 156px;
+$secondcol-width: 216px;
+$larger-margin: 48px;
+$elementSpace: 3px;
+// $fullPad: 18px;
+// $halfPad: 9px;
+
+@mixin srcs-lato {
+  font-family: Lato, helvetica, arial, "sans-serif";
+}
+
+@mixin srcs-lato-bold {
+  font-family: Lato-Bold, helvetica, arial, "sans-serif";
+  font-weight: normal; // font face is already bold
+}
+
+@mixin srcs-aleo-bold {
+  font-family: Aleo-Bold, Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal; // font face is already bold
+}
+
+//
+// FONT
+//
+
+// default
+@mixin srcs-default-font {
+  @include srcs-lato;
+  font-size: 15px;
+}
+
+// lato header in black (sources list item)
+@mixin srcs-item-header {
+  @include srcs-font-dark;
+  @include srcs-lato-bold;
+  @include srcs-fontsize-important;
+}
+
+// aleo header in primary
+@mixin srcs-content-header {
+  @include color-primary();
+  @include srcs-aleo-bold;
+  @include srcs-fontsize-important;
+}
+
+// smaller, for labels and light (table) headers
+@mixin srcs-label-font {
+  @include srcs-fontsize-small;
+  font-weight: lighter;
+  color: $dark-4;
+}
+
+// normal content
+@mixin srcs-content-font {
+  @include srcs-font-dark;
+  @include srcs-fontsize-small;
+}
+
+// main header aleo
+@mixin srcs-h1-header-font {
+  font-size: 28px;
+  line-height: 1.29;
+}
+
+// title of sources
+@mixin srcs-source-title-font {
+  @include srcs-fontsize-important;
+  @include srcs-aleo-bold;
+  @include color-primary;
+}
+
+@mixin srcs-flat-header-font {
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+// font-size : larger and bold normal text
+@mixin srcs-fontsize-important {
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+@mixin srcs-fontsize-small {
+  font-size: 13px;
+}
+
+
+@mixin srcs-line-large {
+  line-height: 1.6;
+}
+
+@mixin srcs-line-narrow {
+  line-height: 1.38;
+}
+
+//
+// Elements
+//
+@mixin border-cell-off {
+  border-bottom: 1px solid transparent;
+}
+@mixin border-cell-on {
+  border-bottom: 1px solid $dark-5;
+}
+
+@mixin srcs-clickable {
+    cursor: pointer;
+    @include srcs-noclickborder;
+}
+
+@mixin srcs-noclickborder {
+  outline: 0;
+  border: none;
+  -moz-outline-style: none;
+}
+
+//
+// HELPER
+//
+@mixin triangle-up {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom-width: 20px;
+  border-bottom-style: solid;
+  position: absolute;
+  top: -20px;
+  z-index: 100;
+  left: 15px;
+}
+
+//
+// FORM
+//
+
+@mixin srcs-input-normalized {
+    @include srcs-input-pad;
+    background: transparent;
+    outline: none;
+    width: 100%;
+}
+
+@mixin srcs-input-border {
+    border: none;
+    border-bottom: 1px solid;
+    border-color: $dark-4;
+}
+
+@mixin srcs-dark-input {
+    color: $text-light;
+    border-color: $text-light;
+    &:hover {
+        border-color: $dark-3;
+    }
+    &:focus {
+        border-color: $primary-1;
+    }
+}
+
+//
+// Sizes, padding
+//
+
+// Padding for inputs or elements that should have the same padding as inputs
+@mixin srcs-input-pad($type: 'pad-narrow') {
+  @if $type == 'pad-full' {
+    padding: 0.5em;
+  } @else {
+    padding: 0.5em 0.2em;
+  }
+}
+
+@mixin srcs-content-width-small {
+  width: 504px;
+  // max-width: 504px;
+}
+
+@mixin srcs-minimal-margin {
+  margin: 0.25em 0;
+}
+
+
+//
+// COLOR DEF
+//
+
+@mixin color-primary {
+  color: $primary-2;
+}
+
+// Dark body text
+@mixin srcs-font-dark {
+  color: $dark-1;
+}
+
+// Lighter body text
+@mixin srcs-font-dim {
+  color: $dark-3;
+}
+
+
+@mixin color-fg-default { color: $dark-3; }
+@mixin color-fg-hover { color: $dark-1; }
+@mixin color-fg-active { color: $dark-1; }
+@mixin color-fg-disabled { color: $dark-4; }
+
+@mixin color-inverse-fg-default { color: $text-light; }
+@mixin color-inverse-fg-hover { color: $dark-5; }
+@mixin color-inverse-fg-active { color: $dark-5; }
+@mixin color-inverse-fg-disabled { color: $dark-4; }
+
+@mixin color-alert { color: $accent-2; }
+
+@mixin srcs-theme-primary {
+  background: $primary-1;
+  color: $text-light;
+  a {
+    color: $text-light;
+  }
+}
+
+@mixin srcs-theme-dark {
+  background: $dark-2;
+  color: $text-light;
+  a {
+      color: $dark-4;
+  }
+  a.active-link {
+      color: $text-light;
+  }
+
+  input {
+    @include srcs-dark-input;
+  }
+}
+

@@ -1,0 +1,33 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2em;
+  margin-left: -0.25em;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  padding: 0;
+  margin-left: 0.25em;
+  span {
+    white-space: nowrap;
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  span {
+    > * {
+      float: right;
+    }
+  }
+}
+
+// full width for the input element
+li:last-child {
+  min-width: 100%;
+}

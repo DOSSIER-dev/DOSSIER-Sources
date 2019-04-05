@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.search-input {
+  width: 90%;
+  padding: 0.5em;
+  margin: auto;
+}
+
+.types-chip {
+  padding: 0.5em;
+  margin: 0.5em;
+  font-size: 90%;
+  font-style: italic;
+  background: lightblue;
+  border-radius: 1em;
+}

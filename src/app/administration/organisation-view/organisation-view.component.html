@@ -1,0 +1,28 @@
+<section class="main-content srcs-centercol-container">
+  <div>
+    <section class="srcs-section-hspace">
+    </section>
+    <section class="srcs-section-hspace">
+    <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="item">
+      <div class="srcs-hspace">
+        <label translate="ADMINISTRATION.ORGANISATION.NAME"></label>
+        <input name="name" type="text" formControlName="name">
+        <app-error [element]="form.get('name')" [errors]="[{name: 'required', text: 'ERROR.REQUIRED'}]"></app-error>
+      </div>
+
+      <!--
+      <div class="srcs-hspace">
+        <label translate="ADMINISTRATION.ORGANISATION.COLOR"></label>
+        <input name="color" type="text" formControlName="color">
+      </div>
+      -->
+
+      <div class="srcs-hspace">
+        <button #submitButton type="submit" class="srcs-navbutton primary icon-right">
+          <span translate="ADMINISTRATION.ORGANISATION.SUBMIT"></span>
+          <app-savestate [state]="activityState.state$"></app-savestate></button>
+      </div>
+    </form>
+    </section>
+  </div>
+</section>

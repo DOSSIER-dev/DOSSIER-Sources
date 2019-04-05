@@ -1,0 +1,13 @@
+plugins:
+
+ # do not remove the view box, as this would mess up the icon sizes
+ - removeViewBox: false
+
+ # don not convert all shapes to path as a means of later *not* removing the
+ # fill of a polyline
+ - convertShapeToPath: false
+
+ # remove fill attribute so that icons can be colored from HTML/css - however,
+ # only do so on path elements, the polyfill element of e.g. the 'checked'
+ # icon needs to keep its fill 'none' attribute
+ - removeAttrs: { attrs: ['fill-rule', 'path:fill']}

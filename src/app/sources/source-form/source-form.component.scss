@@ -1,0 +1,7 @@
+@import '../../../styles/utility-styles.scss';
+
+textarea.title {
+  @include srcs-source-title-font;
+  min-height: unset;
+  height: 4em;
+}

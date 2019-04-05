@@ -1,0 +1,463 @@
+// We need a theme for the core styles to work (e.g.
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./colors";
+@import "./utility-styles";
+
+@import "./normalize";
+@import "./padding";
+@import "./button";
+@import "./layout";
+@import "./markdown";
+// @import "./scrollbars";
+
+
+body {
+    @include srcs-default-font;
+    margin: 0;
+    height: 100%;
+    color: $dark-1;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+input, textarea, select, button {
+    @include srcs-default-font;
+}
+
+h1, h2, h3 {
+    @include srcs-aleo-bold;
+}
+
+h1 {
+    @include srcs-h1-header-font;
+    @include color-primary;
+}
+
+h1.primary, h2.primary, h3.primary {
+    @include color-primary;
+}
+
+h4 {
+    @include srcs-flat-header-font;
+    @include color-fg-default;
+}
+
+a {
+    text-decoration: none;
+    color: $dark-4;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid $dark-5;
+}
+
+label {
+  @include srcs-label-font;
+  @include srcs-line-large;
+  display: block;
+  margin: initial;
+}
+
+
+/** no click border */
+a:active, a:focus {
+    @include srcs-noclickborder;
+}
+
+// color of selected text
+input.app-copytext::selection { background: $primary-1; color: $text-light; }
+
+.ut-grey {
+    @include color-fg-default;
+}
+
+.srcs-small {
+    @include srcs-fontsize-small;
+}
+
+.centered {
+    width: 100%;
+    text-align:center;
+}
+
+
+/**
+ * Form styles
+ */
+
+ // Elements that look like an input element
+.srcs-input-style {
+    @include srcs-input-normalized;
+    @include srcs-default-font;
+    @include srcs-input-border;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="search"],
+input[type="number"],
+textarea,
+select {
+    @include srcs-input-normalized;
+    @include srcs-default-font;
+}
+
+/* border that reacts on focus */
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="search"],
+input[type="number"],
+select {
+    @include srcs-input-border;
+    &:hover {
+        border-color: $dark-1;
+    }
+    &:focus {
+        border-color: $primary-1;
+    }
+    &.srcs-dark {
+        @include srcs-dark-input;
+    }
+}
+
+textarea {
+    min-height: 15em;
+    @include srcs-input-pad('pad-full');
+    border: 1px solid;
+    &:hover {
+        border-color: $dark-1;
+    }
+    &:focus {
+        border-color: $primary-1;
+    }
+    &.srcs-dark {
+        @include srcs-dark-input;
+    }
+}
+
+.srcs-state-active {
+  @include srcs-font-dark;
+}
+
+div.visibility-input__center-icon svg {
+    fill: $primary-2;
+}
+
+// Override some colors in the 'dark' theme
+.srcs-dark {
+    .srcs-state-active {
+        color: $text-light;
+    }
+
+    div.visibility-input__center-icon svg {
+        fill: $text-light;
+    }
+
+}
+
+.srcs-dark {
+    color: $text-light;
+}
+
+.srcs-col-primary {
+    color: $primary-1;
+}
+
+.srcs-col-inactive {
+    color: $dark-4;
+}
+
+.srcs-bg-dark {
+    background: $dark-2;
+}
+
+.srcs-bg-light {
+    background: $light-background;
+}
+
+
+
+// Styles for a "row" (element) that turns in to a form on click
+// Mostly flex. Elements inside with `on-hover` will only show
+// when "row" element is hovered.
+.srcs-editable-row {
+  cursor: pointer;
+  width: 100%;
+  @include border-cell-off;
+
+  min-height: 2.6em;
+  margin-bottom: -1px;
+
+  // child element that reacts to (visible) on hover
+  .on-hover { display: none; }
+
+  &:hover {
+    @include border-cell-on;
+    .on-hover { display: block;}
+  }
+}
+
+// Split into two columns, with the left extending and using all space
+// except a smaller space for icons.
+// Used for one-field-only forms (just one large text input plus icons).
+.srcs-edit-item-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+
+  // large (left/first) vs small (right/last) spacing
+  span:first-child, a:first-child {
+    flex: 1 99 auto;
+  }
+  span:last-child {
+    flex: 0 1 auto;
+  }
+}
+
+// Vertical fullscreen layout with three sections header, body, footer.
+// Used in the administration views
+.srcs-fullscreen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    >*{
+        flex: 999 1 auto;
+        overflow-y: auto;
+    }
+    // header part
+    >*:first-child {
+        flex: 1 1 20px;
+        overflow-y: unset;
+    }
+    // footer part
+    >*:last-child {
+        flex: 1 1 20px;
+        overflow-y: unset;
+    }
+}
+
+
+// style for a link/button that contains only an icon (admin views)
+.srcs-iconbutton {
+    color: $dark-1;
+    cursor: pointer;
+}
+
+// Container for a set of icon buttons. It defines spacing around icon buttons.
+.srcs-iconbutton-set {
+    padding-left: -0.5em;
+    display: flex;
+    >* {
+        padding: 4px 0.5em;
+        display: block;
+    }
+}
+
+// a wrapper block with (usually) label + content inside
+.srcs-infofield {
+    margin-bottom: 1em;
+}
+
+
+// give same padding as an input field to an arbitrary element
+.srcs-input {
+    @include srcs-input-pad;
+}
+
+.srcs-close-button-reference {
+    position: relative;
+}
+
+// Place element in absolutely in right / top corner
+.srcs-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.srcs-caps {
+    text-transform: uppercase;
+}
+
+.srcs-important {
+    @include srcs-fontsize-important;
+}
+
+.srcs-menu-element-container {
+    display: block;
+    width: 100%;
+    @extend .srcs-leftpad;
+    @extend .srcs-hspace;
+}
+
+/** level one sidebar menu */
+.main-menu {
+    ul {
+        width: 100%;
+    }
+    ul a {
+        @extend .srcs-menu-element-container;
+    }
+    ul li>div {
+        @extend .srcs-menu-element-container;
+    }
+    ul a.active-link {
+        background: $primary-2;
+    }
+    ul a:hover {
+        background: $primary-light-2;
+    }
+}
+
+.srcs-panel-bg {
+    @extend .srcs-bg-dark;
+}
+
+.srcs-panel-triangle {
+    // re-color the annotation-panel
+    border-bottom-color: $dark-2;
+}
+
+//
+// Theming + colors of important elements such as the sidebar menus
+//
+
+// main sidebar theming
+.column-level-1 {
+    @include srcs-theme-primary;
+}
+
+// level 2 sidebar theming
+.column-level-2.srcs-list {
+    @include srcs-theme-dark;
+
+    // bolder
+    font-weight: 900;
+    @extend .srcs-topspace;
+    a {
+        display: block;
+        @extend .srcs-leftpad;
+        @extend .srcs-hspace;
+    }
+
+
+}
+// buttons on  column level 2
+.column-level-2 {
+    .srcs-navbutton {
+        @extend .srcs-fullwidth;
+    }
+}
+
+// level 2 hr (seems to be only in source-meta, TODO might go there)
+.column-level-2 hr {
+    @extend .srcs-unhalfpad;
+}
+
+/**
+ element styles / modifiers
+ */
+
+.srcs-wordbreak {
+    // word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+.srcs-clickable {
+    @include srcs-clickable;
+}
+
+.srcs-source-item {
+    background: $light-background;
+}
+
+.srcs-source-item:hover {
+    background-color: $primary-light-hover;
+}
+
+.srcs-source-item:active {
+    background-color: $primary-light-pressed;
+}
+
+// size of a first, small column
+// used in the both source-item and highlights components
+.firstcol-size {
+    width: 26px;
+}
+
+// Chart / Statistics
+.srcs-chart-container {
+    max-width: 700px;
+}
+
+.srcs-chart-minmaxdate {
+    width: 500px;
+    margin-left: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.srcs-chart-date-min,
+.srcs-chart-date-max {
+    text-transform: uppercase;
+}
+.srcs-chart-date-min {
+}
+.srcs-chart-date-max {
+}
+
+.srcs-alert-field {
+    label {
+        font-weight: bold;
+        @include color-alert;
+    }
+    div.srcs-input-style {
+        border-bottom-color: $accent-1;
+    }
+}
+
+.srcs-highlight-field {
+    label {
+        font-weight: 900;
+        @include color-primary;
+    }
+    div.srcs-input-style {
+        border-bottom-color: $primary-2;
+    }
+}
+
+
+input.ng-invalid.ng-dirty, input.ng-invalid.ng-touched {
+    border-bottom-color: $accent-2;
+
+    &:focus {
+        border-bottom-color: $accent-2;
+    }
+}
+
+// Sets the width of the annotation panel.
+.srcs-panel-width {
+    width: 588px;
+}
+
+
+// Annotation components styling
+.annotation-layer-svg {
+    border: 1px solid $light-background;
+}
+
+
+// Annotation form is dark - set all inputs to be dark-themed
+// TODO: now remove dark selectors in the annotation form markup ?
+.srcs-annotation-form {
+    input {
+        @include srcs-dark-input;
+    }
+}

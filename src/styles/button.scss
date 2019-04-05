@@ -1,0 +1,185 @@
+@import './colors';
+@import './utility-styles';
+
+.srcs-navbutton {
+    @include srcs-clickable;
+    @include srcs-fontsize-small;
+    text-transform: uppercase;
+
+    height: 36px;
+
+    // TODO: might move outer margin to separate class as it is not
+    // always required
+    margin: $elementSpace 0;
+
+    padding: 0;
+    padding-left: 1em;
+
+    min-width: 155px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >* {
+        width: unset;
+        margin: 0 0.15em;
+    }
+
+    background: $dark-1;
+    color: $text-light;
+    a {
+        color: $text-light;
+    }
+
+    cursor: pointer;
+    border: none;
+
+    /* text in buttons should be placed inside spans
+       here we set it to no wrap */
+    span {
+        white-space: nowrap;
+    }
+}
+
+.srcs-navbutton {
+    &:hover { background: $dark-2;}
+    &:active {
+        @include srcs-noclickborder;
+    }
+}
+
+.srcs-navbutton.primary {
+    background: $primary-2;
+    &:hover {
+        background: $primary-light-2;
+    }
+}
+
+.srcs-navbutton.primary[disabled] {
+    background: $primary-1;
+    opacity: 0.5;
+    cursor: unset;
+}
+
+.srcs-navbutton.alert {
+    background: $accent-1;
+    &:hover {
+        background: $accent-3;
+    }
+}
+
+.srcs-navbutton.dark {
+    background: $dark-1;
+    &:hover {
+        background: $dark-2;
+    }
+}
+
+.srcs-navbutton.srcs-fullwidth {
+    // fullwidth buttons don't use min-width or left-padding because
+    // content is centered anyways
+    min-width: unset;
+    padding-left: unset;
+}
+
+.srcs-navbutton.srcs-larger {
+    height: 48px;
+}
+
+.srcs-button-tertiary {
+    @include srcs-clickable;
+    @include srcs-fontsize-small;
+    text-transform: uppercase;
+
+    border: none;
+    background: none;
+    text-align: left;
+
+    display: inline-block;
+    padding: 5px 1px;
+
+    // add space at right end
+    padding-right: 1.5em;
+}
+
+.srcs-button-secondary {
+    background: $dark-3;
+    color: $text-light;
+    &:hover {
+        color: $text-light;
+        background: $dark-4;
+    }
+    &:active {
+        background: $dark-1;
+    }
+    &.disabled {
+        color: $text-light;
+        background: $dark-5;
+        >* { opacity: 0.5; }
+    }
+}
+
+.srcs-button-tertiary {
+    @include color-fg-default;
+    &:hover {
+        @include color-fg-hover;
+    }
+    &:active {
+        @include color-fg-active;
+    }
+    &.disabled {
+        @include color-fg-disabled;
+    }
+}
+
+.srcs-button-tertiary.inverse {
+    @include color-inverse-fg-default;
+    &:hover {
+        @include color-inverse-fg-hover;
+    }
+    &:active {
+        @include color-inverse-fg-active;
+    }
+    &.disabled {
+        @include color-inverse-fg-disabled;
+    }
+}
+
+// style for (button) element with icon to the right
+.icon-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    >*:first-child {
+        flex: 99 1 auto;
+        text-align: center;
+        margin-right: -2.2em;
+        padding-right: 2.2em;
+    }
+
+    >*:last-child {
+        flex: 0 0 2.2em;
+        min-width: 2.2em;
+        margin-right:0.5em;
+    }
+}
+
+// style for (button) element with icon to the left
+.icon-left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    >*:first-child {
+        flex: 0 0 2.2em;
+        min-width: 2.2em;
+        margin-left:0.5em;
+    }
+
+    >*:last-child {
+        flex: 99 1 auto;
+        text-align: center;
+        margin-left: -2.2em;
+    }
+}

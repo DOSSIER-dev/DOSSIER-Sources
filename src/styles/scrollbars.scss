@@ -1,0 +1,36 @@
+
+// --- Global scrollbar
+
+::-webkit-scrollbar {
+	border: none;
+	width: 10px;
+}
+::-webkit-scrollbar:vertical {
+	width: 10px;
+}
+::-webkit-scrollbar:horizontal {
+	height: 10px;
+}
+::-webkit-scrollbar-track {
+	background: $light-background;
+}
+/*
+::-webkit-scrollbar-track:hover {
+	background: $dark-5;
+}
+*/
+::-webkit-scrollbar-thumb {
+	background: $primary-1;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: $primary-2;
+}
+
+// --- Mainmenu scrollbar
+
+app-mainmenu::-webkit-scrollbar {
+	width: 8px;
+}
+app-mainmenu::-webkit-scrollbar-thumb {
+	border-left: 1px solid #fff;
+}

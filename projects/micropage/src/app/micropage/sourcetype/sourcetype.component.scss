@@ -1,0 +1,22 @@
+@import '../../../colors.scss';
+
+.sourcetype {
+  display: inline-flex;
+  align-items: center;
+}
+
+mat-icon {
+  margin-right: 0.5em;
+  height: 16px;
+  width: 16px;
+  color: $dark-3;
+}
+
+@media (max-width: 800px) {
+  .sourcetype > span {
+    display: none;
+  }
+  mat-icon {
+    color: $dark-1;
+  }
+}

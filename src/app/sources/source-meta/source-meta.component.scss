@@ -1,0 +1,31 @@
+@import '../../../styles/utility-styles.scss';
+
+:host {
+  @include srcs-content-font;
+}
+
+h2.title {
+  @include srcs-source-title-font;
+  @include srcs-minimal-margin;
+}
+
+.fieldblock {
+  @include srcs-content-font;
+  label {
+    // @include srcs-label-font;
+  }
+}
+
+span.tag,
+span.story {
+  display: inline-block;
+  padding: 2px;
+
+  &::after {
+    content: ',';
+  }
+
+  &:last-child::after {
+    content: unset;
+  }
+}

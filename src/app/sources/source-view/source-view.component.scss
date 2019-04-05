@@ -1,0 +1,14 @@
+@import '../../../styles/utility-styles.scss';
+
+:host {
+  display: flex;
+  width: 100%;
+}
+
+a.symbol {
+  cursor: pointer;
+}
+
+.column-level-2.srcs-source-sidebar {
+  @include srcs-content-font;
+}

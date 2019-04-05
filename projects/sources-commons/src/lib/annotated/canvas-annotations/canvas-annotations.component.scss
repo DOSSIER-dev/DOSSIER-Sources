@@ -1,0 +1,51 @@
+@import '../../../colors.scss';
+
+.annotation-layer {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 2;
+}
+
+.input-layer {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 4;
+    cursor: crosshair;
+}
+
+.annotation-layer-svg.addMode {
+    cursor: crosshair;
+}
+
+.annotation-layer-svg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+
+    rect.annotation {
+        cursor: pointer;
+        stroke: $primary-light-2;
+        stroke-width: 2px;
+    }
+
+    rect.annotation:hover {
+        fill: $primary-light-2-10;
+    }
+
+    rect.annotation.selected {
+        stroke: $primary-light-2;
+        stroke-width: 4px;
+    }
+
+    rect.annotation.selected:hover {
+        fill: $primary-light-2-10;
+    }
+
+    rect.input {
+        stroke: $primary-light-2;
+        stroke-width: 2px;
+    }
+}

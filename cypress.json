@@ -1,0 +1,19 @@
+{
+    "baseUrl": "http://127.0.0.1:4200",
+    "ignoreTestFiles": "*.[0-9].js",
+    "viewportWidth": 1280,
+    "viewportHeight": 720,
+    "video": false,
+    "env": {
+      "url_sources": "http://127.0.0.1:4200",
+      "url_lib": "http://127.0.0.1:4201",
+      "url_micropage": "http://127.0.0.1:4202",
+      "admin_name": "admin",
+      "admin_password": "test1234",
+      "user_name": "test@tt4.at",
+      "user_password": "test1234",
+      "micropage_id_document": "IIwPgldn",
+      "micropage_id_image": "GeKlJqM4",
+      "micropage_id_video": "OLyJwDwE"
+    }
+}

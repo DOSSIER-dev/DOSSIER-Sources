@@ -1,0 +1,21 @@
+:host {
+  width: 100%;
+}
+
+.stats {
+  .stats-row {
+    display: flex;
+    align-items: baseline;
+  }
+  .stats-part {
+    margin-right: 2em;
+  }
+  label {
+    display: inline-block;
+  }
+  .stats-val {
+    font-size: 150%;
+    display: inline-block;
+    margin: 0 0.2em;
+  }
+}

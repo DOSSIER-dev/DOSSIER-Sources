@@ -1,0 +1,14 @@
+<ul>
+  <li *ngFor="let item of _checkedItems">
+    <span>{{item[name]}}<a (click)="select(item)"><icn name="close" size="small"></icn></a></span>
+  </li>
+  <li>
+    <input type="text" [formControl]="inputField" [matAutocomplete]="autocomplete"
+      (keypress)="onKeyPress($event)" (keyup)="onKeyUp($event)">
+    <mat-autocomplete #autocomplete="matAutocomplete" [displayWith]="_displayOption"
+      [autoActiveFirstOption]="true"
+      (optionSelected)="_optionSelected($event)">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">{{option.name}}</mat-option>
+    </mat-autocomplete>
+  </li>
+</ul>

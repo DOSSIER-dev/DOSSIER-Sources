@@ -1,0 +1,54 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="user-table">
+    <span>
+      <label *ngIf="showLabels" translate="ADMINISTRATION.USERS.EMAIL_USERNAME"></label>
+      <input #firstInput type="text" formControlName="email" name="email">
+      <app-error
+        [element]="form.get('email')"
+        [errors]="[{name: 'required', text: 'ERROR.REQUIRED'},
+          {name: 'email', text: 'ERROR.EMAIL'},
+          {name: 'maxlength', text: 'ERROR.MAXLENGTH'}]"
+        [serverErrors]="serverErrors"
+        [serverErrorField]="['user.username', 'user.email']"></app-error>
+    </span>
+    <span>
+      <label *ngIf="showLabels" translate="ADMINISTRATION.USERS.FIRSTNAME"></label>
+      <input type="text" formControlName="firstname" name="firstname">
+      <app-error
+        [element]="form.get('firstname')" [errors]="[{name: 'required', text: 'ERROR.REQUIRED'},
+          {name: 'maxlength', text: 'ERROR.MAXLENGTH'}]"
+        [serverErrors]="serverErrors" [serverErrorField]="['user.firstname']"></app-error>
+    </span>
+    <span>
+      <label *ngIf="showLabels" translate="ADMINISTRATION.USERS.LASTNAME"></label>
+      <input type="text" formControlName="lastname" name="lastname">
+      <app-error
+        [element]="form.get('lastname')" [errors]="[{name: 'required', text: 'ERROR.REQUIRED'},
+          {name: 'maxlength', text: 'ERROR.MAXLENGTH'}]"
+        [serverErrors]="serverErrors" [serverErrorField]="['user.lastname']"></app-error>
+    </span>
+    <span>
+      <label *ngIf="showLabels" translate="ADMINISTRATION.USERS.ACTIVE"></label>
+      <input type="checkbox" formControlName="isActive" name="isActive">
+    </span>
+    <span>
+      <label *ngIf="showLabels" translate="ADMINISTRATION.USERS.ADMIN"></label>
+      <input type="checkbox" formControlName="isManager" name="isManager">
+    </span>
+    <span class="srcs-iconbutton-set">
+      <a class="srcs-iconbutton" matTooltip="cancel" (click)="doCancel()">
+        <icn name="circle-cancel"></icn>
+      </a>
+      <span *ngIf="showDelete">
+        <app-delete-confirm (delete)="doDelete()">
+          <a class="srcs-iconbutton" matTooltip="delete">
+            <icn name="circle-delete"></icn>
+          </a>
+        </app-delete-confirm>
+      </span>
+      <button class="srcs-iconbutton" matTooltip="save" type="submit" value="Submit">
+        <icn name="circle-save"></icn>
+      </button>
+    </span>
+  </div>
+</form>

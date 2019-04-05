@@ -1,0 +1,134 @@
+<!--
+
+  This template represents multiple states:
+
+   - add a source (source-type selection)
+   - add a source (source-type selected, content input)
+   - view a source (sidebar + annotator)
+   - edit a source (edit sidebar + annotator)
+
+-->
+
+<section class="column-level-2 srcs-rightpad srcs-list" *ngIf="sourceEditing && !hasSourceType()">
+  <!-- in "add" mode, when there's no sourcetype selected yet -->
+  <app-selectlist
+    [items]="sourcetypes$ | async"
+    [name]="'translatedName'"
+    [multi]="false"
+    [filter]="false"
+    (selection)="sourceTypeSelected($event)">
+  </app-selectlist>
+</section>
+
+<section *ngIf="!sourceEditing || hasSourceType()" class="column-level-2 srcs-halfpad srcs-source-sidebar srcs-bg-light srcs-vertpat">
+
+  <div *ngIf="source && !sourceEditing">
+    <!-- source there, not editing -->
+    <a (click)="goBackToList()" class="srcs-navbutton icon-left srcs-top-element">
+      <icn name="back"></icn> <span translate="SHARED.BACK"></span>
+    </a>
+
+    <app-activity-state [state]="sourceSaveActivityState">
+      <app-editbar state-initial
+          [source]="source"
+          (edit)="beginEdit()"
+          (delete)="deleteSource()"
+          (replace)="replaceSource()">
+      </app-editbar>
+      <button state-saved class="srcs-navbutton primary icon-right">
+        <span translate="SOURCE.SAVED"></span>
+        <icn name="check"></icn>
+      </button>
+    </app-activity-state>
+
+    <hr />
+
+    <app-source-meta [source]="source"
+      [bookmarked]="bookmarkService.getBookmarkStatus(source)"
+      (bookmark)="bookmarkService.setBookmarkStatus(source, $event)">
+    </app-source-meta>
+
+    <hr/>
+    <section class="srcs-section-hbotspace">
+      <h4 translate="SOURCE.SECTION.ANNOTATIONS"></h4>
+      <app-annotations-list
+        [annotations]="annotationState.annotations$ | async"
+        (annotationSelected)="annotationSelected($event)">
+      </app-annotations-list>
+
+      <button type="button" class="srcs-navbutton alert icon-right"
+        *ngIf="!isInAddMode()"
+        (click)="addAnnotation()">
+        <span translate="SOURCE.ADD_ANNOTATION"></span>
+        <icn name="circle-add"></icn>
+      </button>
+      <button type="button" class="srcs-navbutton alert"
+        *ngIf="isInAddMode()"
+        (click)="cancelAddAnnotation()">
+        <span translate="SOURCE.ADD_ANNOTATION_CANCEL"></span>
+      </button>
+    </section>
+
+    <hr />
+    <section class="srcs-section-hbotspace">
+      <h4 translate="SOURCE.SECTION.STATISTICS"></h4>
+      <div class="srcs-flexrow">
+        <label translate="STATS.FIGURES.TOTAL_SOURCE_VIEWS" [matTooltip]="'STATS.FIGURES.TOOLTIP.TOTAL_SOURCE_VIEWS' | translate"></label>
+        <span>{{(sourceStatistics$|async)?.hitsCount}}</span>
+      </div>
+    </section>
+
+
+    <hr />
+    <h4 translate="SOURCE.SECTION.DETAILS"></h4>
+
+    <app-info-field>
+      <label translate="SOURCE.DATA.CONTRIBUTOR" [matTooltip]="'SOURCE.DATA.TOOLTIP.CONTRIBUTOR' | translate"></label>
+      {{source.owner | username}}
+    </app-info-field>
+
+    <app-info-field>
+      <label translate="SOURCE.DATA.ADDED" [matTooltip]="'SOURCE.DATA.TOOLTIP.ADDED' | translate"></label>
+      {{source.created_at | date}}
+    </app-info-field>
+
+    <app-info-field [value]="source.publishedDate">
+      <label translate="SOURCE.DATA.PUBLISHED" [matTooltip]="'SOURCE.DATA.TOOLTIP.PUBLISHED' | translate"></label>
+      {{source.publishedDate | date}}
+    </app-info-field>
+
+  </div>
+
+  <div *ngIf="source && sourceEditing && hasSourceType()">
+    <!-- source editing -->
+    <a (click)="closeEdit()" class="srcs-navbutton icon-left srcs-top-element">
+      <icn name="back"></icn> <span translate="SHARED.BACK"></span>
+    </a>
+
+    <app-source-form #sourceEditForm
+      [source]="source"
+      [activityState]="sourceSaveActivityState"
+      (save)="saved(source)"
+      (dirty)="sourceEditTouched=$event"
+      *ngIf="source">
+    </app-source-form>
+
+  </div>
+</section>
+
+<!-- main content -->
+<section class="main-content no-padding" *ngIf="source && hasSourceType()">
+  <!-- Sourceref input / creating the source-->
+  <app-sourceref-input
+    [sourcetype]="sourcetype"
+    (created)="created($event)"
+    *ngIf="!hasSourceRef()">
+  </app-sourceref-input>
+
+  <!-- [annotations]="annotations" -->
+  <app-annotator #Annotator
+    [source]="source"
+    *ngIf="hasSourceRef()">
+  </app-annotator>
+
+</section>

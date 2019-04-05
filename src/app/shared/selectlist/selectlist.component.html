@@ -1,0 +1,11 @@
+<div class="srcs-pad" *ngIf="filter">
+  <input [formControl]="textInput" name="textInput" type="search" autocomplete="off"
+    [placeholder]="'SHARED.FILTER' | translate">
+</div>
+<ul [class]="compact ? 'compact' : ''">
+  <li *ngFor="let item of _internalItems">
+    <a (click)="select(item)" [class]="item._app_checked ? 'active-link' : ''">
+      {{item[name]}}
+    </a>
+  </li>
+</ul>

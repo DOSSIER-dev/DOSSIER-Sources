@@ -1,0 +1,82 @@
+<div>
+
+  <div class="srcs-flexrow">
+    <sources-sourcetype [sourcetype]="_source.sourcetype"></sources-sourcetype>
+    <icn [name]="bookmarked ? 'bookmark' : 'bookmark-notset'"
+      class="srcs-clickable"
+      [ngClass]="bookmarked ? 'srcs-col-primary' : 'srcs-col-inactive'"
+      [matTooltip]="'SHARED.BOOKMARK_TOOLTIP' | translate"
+      (click)="toggleBookmark()">
+    </icn>
+  </div>
+
+  <app-info-field>
+    <label translate="SOURCE.DATA.TITLE" [matTooltip]="'SOURCE.TOOLTIP.TITLE' | translate"></label>
+    <h2 class="title">
+      <span class="srcs-wordbreak">{{_source.title}}</span>
+    </h2>
+  </app-info-field>
+
+  <app-visibility [item]="_source"></app-visibility>
+
+  <hr/>
+
+  <app-info-field class="srcs-highlight-field">
+    <label translate="SHARED.EMBED_LINK" [matTooltip]="'SOURCE.TOOLTIP.EMBED_LINK' | translate"></label>
+    <app-embed-code [source]="_source" [inApp]="false" [withTag]="false"></app-embed-code>
+  </app-info-field>
+
+  <app-info-field>
+    <label translate="SHARED.SHARE_LINK"  [matTooltip]="'SOURCE.TOOLTIP.SHARE_LINK' | translate"></label>
+    <app-embed-code [source]="_source" [inApp]="true"></app-embed-code>
+  </app-info-field>
+
+  <hr />
+
+  <app-info-field [value]="_source.description">
+    <label translate="SOURCE.DATA.DESCRIPTION" [matTooltip]="'SOURCE.TOOLTIP.DESCRIPTION' | translate"></label>
+    <app-multiline-text [content]="_source.description"></app-multiline-text>
+  </app-info-field>
+
+  <app-info-field [value]="_source.collection">
+    <label translate="SOURCE.DATA.COLLECTION" [matTooltip]="'SOURCE.TOOLTIP.COLLECTION' | translate"></label>
+    {{_source.collection?.name}}
+  </app-info-field>
+
+  <app-info-field [value]="stories">
+    <label translate="SOURCE.DATA.STORIES" [matTooltip]="'SOURCE.TOOLTIP.STORIES' | translate"></label>
+    <ng-container *ngFor="let story of stories">
+      <span class="story">{{story.name}}</span>
+    </ng-container>
+  </app-info-field>
+
+  <app-info-field [value]="tags">
+    <label translate="SOURCE.DATA.TAGS" [matTooltip]="'SOURCE.TOOLTIP.TAGS' | translate"></label>
+    <ng-container *ngFor="let tag of tags">
+      <span class="tag">{{tag.name}}</span>
+    </ng-container>
+  </app-info-field>
+
+  <app-info-field [value]="_source.date">
+    <label translate="SOURCE.DATA.DATE" [matTooltip]="'SOURCE.TOOLTIP.DATE' | translate"></label>
+    {{_source.date | date}}
+  </app-info-field>
+
+  <app-info-field [value]="(country$|async)">
+    <label translate="SOURCE.DATA.COUNTRY" [matTooltip]="'SOURCE.TOOLTIP.COUNTRY' | translate"></label>
+    {{(country$|async)?.name}}
+  </app-info-field>
+
+  <app-info-field [value]="(language$|async)">
+    <label translate="SOURCE.DATA.LANGUAGE" [matTooltip]="'SOURCE.TOOLTIP.LANGUAGE' | translate"></label>
+    {{(language$|async)?.name}}
+  </app-info-field>
+
+  <app-info-field [value]="sourceIds">
+    <label translate="SOURCE.DATA.ORIGINAL_SOURCE" [matTooltip]="'SOURCE.TOOLTIP.ORIGINAL_SOURCE' | translate"></label>
+    <ng-container *ngFor="let sourceId of sourceIds">
+      {{sourceId}} <br/>
+    </ng-container>
+  </app-info-field>
+
+</div>

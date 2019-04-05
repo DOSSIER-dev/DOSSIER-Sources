@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/src-tool/replace/default</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/src-tool/replace/default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M5,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,19 C20,19.5522847 19.5522847,20 19,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,5 C4,4.44771525 4.44771525,4 5,4 Z M14.9843258,15.006963 L11.7912185,15.006963 L13.0873455,13.6414352 L12.3661804,13.0127544 L10,15.5074082 L12.3661804,17.9926528 L13.0873455,17.363972 L11.7912185,16.0050703 L15.9795855,16.0050703 L15.9795855,10.9960203 L14.9843258,10.9960203 L14.9843258,15.006963 Z M8.99525961,8.98324079 L12.188367,8.98324079 L10.89224,10.3487686 L11.6134051,10.9774494 L13.9795855,8.48279559 L11.6134051,5.99755094 L10.89224,6.62623175 L12.188367,7.98513346 L8,7.98513346 L8,12.9941835 L8.99525961,12.9941835 L8.99525961,8.98324079 Z" id="Combined-Shape" fill="#232323"></path>
+    </g>
+</svg>

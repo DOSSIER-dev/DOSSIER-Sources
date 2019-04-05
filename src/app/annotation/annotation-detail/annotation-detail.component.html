@@ -1,0 +1,54 @@
+<div *ngIf="_internalAnnotation" class="srcs-close-button-reference">
+  <a (click)="close()" class="srcs-close-button">
+    <icn name="close"></icn>
+  </a>
+  <div class="srcs-box-padded">
+    <app-column-layout>
+      <div app-left-col>
+        <app-info-field>
+          <label translate="ANNOTATION.DATA.TITLE" [matTooltip]="'SOURCE.TOOLTIP.TITLE' | translate"></label>
+          <div class="srcs-small srcs-dark">
+            {{_internalAnnotation.title}}
+          </div>
+        </app-info-field>
+        <app-info-field  [value]="_internalAnnotation.description">
+          <label translate="ANNOTATION.DATA.DESCRIPTION" [matTooltip]="'SOURCE.TOOLTIP.DESCRIPTION' | translate"></label>
+          <div class="srcs-small srcs-dark">
+            <app-multiline-text [content]="_internalAnnotation.description"
+              class="srcs-dark"></app-multiline-text>
+          </div>
+        </app-info-field>
+      </div>
+
+      <div app-right-col>
+
+        <app-info-field>
+          <app-visibility [item]="_internalAnnotation"></app-visibility>
+        </app-info-field>
+
+        <app-info-field class="srcs-alert-field">
+          <label translate="SHARED.EMBED_LINK" [matTooltip]="'SOURCE.TOOLTIP.EMBED_LINK' | translate" ></label>
+          <app-copytext [value]="embedShareUrl" class="srcs-dark"></app-copytext>
+        </app-info-field>
+
+        <app-info-field>
+          <label translate="SHARED.SHARE_LINK" [matTooltip]="'SOURCE.TOOLTIP.SHARE_LINK' | translate"></label>
+          <app-copytext [value]="appShareUrl" class="srcs-dark"></app-copytext>
+        </app-info-field>
+
+      </div>
+    </app-column-layout>
+
+    <app-activity-state [state]="activityState">
+      <button state-initial type="button" class="srcs-navbutton srcs-button-secondary icon-right" (click)="startEdit()">
+        <span translate="ANNOTATION.EDIT"></span>
+        <icn name="edit"></icn>
+      </button>
+      <button state-saved class="srcs-navbutton srcs-button-secondary icon-right" (click)="startEdit()">
+        <span translate="ANNOTATION.SAVED"></span>
+        <icn name="check"></icn>
+      </button>
+    </app-activity-state>
+
+  </div>
+</div>

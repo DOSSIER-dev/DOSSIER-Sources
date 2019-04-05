@@ -1,0 +1,14 @@
+@import '../../../colors.scss';
+
+span {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+}
+
+mat-icon {
+  margin-right: 0.5em;
+  color: $primary-2;
+  height: 16px; width: 16px;
+}

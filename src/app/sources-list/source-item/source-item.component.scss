@@ -1,0 +1,60 @@
+@import '../../../styles/utility-styles.scss';
+
+.srcs-source-item {
+  margin: 0.5em 0;
+}
+
+.source-item-part {
+  padding: 0.5em;
+}
+
+.highlights {
+  font-size: 80%;
+}
+
+.title-row {
+  width: 100%;
+  icn {
+    @include color-primary;
+  }
+}
+
+h3 {
+  @include srcs-item-header;
+  @include srcs-minimal-margin;
+}
+
+// Define flexrow and children's width settings for the 2nd-line with
+// icon, tags and other attributes.
+.tags-row {
+  font-size: 80%;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+
+  > span {
+    flex: 0 1 24%;
+    label {
+      display: inline-block;
+    }
+  }
+
+  > span:first-child {
+    flex: 0 0 26px;
+  }
+
+  > span:nth-child(2) {
+    flex: 0 1 48%;
+  }
+
+  > span:last-child {
+    text-align: right;
+  }
+}
+
+i.date {
+  font-style: normal;
+  min-width: 6em;
+  display: inline-block;
+}

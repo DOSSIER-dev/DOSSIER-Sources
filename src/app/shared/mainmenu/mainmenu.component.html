@@ -1,0 +1,99 @@
+<div class="stretch">
+  <section class="main-menu">
+    <div class="logo-block">
+      <div class="srcs-pad logo-line">
+        <img src="/assets/images/logo-dossier.png" class="logo-dossier">
+      </div>
+      <div class="srcs-pad logo-line">
+        <a routerLink="/"><img src="/assets/images/logo-sources.png" class="logo-sources"></a>
+      </div>
+    </div>
+
+    <nav>
+      <!-- Sources part -->
+      <ul *ngIf="loggedIn">
+        <li>
+          <a class="important" routerLink="/search" routerLinkActive="active-link" translate="MENU.MAIN.VIEW_ALL"></a>
+        </li>
+        <li>
+          <a class="important" routerLink="/collections" routerLinkActive="active-link" translate="MENU.MAIN.VIEW_BY_COLLECTION"></a>
+        </li>
+        <li>
+          <a class="important" routerLink="/stories" routerLinkActive="active-link" translate="MENU.MAIN.VIEW_BY_STORY"></a>
+        </li>
+        <li>
+          <a class="important" routerLink="/tags" routerLinkActive="active-link" translate="MENU.MAIN.VIEW_BY_TAG"></a>
+        </li>
+        <li>
+          <a class="important" routerLink="/user" routerLinkActive="active-link" translate="MENU.MAIN.VIEW_BY_USER"></a>
+        </li>
+        <li>
+          <a class="important" routerLink="/type" routerLinkActive="active-link" translate="MENU.MAIN.VIEW_BY_TYPE"></a>
+        </li>
+      </ul>
+
+      <!-- Login and other *no-auth* -->
+      <ul *ngIf="!(loggedIn)">
+        <li>
+          <a class="important" routerLink="/about" routerLinkActive="active-link" translate="MENU.MAIN.ABOUT"></a>
+        </li>
+        <li>
+          <a class="important" routerLink="/sources-in-your-org" routerLinkActive="active-link" translate="MENU.MAIN.SOURCES_IN_YOUR_ORG"></a>
+        </li>
+        <li>
+          <a class="important" href="https://gitlab.com/dossier/sources/" target="_blank" translate="MENU.MAIN.ON_GITHUB"></a>
+        </li>
+        <li>
+          <a routerLink="/login" routerLinkActive="active-link" translate="MENU.MAIN.LOGIN" class="srcs-button-tertiary inverse"></a>
+        </li>
+      </ul>
+
+      <!-- User menu -->
+      <ul *ngIf="loggedIn">
+        <li>
+          <div class="srcs-caps srcs-pad srcs-wordbreak smaller">{{currentUser | username}}</div>
+        </li>
+        <li>
+          <a class="larger" routerLink="/mysources" routerLinkActive="active-link" translate="MENU.MAIN.MY_SOURCES"></a>
+        </li>
+        <li>
+          <a class="larger" routerLink="/bookmarks" routerLinkActive="active-link" translate="MENU.MAIN.BOOKMARKS"></a>
+        </li>
+        <li>
+          <a class="larger" routerLink="/usersettings" routerLinkActive="active-link" translate="MENU.MAIN.SETTINGS"></a>
+        </li>
+        <li>
+          <div class="srcs-rightpad">
+            <button (click)="signOut()"
+              type="button"
+              class="srcs-button-tertiary inverse"
+              translate="MENU.MAIN.LOGOUT">
+            </button>
+          </div>
+        </li>
+      </ul>
+
+      <ul *ngIf="loggedIn">
+        <li>
+          <a routerLink="/help" routerLinkActive="active-link" translate="MENU.MAIN.HELP"></a>
+        </li>
+        <li *ngIf="isManager">
+          <a routerLink="/stats" routerLinkActive="active-link" translate="MENU.MAIN.STATISTICS"></a>
+        </li>
+        <li>
+          <a routerLink="/settings" routerLinkActive="active-link" translate="MENU.MAIN.ADMINISTRATION"></a>
+        </li>
+      </ul>
+
+      <div>
+        <small class="srcs-leftpad">{{version}}</small>
+      </div>
+    </nav>
+  </section>
+  <div *ngIf="loggedIn" class="srcs-halfpad srcs-vertpat">
+    <button routerLink="/source/add" class="srcs-navbutton primary srcs-larger srcs-fullwidth icon-right srcs-bottom-element">
+      <span translate="SOURCE.ADD_SOURCE"></span>
+      <icn name="add-source"></icn>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="canvas-wrapper" #wrapperElement>
+  <div class="image">
+    <img [src]="_imageUrl" #imgElement (load)="imageOnLoad($event)">
+  </div>
+
+  <app-canvas-annotations
+    [width]="width"
+    [height]="height"
+    [scale]="scale"
+    [annotations]="annotations"
+    [activeAnnotation]="activeAnnotation"
+    [addMode]="addMode"
+    (annotationChange)="annotationAdded($event)"
+    (annotationSelected)="annotationSelected($event)"
+    (screenInteraction)="setScreenInteraction($event)">
+  </app-canvas-annotations>
+</div>
+

@@ -1,0 +1,84 @@
+<section>
+
+  <form [formGroup]="sourceForm" (ngSubmit)="onSubmit()" *ngIf="source">
+    <div>
+      <button #submitButton type="submit" class="srcs-navbutton primary icon-right">
+        <span translate="SOURCE.SAVE_SOURCE"></span>
+        <app-savestate [state]="activityState?.state$"></app-savestate>
+      </button>
+    </div>
+
+    <hr/>
+
+    <sources-sourcetype [sourcetype]="source.sourcetype"></sources-sourcetype>
+
+    <div>
+      <label translate="SOURCE.DATA.TITLE" [matTooltip]="'SOURCE.DATA.TOOLTIP.TITLE' | translate"></label>
+      <textarea formControlName="title" name="title" placeholder="title" class="title">
+      </textarea>
+      <app-error [element]="sourceForm.get('title')" [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED'}]"></app-error>
+    </div>
+
+    <app-visibility-input formControlName="public" name="public"></app-visibility-input>
+
+    <div>
+      <label translate="SOURCE.DATA.DESCRIPTION" [matTooltip]="'SOURCE.DATA.TOOLTIP.DESCRIPTION' | translate"></label>
+      <textarea formControlName="description" name="description"></textarea>
+      <app-error [element]="sourceForm.get('description')" [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED'}]"></app-error>
+    </div>
+
+    <div>
+      <label translate="SOURCE.DATA.COLLECTION" [matTooltip]="'SOURCE.DATA.TOOLTIP.COLLECTION' | translate"></label>
+      <input type="text" formControlName="collection" [matAutocomplete]="autoCollection">
+      <mat-autocomplete #autoCollection="matAutocomplete" [autoActiveFirstOption]="true" [displayWith]="_displayOption">
+        <mat-option *ngFor="let option of filteredCollectionOptions | async" [value]="option">{{option.name}}</mat-option>
+      </mat-autocomplete>
+      <app-error [element]="sourceForm.get('collection')" [errors]="[{name: 'selection', 'text': 'ERROR.SELECTION'}]"></app-error>
+    </div>
+
+    <div>
+      <label translate="SOURCE.DATA.STORIES" [matTooltip]="'SOURCE.DATA.TOOLTIP.STORIES' | translate"></label>
+      <app-multiselect [items]="stories$|async" formControlName="stories" name="stories"></app-multiselect>
+    </div>
+
+    <div>
+      <label translate="SOURCE.DATA.TAGS" [matTooltip]="'SOURCE.DATA.TOOLTIP.TAGS' | translate"></label>
+      <app-multiselect [items]="tags$|async" formControlName="tags" name="tags"></app-multiselect>
+    </div>
+
+    <div>
+      <label translate="SOURCE.DATA.COUNTRY" [matTooltip]="'SOURCE.DATA.TOOLTIP.COUNTRY' | translate"></label>
+      <input type="text" formControlName="country" [matAutocomplete]="autoCountry">
+      <mat-autocomplete #autoCountry="matAutocomplete" [autoActiveFirstOption]="true" [displayWith]="_displayOption">
+        <mat-option *ngFor="let option of filteredCountryOptions | async" [value]="option">{{option.name}}</mat-option>
+      </mat-autocomplete>
+      <app-error [element]="sourceForm.get('country')" [errors]="[{name: 'selection', 'text': 'ERROR.SELECTION'}]"></app-error>
+    </div>
+
+    <div>
+      <label translate="SOURCE.DATA.LANGUAGE" [matTooltip]="'SOURCE.DATA.TOOLTIP.LANGUAGE' | translate"></label>
+      <input type="text" formControlName="language" [matAutocomplete]="autoLanguage">
+      <mat-autocomplete #autoLanguage="matAutocomplete" [autoActiveFirstOption]="true" [displayWith]="_displayOption">
+        <mat-option *ngFor="let option of filteredLanguageOptions | async" [value]="option">{{option.name}}</mat-option>
+      </mat-autocomplete>
+      <app-error [element]="sourceForm.get('language')" [errors]="[{name: 'selection', 'text': 'ERROR.SELECTION'}]"></app-error>
+    </div>
+
+    <div>
+      <label translate="SOURCE.DATA.DATE" [matTooltip]="'SOURCE.DATA.TOOLTIP.DATE' | translate"></label>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="date" name="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label translate="SOURCE.DATA.SOURCE_ID" [matTooltip]="'SOURCE.DATA.TOOLTIP.SOURCE_ID' | translate"></label>
+      <input type="text" formControlName="sourceId" name="sourceId" placeholder="ISBN, DOI, etc">
+      <app-error [element]="sourceForm.get('sourceId')" [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED'}]"></app-error>
+    </div>
+
+  </form>
+
+</section>

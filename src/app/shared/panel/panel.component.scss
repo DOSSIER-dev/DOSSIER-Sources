@@ -1,0 +1,42 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/utility-styles.scss';
+
+.outer-reference {
+  position: relative;
+}
+
+.outer {
+  position: absolute;
+  top: 15px;
+  box-shadow: 0 0 100px;
+  z-index: 10;
+}
+
+.inner {
+  padding: 0.5em;
+}
+
+.triangle-up {
+  @include triangle-up;
+
+  // left: calc(50% - 15px);
+  left: 50%;
+  margin-left: -15px;
+}
+
+.inner {
+  background: $accent-3;
+  color: $text-light;
+}
+
+.triangle-up {
+  border-bottom-color: $accent-3;
+}
+
+.left .triangle-up {
+  left: 80%;
+}
+
+.right .triangle-up {
+  left: 20%;
+}

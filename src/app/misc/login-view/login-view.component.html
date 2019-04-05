@@ -1,0 +1,27 @@
+<section class="main-content srcs-centercol-container">
+  <div>
+    <app-content name="login"></app-content>
+    <h4 translate="LOGIN.TITLE"></h4>
+    <p>{{message}}</p>
+    <form (ngSubmit)="onSubmit()">
+      <div class="srcs-section-hspace">
+        <label translate="LOGIN.EMAIL_USERNAME"></label>
+        <input name="username" type="text" class="form-input" [formControl]="usernameInput">
+      </div>
+      <div class="srcs-section-hspace">
+        <label translate="LOGIN.PASSWORD"></label>
+        <input name="password" type="password" class="form-input" [formControl]="passwordInput">
+      </div>
+      <div class="srcs-section-hspace">
+        <button type="submit" class="srcs-navbutton primary">
+          <span translate="LOGIN.SUBMIT"></span>
+        </button>
+      </div>
+      <div class="srcs-section-hspace">
+        <a routerLink="/reset-password" translate="LOGIN.FORGOT_PASSWORD"></a>
+      </div>
+    </form>
+  </div>
+</section>
+
+

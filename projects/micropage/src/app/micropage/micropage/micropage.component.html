@@ -1,0 +1,41 @@
+<div class="app-micropage-container">
+
+  <section class="column-level-2 app-sidebar-bg">
+    <app-sidebar
+      [source]="source"
+      (onSelect)="selectAnnotation($event)"
+      class="sidebar app-sidebar-bg">
+    </app-sidebar>
+  </section>
+
+  <div class="main-content viewer app-mode-mobile">
+    <app-viewer
+      [annotations]="source.annotations"
+      [activeAnnotation]="activeAnnotation"
+      (onSelect)="selectAnnotation($event)"
+      (onLoad)="viewerReady($event)"
+      (onInteract)="setInteraction($event)"
+      [source]="source"></app-viewer>
+
+    <div #panel class="panel-positioning">
+      <div *ngIf="activeAnnotation">
+        <app-annotation-panel [static]="isStaticAnnotationDisplay">
+          <app-annotation-detail [annotation]="activeAnnotation" (close)="selectAnnotation(null)"></app-annotation-detail>
+        </app-annotation-panel>
+      </div>
+    </div>
+  </div>
+
+  <section class="app-micropage-footer">
+    <div class="footer-labels">
+      <label class="srcs-label-header" *ngIf="hasAnnotations">Annotations</label>
+      <a [href]="aboutLink" target="_blank">
+        <img src="/assets/images/logo-dossier_sources-embed.png" class="sources-logo">
+      </a>
+    </div>
+    <app-annotations
+      [annotations]="source.annotations"
+      (select)="selectAnnotation($event)"
+      direction="horizontal"></app-annotations>
+  </section>
+</div>

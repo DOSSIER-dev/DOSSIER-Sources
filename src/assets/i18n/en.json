@@ -1,0 +1,306 @@
+{
+  "ADMINISTRATION": {
+    "MENU": {
+      "COLLECTIONS": "Collections",
+      "ORGANISATION": "Team",
+      "TAGS": "Tags",
+      "STORIES": "Stories",
+      "USERS": "Users"
+    },
+    "ORGANISATION": {
+      "COLOR": "Link & Annotation color",
+      "NAME": "Team Name",
+      "SUBMIT": "Save Changes"
+    },
+    "USERS": {
+      "ACTIVE": "Active",
+      "ADD": "Add User",
+      "ADMIN": "Administrator",
+      "EMAIL_USERNAME": "Email",
+      "FIRSTNAME": "Firstname",
+      "LASTNAME": "Lastname"
+    }
+  },
+  "ANNOTATION": {
+    "DATA": {
+      "DESCRIPTION": "Description",
+      "TITLE": "Title",
+      "TOOLTIP": {
+        "DESCRIPTION": "Description",
+        "TITLE": "Title"
+      }
+    },
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "LOCATION": {
+      "HEIGHT": "Height",
+      "LEFT": "Left",
+      "PAGE": "Page",
+      "TEXT": "Location in Source",
+      "TIMECODE_FROM": "Start Time",
+      "TIMECODE_TO": "End Time",
+      "TOP": "Top",
+      "WIDTH": "Width"
+    },
+    "SAVE": "Save",
+    "SAVED": "Saved",
+    "TOOLTIP": {
+      "DESCRIPTION": "Description",
+      "TITLE": "Title"
+    }
+  },
+  "COLLECTION": {
+    "ADD": "Add Collection",
+    "DATA": {
+      "NAME": "Name"
+    }
+  },
+  "ERROR": {
+    "EMAIL": "Enter a valid email address.",
+    "REQUIRED": "This field is is required.",
+    "SELECTION": "Select a valid entry or leave empty.",
+    "MAXLENGTH": "Field content is too long."
+  },
+  "LOGIN": {
+    "EMAIL_USERNAME": "Email",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "PASSWORD": "Password",
+    "SUBMIT": "Login",
+    "TITLE": "Login"
+  },
+  "MENU": {
+    "MAIN": {
+      "ABOUT": "Learn more about Sources",
+      "ADMINISTRATION": "Administration",
+      "BOOKMARKS": "Bookmarks",
+      "HELP": "Help",
+      "LOGIN": "Login",
+      "LOGOUT": "Logout",
+      "MY_SOURCES": "My Sources",
+      "ON_GITHUB": "Sources on Github",
+      "SETTINGS": "Settings",
+      "SOURCES_IN_YOUR_ORG": "Sources for your Team",
+      "STATISTICS": "Statistics",
+      "VIEW_ALL": "All",
+      "VIEW_BY_COLLECTION": "Collections",
+      "VIEW_BY_STORY": "Stories",
+      "VIEW_BY_TAG": "Tags",
+      "VIEW_BY_TYPE": "Type",
+      "VIEW_BY_USER": "Contributors"
+    }
+  },
+  "MISC": {
+    "NOTFOUND": {
+      "TEXT": "Not found"
+    }
+  },
+  "POPUP": {
+    "DELETE": {
+      "CANCEL": "Cancel",
+      "CONFIRM": "Delete",
+      "MESSAGE": "Are you sure sure you want to delete?"
+    },
+    "UNSAVED": {
+      "CONTINUE_EDIT": "Cancel",
+      "IGNORE_LOST": "Proceed",
+      "MESSAGE": "You have unsaved changes."
+    }
+  },
+  "RESETPASSWORD": {
+    "EMAIL": "Email",
+    "FAIL": "There was a problem setting the password.",
+    "SUBMIT": "Request reset link",
+    "SUCCESS": "The password was reset.",
+    "TITLE": "Reset Password",
+    "REQUEST_SEND_SUCCESS": "Done ! Please check your mailbox for the link with which to reset your password.",
+    "REQUEST_SEND_FAIL": "A problem occured - could not send a link to reset the password."
+  },
+  "SETTINGS": {
+    "ERRORS": {
+      "MINLENGTH": "Password is too short (min. 8 characters)"
+    },
+    "FIRSTNAME": "First name",
+    "LASTNAME": "Last name",
+    "NEWPASSWORD1": "New password",
+    "NEWPASSWORD2": "Enter new password again",
+    "OLDPASSWORD": "Current Password",
+    "PASSWORD_NOTE": "Password must be at least 8 characters, must contain at least one character that is not a digit, and must not bee too common.",
+    "PERSONAL": {
+      "FAIL": "Could not save personal settings.",
+      "SUCCESS": "Personal settings saved."
+    },
+    "SUBMIT": "Save Changes",
+    "TITLE": "Change Password",
+    "USERNAME": "Username"
+  },
+  "SHARED": {
+    "BACK": "Back",
+    "BOOKMARK_TOOLTIP": "Bookmark",
+    "EMBED_LINK": "Embed Link (public)",
+    "FILTER": "Filter",
+    "MESSAGES": {
+      "SUCCESS": "The data was saved.",
+      "GET_ERROR": "Could not retrieve data."
+    },
+    "RANKING": {
+      "BY_DATE_ASC": "Oldest first",
+      "BY_DATE_DESC": "Newest first",
+      "BY_RELEVANCE": "Relevance",
+      "BY_TITLE_ASC": "A-Z",
+      "BY_TITLE_DESC": "Z-A",
+      "LABEL": "Ranking"
+    },
+    "SEARCH": "Search",
+    "SHARE_LINK": "App Link (internal)"
+  },
+  "SOURCE": {
+    "ADD_ANNOTATION": "Add Annotation",
+    "ADD_ANNOTATION_CANCEL": "Cancel",
+    "ADD_SOURCE": "Add Source",
+    "DATA": {
+      "ADDED": "Added",
+      "COLLECTION": "Collection",
+      "CONFIDENTIAL": "Confidential",
+      "CONTRIBUTOR": "Contributor",
+      "COUNTRY": "Country",
+      "CREATED_AT": "Added",
+      "DATE": "Date",
+      "DESCRIPTION": "Description",
+      "DOCTYPE": "Resource Type",
+      "LANGUAGE": "Language",
+      "ORIGINAL_SOURCE": "Original Source",
+      "PUBLIC": "Public",
+      "PUBLISHED": "Published",
+      "SOURCE_ID": "Original Source",
+      "STORIES": "Story",
+      "TAGS": "Tags",
+      "TITLE": "Title",
+      "TOOLTIP": {
+        "ADDED": "Date on which the source was added",
+        "COLLECTION": "Collection",
+        "CONTRIBUTOR": "Person who added the source",
+        "COUNTRY": "Country where source was published",
+        "DATE": "Date when source was first published",
+        "DESCRIPTION": "Description",
+        "LANGUAGE": "Language",
+        "PUBLISHED": "Date on which the source was published",
+        "SOURCE_ID": "Origin of the source (ISBN-Code, URL, etc)",
+        "STORIES": "Story",
+        "TAGS": "Tags",
+        "TITLE": "Title"
+      }
+    },
+    "SAVED": "Source Saved",
+    "SAVE_SOURCE": "Save Source",
+    "SECTION": {
+      "ANNOTATIONS": "Annotations",
+      "DETAILS": "Details",
+      "STATISTICS": "Statistics"
+    },
+    "TOOLTIP": {
+      "COLLECTION": "Collection",
+      "CONTRIBUTOR": "Contributor",
+      "COUNTRY": "Country",
+      "CREATED_AT": "Added",
+      "DATE": "Date",
+      "DESCRIPTION": "Description",
+      "EDITBAR_DELETE": "Remove Source",
+      "EDITBAR_DOWNLOAD": "Download Source",
+      "EDITBAR_EDIT": "Edit Source",
+      "EDITBAR_REPLACE": "Replace Source",
+      "EMBED_LINK": "Link to embed on other sites",
+      "LANGUAGE": "Language",
+      "ORIGINAL_SOURCE": "Original Source",
+      "PUBLISHED": "Published",
+      "SOURCE_ID": "Original Source",
+      "SHARE_LINK": "URL to share",
+      "TAGS": "Tags",
+      "TITLE": "Title",
+      "PUBLIC": "Public - visible to everyone.",
+      "CONFIDENTIAL": "Confidential - not visible."
+    },
+    "UPLOAD": {
+      "ALLOWED_TYPES": "Allowed filetypes",
+      "DROPZONE": "Drop source file here",
+      "START": "Start upload"
+    }
+  },
+  "SOURCETYPES": {
+    "EMBEDID": "Embed Id",
+    "INPUT": {
+      "VIDEO": {
+        "HREF_HELP": "Video URL (Paste from browser address bar)",
+        "FETCH_BUTTON": "Fetch Video",
+        "PLATFORMS": "Supported Platforms"
+      },
+      "VIMEO": {
+        "HREF_HELP": "Video URL (Paste from browser address bar)",
+        "FETCH_BUTTON": "Fetch Video",
+        "PLATFORMS": "Supported Platforms"
+      }
+    },
+    "SERVICE": "Service",
+    "TYPES": {
+      "AUDIO": "Audio",
+      "DATA": "Dataset",
+      "DOC": "Document",
+      "IMG": "Image",
+      "MISC": "Miscellaneous",
+      "VIDEO": "Video",
+      "VIMEO": "Vimeo"
+    }
+  },
+  "SOURCE_LIST": {
+    "RESULTS_PLURAL": "{{n}} Sources",
+    "RESULTS_SINGULAR": "One Source"
+  },
+  "STATS": {
+    "FIGURES": {
+      "AVERAGE_TIME_SPENT": "Average time spent with source",
+      "CLIENT_SHARE": "Client share",
+      "COLLECTIONS": "Collections",
+      "SOURCES": "Sources",
+      "SOURCES_CONTRIBUTED": "Sources contributed",
+      "STORIES": "Stories",
+      "TAGS": "Tags",
+      "TOOLTIP": {
+        "TOTAL_SOURCE_VIEWS": "Total amount of views"
+      },
+      "TOTAL_SOURCE_VIEWS": "Total views"
+    },
+    "HEADER": {
+      "LAST_WEEK": "Last week",
+      "OVERALL": "Overall"
+    },
+    "LABEL": {
+      "WEEK": "Week"
+    },
+    "MENU": {
+      "INVENTORY": "Inventory",
+      "SOURCEVIEWS": "Source views"
+    }
+  },
+  "STORY": {
+    "ADD": "Add Story",
+    "DATA": {
+      "NAME": "Name"
+    }
+  },
+  "TAG": {
+    "ADD": "Add Tag",
+    "DATA": {
+      "NAME": "Name"
+    }
+  },
+  "WELCOME": {
+    "ALL_BOOKMARKS": "All Bookmarks",
+    "ALL_MY_SOURCES": "All my Sources",
+    "MY_STATS": "My Statistics",
+    "HEADER": "Welcome back!",
+    "HEADER_BOOKMARKS": "Bookmarks",
+    "HEADER_MY_SOURCES": "My Sources"
+  },
+  "WIDGETS": {
+    "LINK_COPIED": "Copied to clipboard"
+  }
+}

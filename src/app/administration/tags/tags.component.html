@@ -1,0 +1,41 @@
+<section class="main-content srcs-fullscreen">
+  <section class="srcs-section-hspace">
+    <form class="searchform">
+      <input type="search" class="search-input" [formControl]="searchInput" [placeholder]="'SHARED.SEARCH' | translate">
+    </form>
+  </section>
+  <section class="srcs-section-hspace">
+    <ng-container *ngFor="let tag of filteredItems">
+      <div *ngIf="!tag.editing" class="srcs-edit-item-row srcs-editable-row">
+        <a (click)="edit(tag)" class="srcs-input">
+          {{tag.payload.name}}
+        </a>
+        <span>
+          <icn name="edit" class="on-hover"></icn>
+        </span>
+      </div>
+      <div *ngIf="tag.editing">
+        <app-tag-form [tag]="tag"
+          [showDelete]="isManager"
+          (save)="save($event)"
+          (delete)="delete($event)"
+          (cancel)="cancelEdit($event)">
+        </app-tag-form>
+      </div>
+    </ng-container>
+  </section>
+
+  <section class="add-item">
+    <app-tag-form *ngIf="newItem"
+      [showLabels]="true"
+      [showDelete]="false"
+      (save)="save($event)"
+      (cancel)="cancelEdit($event)"
+      [tag]="newItem">
+    </app-tag-form>
+    <button (click)="addItem()" class="srcs-navbutton primary" [disabled]="noCanAdd">
+      <span translate="TAG.ADD"></span>
+    </button>
+  </section>
+
+</section>

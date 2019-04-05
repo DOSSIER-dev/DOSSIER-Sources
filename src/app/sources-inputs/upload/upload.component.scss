@@ -1,0 +1,41 @@
+@import '../../../styles/colors.scss';
+// @import ''
+// srcs-flat-header-font
+
+.drop-container {
+  border: 1px dashed $dark-3;
+  min-height: 300px;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.drop-container.is-drop-over {
+  background: $primary-light-hover;
+}
+
+.drop-container.is-rejected {
+  background: $accent-2;
+}
+
+.upload-button-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.upload-button-bar.progress {
+  display: none;
+}
+
+.drop-progress {
+  width: 80%;
+}
+
+input[type='file'] {
+  background: $primary-1;
+  color: $text-light;
+  width: 200px;
+}

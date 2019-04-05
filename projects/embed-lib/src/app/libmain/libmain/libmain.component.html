@@ -1,0 +1,28 @@
+<app-sourcebox *ngIf="showLinkbox"
+  [sources]="sources"
+  (activated)="activateSource($event)">
+</app-sourcebox>
+
+<div class="overlayContainer" *ngIf="source && iframeUrl" (click)="close()">
+  <div class="overlayContainerBackdrop"></div>
+  <section class="sourceOverlay">
+    <div class="srcs-close">
+      <a (click)="close()" class="close">
+        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 9.263L3.256 14c-.352-.205-.596-.376-.733-.513s-.312-.384-.523-.741L6.753 8 2 3.255a2.4 2.4 0 0 1 .468-.703c.178-.178.44-.362.788-.552L8 6.737 12.744 2c.352.205.596.376.733.513s.312.384.523.741L9.247 8 14 12.745a2.4 2.4 0 0 1-.468.703c-.178.178-.44.362-.788.552L8 9.263z" /></svg>
+      </a>
+    </div>
+    <div class="iframe-wrapper">
+      <iframe [src]="iframeUrl"></iframe>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="showHover" #hoverElement
+  class="hoverElement" [ngClass]="{'active': !!hoverSource}">
+  <div *ngIf="hoverSource">
+    <!-- <sources-sourcetype [sourcetype]="hoverSource.source?.sourcetype" [iconOnly]="true"></sources-sourcetype> -->
+    {{hoverSource.source?.title}}
+    <small><br /><label>Date:</label> <span>{{hoverSource.source?.created_at | date}}</span></small>
+  </div>
+</div>

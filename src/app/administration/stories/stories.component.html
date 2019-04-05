@@ -1,0 +1,41 @@
+<section class="main-content srcs-fullscreen">
+  <section class="srcs-section-hspace">
+    <form class="searchform">
+      <input type="search" class="search-input" [formControl]="searchInput" [placeholder]="'SHARED.SEARCH' | translate">
+    </form>
+  </section>
+
+  <section class="srcs-section-hspace">
+    <ng-container *ngFor="let story of filteredItems">
+      <div *ngIf="!story.editing" class="srcs-edit-item-row srcs-editable-row">
+        <a (click)="edit(story)" class="srcs-input">
+          {{story.payload.name}}
+        </a>
+        <span>
+          <icn name="edit" class="on-hover"></icn>
+        </span>
+      </div>
+      <div *ngIf="story.editing">
+        <app-story-form [story]="story"
+          (save)="save($event)"
+          (delete)="delete($event)"
+          (cancel)="cancelEdit($event)">
+        </app-story-form>
+      </div>
+    </ng-container>
+  </section>
+
+  <section class="add-item">
+    <app-story-form *ngIf="newItem"
+      [showLabels]="true"
+      [showDelete]="false"
+      (save)="save($event)"
+      (cancel)="cancelEdit($event)"
+      [story]="newItem">
+    </app-story-form>
+    <button (click)="addItem()" class="srcs-navbutton primary" [disabled]="noCanAdd">
+      <span translate="STORY.ADD"></span>
+    </button>
+  </section>
+
+</section>

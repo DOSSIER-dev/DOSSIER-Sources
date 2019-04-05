@@ -1,0 +1,32 @@
+<div class="panel-anchor">
+  <!-- dynamically loaded gui/annotation implementation goes here: -->
+  <ng-template appComponentHost></ng-template>
+
+  <div class="annotation-panel-container" #annotationPanel>
+    <div *ngIf="hasActiveAnnotation()">
+      <app-annotation-panel [static]="isStaticAnnotationDisplay">
+        <app-annotation-form
+          *ngIf="isEdit"
+          [annotation]="annotationState.activeAnnotation$ | async"
+          [sourcetype]="source.sourcetype"
+          [sourceEmbedUrl]="source.shareUrl"
+          [activityState]="activityState"
+          (save)="saveAnnotation($event)"
+          (cancel)="closeAnnotationEdit($event)"
+          (delete)="deleteAnnotation($event)"
+          (dirty)="setAnnotationDirtyState($event)">
+        </app-annotation-form>
+
+        <app-annotation-detail
+          *ngIf="!isEdit"
+          [annotation]="annotationState.activeAnnotation$ | async"
+          [sourcetype]="source.sourcetype"
+          [sourceEmbedUrl]="source.shareUrl"
+          [activityState]="activityState"
+          (edit)="editAnnotation($event)"
+          (cancel)="closeAnnotation($event)">
+        </app-annotation-detail>
+      </app-annotation-panel>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+<section class="main-content srcs-centercol-container">
+  <div>
+    <div class="srcs-section-hspace">
+      <form (ngSubmit)="submitName()" [formGroup]="nameForm">
+        <div>
+          <label translate="SETTINGS.FIRSTNAME"></label>
+          <input name="firstname"
+            required
+            type="text"
+            class="form-input"
+            [placeholder]="'SETTINGS.FIRSTNAME'|translate"
+            formControlName="firstname">
+          <app-error
+            [element]="nameForm.get('firstname')"
+            [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED' }]"
+            [serverErrors]="errors"
+            serverErrorField="first_name">
+          </app-error>
+        </div>
+        <div>
+          <label translate="SETTINGS.LASTNAME"></label>
+          <input name="lastname"
+            required
+            type="text"
+            class="form-input"
+            [placeholder]="'SETTINGS.LASTNAME'|translate"
+            formControlName="lastname">
+          <app-error
+            [element]="nameForm.get('lastname')"
+            [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED' }]"
+            [serverErrors]="errors"
+            serverErrorField="last_name">
+          </app-error>
+        </div>
+        <div>
+          <button type="submit" translate="SETTINGS.SUBMIT" class="srcs-navbutton primary"></button>
+        </div>
+      </form>
+    </div>
+
+
+    <h1 translate="SETTINGS.TITLE"></h1>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="passwordForm">
+      <div>
+        <input name="oldPassword"
+          required
+          type="password"
+          class="form-input"
+          [placeholder]="'SETTINGS.OLDPASSWORD'|translate"
+          formControlName="oldPassword">
+        <app-error
+          [element]="passwordForm.get('oldPassword')"
+          [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED' }]"
+          [serverErrors]="errors"
+          serverErrorField="old_password">
+        </app-error>
+      </div>
+      <div>
+        <input name="newPassword1"
+          type="password"
+          class="form-input"
+          required
+          minlength="8"
+          [placeholder]="'SETTINGS.NEWPASSWORD1'|translate"
+          formControlName="newPassword1">
+        <app-error
+          [element]="passwordForm.get('newPassword1')"
+          [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED' },
+            {name: 'minlength', 'text': 'SETTINGS.ERRORS.MINLENGTH'}]"
+          [serverErrors]="errors"
+          serverErrorField="new_password1">
+        </app-error>
+      </div>
+      <div>
+        <input name="newPassword2"
+          type="password"
+          class="form-input"
+          required
+          minlength="8"
+          [placeholder]="'SETTINGS.NEWPASSWORD2'|translate"
+          formControlName="newPassword2">
+        <app-error
+          [element]="passwordForm.get('newPassword2')"
+          [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED' },
+            {name: 'minlength', 'text': 'SETTINGS.ERRORS.MINLENGTH'}]"
+          [serverErrors]="errors"
+          serverErrorField="new_password2">
+        </app-error>
+      </div>
+      <div class="srcs-section-hspace" translate="SETTINGS.PASSWORD_NOTE">
+      </div>
+      <div>
+        <button type="submit" translate="SETTINGS.SUBMIT" class="srcs-navbutton primary"></button>
+      </div>
+    </form>
+  </div>
+</section>

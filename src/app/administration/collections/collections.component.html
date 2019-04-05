@@ -1,0 +1,43 @@
+
+<section class="main-content srcs-fullscreen">
+  <section class="srcs-section-hspace">
+    <form class="searchform">
+      <input type="search" class="search-input" [formControl]="searchInput" [placeholder]="'SHARED.SEARCH' | translate">
+    </form>
+  </section>
+
+  <section class="srcs-section-hspace">
+    <ng-container *ngFor="let collection of filteredItems">
+      <div *ngIf="!collection.editing" class="srcs-edit-item-row srcs-editable-row">
+        <a (click)="edit(collection)" class="srcs-input">
+          {{collection.payload.name}}
+        </a>
+        <span>
+          <icn name="edit" class="on-hover"></icn>
+        </span>
+      </div>
+      <div *ngIf="collection.editing">
+        <app-collection-form [collection]="collection"
+          (save)="save($event)"
+          (delete)="delete($event)"
+          (edit)="edit($event)"
+          (cancel)="cancelEdit($event)">
+        </app-collection-form>
+      </div>
+    </ng-container>
+  </section>
+
+  <section class="add-item">
+    <app-collection-form *ngIf="newItem"
+      [showLabels]="true"
+      [showDelete]="false"
+      (save)="save($event)"
+      (cancel)="cancelEdit()"
+      [collection]="newItem">
+    </app-collection-form>
+    <button (click)="addItem()" class="srcs-navbutton primary" [disabled]="noCanAdd">
+      <span translate="COLLECTION.ADD"></span>
+    </button>
+  </section>
+
+</section>

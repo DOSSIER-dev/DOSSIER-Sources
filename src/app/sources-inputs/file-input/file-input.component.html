@@ -1,0 +1,11 @@
+<section class="srcs-centercol-container srcs-section-hspace3">
+  <div>
+    <app-upload (uploaded)="fileAdded($event)" [contentTypes]="mimetypes"></app-upload>
+    <div class="mimetypes-container">
+      <div>
+        <label translate="SOURCE.UPLOAD.ALLOWED_TYPES"></label>
+        <span class="mimetypes">{{extensions.join(', ')}}</span>
+      </div>
+    </div>
+  </div>
+</section>

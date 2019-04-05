@@ -1,0 +1,54 @@
+@import './utility-styles.scss';
+
+/**
+ * Styles for rendered markdown content (about pages, help pags etc.)
+ */
+.textual-content {
+    h2 {
+        @include srcs-content-header;
+        @include color-primary;
+    }
+
+    h3 {
+        @include srcs-flat-header-font;
+        @include srcs-font-dim;
+    }
+
+    p {
+        @include srcs-line-large;
+    }
+
+    ul {
+        list-style-type: square;
+        padding-left: 0.5em;
+    }
+
+    ol {
+        padding-left: 0;
+    }
+
+    ul, ol {
+        li {
+            @include srcs-line-large;
+            margin: 0.75em;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    th {
+        text-align: right;
+    }
+
+    td {
+        margin: 0;
+        padding: 0.5em;
+        border-bottom: 1px solid $dark-5;
+    }
+
+    img {
+        width: 100%;
+    }
+}

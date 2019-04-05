@@ -1,0 +1,64 @@
+@import '../../../styles/utility-styles.scss';
+@import '../../../styles/colors.scss';
+
+/**
+  Defines column widths of a "table" that is  created via `display: flex`
+  property. Used by both list view and the edit form for admin users.
+*/
+.user-table {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  width: 100%;
+
+  > * {
+    flex: 1 1 auto;
+    min-width: 8em;
+  }
+
+  &.hide-child-overflows {
+    > * {
+      overflow: hidden;
+    }
+  }
+
+  > *:nth-child(1) {
+    width: 20%;
+  }
+  > *:nth-child(2) {
+    width: 20%;
+  }
+  > *:nth-child(3) {
+    width: 20%;
+  }
+
+  > *:nth-child(4) {
+    width: 10%;
+    min-width: 4em;
+  }
+  > *:nth-child(5) {
+    width: 10%;
+    min-width: 4em;
+  }
+
+  > *:nth-child(6) {
+    width: 20%;
+  }
+}
+
+.user-table {
+  > * {
+    // cells have padding of inputs
+    @include srcs-input-pad;
+  }
+
+  .th {
+    @include srcs-label-font;
+    font-weight: bold;
+    color: $dark-1;
+  }
+}
+
+.header-row {
+  @include border-cell-on;
+}

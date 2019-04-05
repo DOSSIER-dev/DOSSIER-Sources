@@ -1,0 +1,56 @@
+<section class="main-content srcs-fullscreen">
+  <section class="srcs-section-hspace">
+    <form class="searchform">
+      <input type="search" class="search-input" [formControl]="searchInput" [placeholder]="'SHARED.SEARCH' | translate">
+    </form>
+  </section>
+
+  <section class="srcs-section-hspace">
+    <div class="user-table header-row">
+      <span class="th" translate="ADMINISTRATION.USERS.EMAIL_USERNAME"></span>
+      <span class="th" translate="ADMINISTRATION.USERS.FIRSTNAME"></span>
+      <span class="th" translate="ADMINISTRATION.USERS.LASTNAME"></span>
+      <span class="th" translate="ADMINISTRATION.USERS.ACTIVE"></span>
+      <span class="th" translate="ADMINISTRATION.USERS.ADMIN"></span>
+      <span class="th"></span>
+    </div>
+    <ng-container *ngFor="let staffer of filteredItems">
+      <div *ngIf="!staffer.editing" class="srcs-editable-row user-table hide-child-overflows" (click)="edit(staffer)">
+        <span>{{staffer.payload.user.username}}</span>
+        <span>{{staffer.payload.user.firstname}}</span>
+        <span>{{staffer.payload.user.lastname}}</span>
+        <span>
+          <icn name="check-dark" *ngIf="staffer.payload.isActive"></icn>
+        </span>
+        <span>
+          <icn name="check-dark" *ngIf="staffer.payload.isManager"></icn>
+        </span>
+        <span>
+          <icn name="edit" class="on-hover"></icn>
+        </span>
+      </div>
+
+      <app-user-admin-form *ngIf="staffer.editing"  class="srcs-editable-row"
+        [item]="staffer"
+        (save)="save($event)"
+        (delete)="delete($event)"
+        (cancel)="cancelEdit($event)"
+        [serverErrors]="errors">
+      </app-user-admin-form>
+    </ng-container>
+  </section>
+
+  <section class="add-item">
+    <app-user-admin-form *ngIf="newItem"
+      [showLabels]="true" [showDelete]="false"
+      [item]="newItem"
+      (save)="save($event)"
+      (cancel)="cancelEdit()"
+      [serverErrors]="errors">
+    </app-user-admin-form>
+
+    <button (click)="addItem()" class="srcs-navbutton primary" [disabled]="noCanAdd">
+      <span translate="ADMINISTRATION.USERS.ADD"></span>
+    </button>
+  </section>
+</section>

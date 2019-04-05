@@ -1,0 +1,23 @@
+@import '../../../colors.scss';
+div.card {
+  color: $text-light;
+  > div {
+    padding: 12px;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .close {
+    cursor: pointer;
+    svg {
+      width: 1em;
+      height: 1em;
+      fill: $dark-4;
+      color: $dark-4;
+    }
+  }
+}

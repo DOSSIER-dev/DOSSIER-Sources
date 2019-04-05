@@ -1,0 +1,13 @@
+<div id="sourcesjs-sourcebox">
+  <h3>Embedded Sources</h3>
+  <ul>
+    <li *ngFor="let source of sources">
+      <a (click)="activateSource(source)">
+        <!-- <sources-sourcetype [sourcetype]="source.source?.sourcetype" [iconOnly]="true"></sources-sourcetype> -->
+        {{source.source?.title}}
+      </a>
+      <small><br /><span>{{source.source?.created_at | date}}</span></small>
+    </li>
+  </ul>
+  <a href="{{aboutLink}}" target="_blank">About Sources</a>
+</div>

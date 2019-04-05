@@ -1,0 +1,10 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/utility-styles.scss';
+
+a {
+  color: $accent-1;
+  cursor: pointer;
+  @include srcs-fontsize-small;
+  display: block;
+  line-height: 1.5;
+}

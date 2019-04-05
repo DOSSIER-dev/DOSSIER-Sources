@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="srcs-edit-item-row" *ngIf="tag">
+
+    <span>
+      <label translate="TAG.DATA.NAME" *ngIf="showLabels"></label>
+      <input #firstInput type="text" formControlName="name" name="name">
+      <app-error [element]="form.get('name')" [errors]="[{name: 'required', text: 'ERROR.REQUIRED'}]"></app-error>
+    </span>
+
+    <span class="srcs-iconbutton-set">
+      <a class="srcs-iconbutton" matTooltip="cancel" (click)="doCancel()">
+        <icn name="circle-cancel"></icn>
+      </a>
+      <span *ngIf="showDelete">
+        <app-delete-confirm (delete)="doDelete()">
+          <a class="srcs-iconbutton" matTooltip="delete">
+            <icn name="circle-delete"></icn>
+          </a>
+        </app-delete-confirm>
+      </span>
+      <button class="srcs-iconbutton" matTooltip="save" type="submit" value="Submit">
+        <icn name="circle-save"></icn>
+      </button>
+    </span>
+  </div>
+</form>

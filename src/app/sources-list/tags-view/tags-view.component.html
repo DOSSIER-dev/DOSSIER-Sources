@@ -1,0 +1,37 @@
+<section class="column-level-2 srcs-list">
+  <app-selectlist [items]="tags" [selected]="selectedTags"
+    (selection)="setTags($event)" code="id">
+  </app-selectlist>
+</section>
+
+<section class="main-content">
+
+  <div class="row-cols-2-3-1">
+    <form class="searchform">
+      <label>Search</label>
+      <input type="search"
+        class="search-input"
+        placeholder="Search"
+        [value]="searchState.query"
+        [formControl]="searchInput">
+    </form>
+    <app-ranking-select [value]="searchState.sortkey"></app-ranking-select>
+  </div>
+
+  <p *ngIf="currentResultSummary">{{currentResultSummary.translateKey | translate : currentResultSummary.params}}</p>
+
+  <app-source-item *ngFor="let source of currentResult.results"
+    [source]="source"
+    [backRoute]="selfRoute"
+    [searchState]="searializedSearchState">
+  </app-source-item>
+
+  <div class="centered">
+    <app-pagination
+      [page]="currentResultSummary?.page"
+      [numPages]="currentResultSummary?.numPages"
+      (gotoPage)="setPage($event)">
+    </app-pagination>
+  </div>
+
+</section>

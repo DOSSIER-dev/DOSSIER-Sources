@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/circle/cancel</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/circle/cancel" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9.06066017,8 L11.7123106,5.34834957 L10.6516504,4.2876894 L8,6.93933983 L5.34834957,4.2876894 L4.2876894,5.34834957 L6.93933983,8 L4.2876894,10.6516504 L5.34834957,11.7123106 L8,9.06066017 L10.6516504,11.7123106 L11.7123106,10.6516504 L9.06066017,8 Z M8,16 C3.581722,16 0,12.418278 0,8 C0,3.581722 3.581722,0 8,0 C12.418278,0 16,3.581722 16,8 C16,12.418278 12.418278,16 8,16 Z" id="Combined-Shape-Copy" fill="#232323"></path>
+    </g>
+</svg>

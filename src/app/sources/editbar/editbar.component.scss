@@ -1,0 +1,24 @@
+@import '../../../styles/utility-styles';
+
+div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.editbar-icon {
+  @include srcs-theme-primary;
+}
+
+app-delete-confirm,
+div > a {
+  width: 24.5%;
+  height: 36px;
+  display: inline-block;
+  cursor: pointer;
+
+  // Position inner icon with flex:
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

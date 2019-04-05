@@ -1,0 +1,8 @@
+$z-index-base: 99999;
+$z-index-hover: 10;
+
+$z-index-high: $z-index-base;
+$z-index-higher: $z-index-base + 1;
+$z-index-highest: $z-index-base + 2;
+
+$default-padding: 10px;

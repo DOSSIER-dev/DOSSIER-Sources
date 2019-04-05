@@ -1,0 +1,25 @@
+<div class="srcs-source-item" *ngIf="source">
+  <div [routerLink]="['/source/', source.id, optional]" [queryParams]="searchState" class="srcs-clickable source-item-part">
+    <div class="title-row srcs-flexrow">
+      <sources-sourcetype [sourcetype]="source.sourcetype" [iconOnly]="true"></sources-sourcetype>
+      <h3 class="srcs-wordbreak">{{source.title}}</h3>
+      <icn name="bookmark" *ngIf="source.bookmarked"></icn>
+    </div>
+    <hr/>
+    <div class="tags-row">
+      <span class="firstcol-size"><app-visibility [item]="source" [icononly]="true"></app-visibility></span>
+      <span><label translate="SOURCE.DATA.COLLECTION"></label> {{source.collection?.name}}</span>
+      <span><label translate="SOURCE.DATA.CONTRIBUTOR"></label> {{source.owner | username}}</span>
+      <span>
+        <label translate="SOURCE.DATA.CREATED_AT"></label>
+        <i class="date">{{source.created_at | date}}</i>
+      </span>
+    </div>
+  </div>
+  <div *ngIf="showHighlights"
+       class="highlights source-item-part srcs-clickable"
+       [routerLink]="['/source/', source.id, optional]" [queryParams]="searchState">
+    <hr/>
+    <app-highlights [fragments]="highlights"></app-highlights>
+  </div>
+</div>

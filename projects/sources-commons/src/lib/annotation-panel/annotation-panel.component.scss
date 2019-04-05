@@ -1,0 +1,35 @@
+:host { width: 100%; }
+
+.triangle-up {
+      width: 0; height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-bottom-width: 20px;
+      border-bottom-style: solid;
+      position: absolute;
+      top: -20px;
+      left: -15px;
+      z-index: 100;
+    }
+
+.inner-panel {
+      box-shadow: 0 0 100px;
+    }
+
+.static .inner-panel {
+      box-shadow: 0 0 5px;
+    }
+
+.outer-panel {
+      margin-left: -50%;
+    }
+
+    // for static positioning
+.static.outer-panel {
+      margin-left: unset;
+      margin: auto;
+      margin-top: 20px;
+    }
+.static .triangle-up {
+      margin-left: 50%;
+}

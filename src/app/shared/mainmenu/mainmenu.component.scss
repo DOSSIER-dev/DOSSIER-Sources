@@ -1,0 +1,46 @@
+@import '../../../styles/utility-styles.scss';
+
+.logo-block {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.logo-sources {
+  width: 100%;
+}
+
+.logo-dossier {
+  width: 70%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2em;
+}
+
+li {
+  padding: 0;
+  display: block;
+}
+
+a.important {
+  @include srcs-fontsize-important;
+  @include srcs-lato-bold;
+}
+
+a.larger {
+  @include srcs-fontsize-important;
+}
+
+.smaller {
+  @include srcs-fontsize-small;
+}
+
+.stretch {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

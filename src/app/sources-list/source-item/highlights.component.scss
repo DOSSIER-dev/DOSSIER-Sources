@@ -1,0 +1,12 @@
+@import '../../../styles/colors.scss';
+
+span.frag {
+  display: block;
+  padding: 0.1em;
+  display: flex;
+}
+
+// higlight ems
+.highlight-ems em {
+  color: $primary-1;
+}

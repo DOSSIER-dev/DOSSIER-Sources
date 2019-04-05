@@ -1,0 +1,22 @@
+<h1 translate="STATS.MENU.INVENTORY"></h1>
+<h4 translate="STATS.HEADER.OVERALL"></h4>
+<div class="srcs-chart-container">
+  <ngx-charts-line-chart *ngIf="dataSource"
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="dataSource"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel | translate"
+    [yAxisLabel]="yAxisLabel | translate"
+    [autoScale]="autoScale"
+    [timeline]="true">
+  </ngx-charts-line-chart>
+  <div class="srcs-chart-minmaxdate">
+    <span class="srcs-chart-timeline-date srcs-chart-date-min"><label>{{minDate | date: 'MMM y'}}</label></span>
+    <span class="srcs-chart-timeline-date srcs-chart-date-max"><label>{{maxDate | date: 'MMM y'}}</label></span>
+  </div>
+</div>

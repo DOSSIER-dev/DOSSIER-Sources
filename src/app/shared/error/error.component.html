@@ -1,0 +1,15 @@
+<div *ngIf="hasValidationErrors || hasServerErrors" class="outer-reference srcs-error-component">
+  <div class="outer">
+    <div class="triangle-up srcs-panel-triangle"></div>
+    <div class="inner">
+      <ng-container *ngIf="hasValidationErrors">
+        <ng-container *ngFor="let error of errors">
+          <div *ngIf="element?.errors[error.name]" [translate]="error.text"></div>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="hasServerErrors">
+        <div *ngFor="let error of _serverErrors" [translate]="error"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div>
+  <a *ngFor="let bt of actions"
+    (click)="emitAction(bt)"
+    [matTooltip]="bt.text | translate"
+    class="editbar-icon"
+    [ngClass]="bt.class">
+    <icn size="large" name="{{bt.icon}}"></icn>
+  </a>
+
+  <a [href]="sourceUrl" target="_blank" class="editbar-icon"
+    [matTooltip]="downloadaction.text | translate"
+    [ngClass]="downloadaction.class">
+    <icn size="large" name="{{downloadaction.icon}}"></icn>
+  </a>
+
+  <app-delete-confirm (delete)="emitAction(deleteaction)" class="editbar-icon">
+    <a [matTooltip]="deleteaction.text | translate"
+      [ngClass]="deleteaction.class">
+      <icn size="large" name="{{deleteaction.icon}}"></icn>
+    </a>
+  </app-delete-confirm>
+</div>

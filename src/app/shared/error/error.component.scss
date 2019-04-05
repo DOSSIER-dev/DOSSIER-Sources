@@ -1,0 +1,24 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/utility-styles.scss';
+
+.outer-reference {
+  position: relative;
+}
+
+.outer {
+  position: absolute;
+  top: 15px;
+  box-shadow: 0 0 100px;
+  z-index: 10;
+}
+
+.inner {
+  padding: 0.5em;
+  background: $accent-2;
+  color: $text-light;
+}
+
+.srcs-panel-triangle {
+  @include triangle-up;
+  border-bottom-color: $accent-2;
+}

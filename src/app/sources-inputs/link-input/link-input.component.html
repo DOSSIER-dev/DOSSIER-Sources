@@ -1,0 +1,17 @@
+<section class="srcs-centercol-container srcs-section-hspace3">
+  <form #linkInputForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label translate="SOURCETYPES.INPUT.VIDEO.HREF_HELP"></label>
+      <input type="text" name="href" [formControl]="linkInput">
+
+      <app-info-field>
+        <label translate="SOURCETYPES.INPUT.VIDEO.PLATFORMS"></label>
+        {{supportedPlatformsText}}
+      </app-info-field>
+    </div>
+
+    <button type="submit" [disabled]="!_canSubmit"
+      class="srcs-navbutton primary" translate="SOURCETYPES.INPUT.VIDEO.FETCH_BUTTON">
+    </button>
+  </form>
+</section>

@@ -1,0 +1,91 @@
+@import '../../../colors.scss';
+@import '../../../constants.scss';
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: $default-padding;
+
+  /**
+   sidebar vs bottom logo part
+   */
+  > div:first-child {
+    flex: 99 1 90%;
+  }
+  > div:last-child {
+    flex: 0 1 24px;
+    max-height: 24px;
+  }
+}
+
+.small-control {
+  margin-left: 1em;
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  h1 {
+    // srcs-fzs-normal()
+    font-size: 13px;
+    line-height: 1.38;
+  }
+
+  .sidebar-inner-main {
+    overflow: hidden;
+  }
+
+  .sidebar1 {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-right: 30px; // room for overlayed close button
+  }
+
+  .sidebar2,
+  .sidebar3,
+  .sidebar4,
+  .sidebar5 {
+    display: none;
+  }
+
+  .small-control {
+    display: block;
+  }
+
+  .expanded {
+    /** info overlay for mobile displays */
+    .panel {
+      display: block;
+      position: absolute;
+      top: $top-bar-height;
+      left: 0px;
+      z-index: 99999; // hightest (higher than the annotation panel)
+      padding: 0.5em;
+      width: 100%;
+
+      background: $light-background;
+    }
+    .sidebar2,
+    .sidebar4 {
+      display: block;
+    }
+  }
+
+  /**
+   sidebar vs bottom logo part
+   */
+  > div:first-child {
+    flex: unset;
+  }
+  > div:last-child {
+    flex: unset;
+  }
+}
+
+.sources-logo {
+  width: 70%;
+}

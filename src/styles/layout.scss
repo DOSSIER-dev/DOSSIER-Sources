@@ -1,0 +1,106 @@
+@import "./utility-styles.scss";
+
+//
+// Main layout elements
+//
+.app-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    min-height: 95vh;
+}
+
+.column-level-1 {
+    width: $firstcol-width;
+    flex: 0 0 $firstcol-width;
+    height: 100%;
+    overflow: auto;
+    // overflow-y: overlay;  // webkit: scrollbar will not change element size
+}
+
+.column-level-2 {
+    width: $secondcol-width;
+    flex: 0 0 $secondcol-width;
+    min-height: 0;
+    height: 100%;
+    overflow: auto;
+    // overflow-y: overlay;  // webkit: scrollbar will not change element size
+}
+
+.main-content {
+    flex: 5 5 auto;
+    min-width: 420px;
+    height: 100%;
+    overflow: auto;
+    overflow-y: overlay;  // webkit: scrollbar will not change element size
+
+    // Default padding
+    padding: 0.5em;
+
+    // No padding
+    &.no-padding {
+      padding: 0;
+    }
+
+    // More spacious padding
+    &.far-pad {
+    padding-left: $larger-margin;
+    padding-right: $larger-margin;
+
+    .far-pad-unpad  {
+        margin-left: -$larger-margin;
+        margin-right: -$larger-margin;
+    }
+  }
+}
+
+// Container that centers inner element(s)
+// Sets small-width to the direct inner child(ren)
+.srcs-centercol-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    >* {
+        @include srcs-content-width-small;
+        flex: 0 1 auto;
+    }
+}
+
+
+//
+// Layout for inner elements
+//
+
+// flexrow for an element - aligns inner elements next to each other and
+// vertically centered
+.srcs-flexrow {
+    display: flex;
+    align-items: center;
+}
+
+.row-cols-2 {
+    display: flex;
+    width: 100%;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+
+    >* {
+        width: 50%;
+    }
+}
+
+.row-cols-2-3-1 {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    >* {
+        width: 25%;
+        padding: 12px;
+    }
+
+    >*:first-child {
+        width: 75%;
+    }
+}

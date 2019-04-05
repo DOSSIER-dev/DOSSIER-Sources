@@ -1,0 +1,55 @@
+<div class="srcs-close-button-reference">
+  <a (click)="close()" class="srcs-close-button">
+    <icn name="close"></icn>
+  </a>
+  <div class="srcs-box-padded srcs-annotation-form">
+    <form [formGroup]="annotationForm" (ngSubmit)="onSubmit()" *ngIf="_internalAnnotation" class="srcs-dark">
+      <app-column-layout>
+        <div app-left-col>
+          <div>
+            <label translate="ANNOTATION.DATA.TITLE" [matTooltip]="'ANNOTATION.DATA.TOOLTIP.TITLE' | translate"></label>
+            <input type="text" formControlName="title" name="title" placeholder="title" class="srcs-dark">
+            <app-error [element]="annotationForm.get('title')" [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED'}]"></app-error>
+          </div>
+          <div>
+            <label translate="ANNOTATION.DATA.DESCRIPTION" [matTooltip]="'ANNOTATION.DATA.TOOLTIP.DESCRIPTION' | translate"></label>
+            <textarea formControlName="description" name="description" class="srcs-dark"></textarea>
+            <app-error [element]="annotationForm.get('description')" [errors]="[{name: 'required', 'text': 'ERROR.REQUIRED'}]"></app-error>
+          </div>
+        </div>
+
+        <div app-right-col>
+
+          <app-visibility-input formControlName="public" name="public"></app-visibility-input>
+
+          <div class="srcs-alert-field">
+            <label translate="SHARED.EMBED_LINK" [matTooltip]="'SHARED.TOOLTIP.EMBED_LINK' | translate"></label>
+            <app-copytext [value]="embedShareUrl" class="srcs-dark"></app-copytext>
+          </div>
+          <div>
+            <label translate="SHARED.SHARE_LINK" [matTooltip]="'SHARED.TOOLTIP.SHARE_LINK' | translate"></label>
+            <app-copytext [value]="appShareUrl" class="srcs-dark"></app-copytext>
+          </div>
+
+          <!-- dynamically load location part of form -->
+          <ng-template appComponentHost></ng-template>
+
+        </div>
+      </app-column-layout>
+
+      <div class="srcs-flexrow srcs-row-padded">
+        <button type="submit" class="srcs-navbutton srcs-button-secondary icon-right">
+          <span translate="ANNOTATION.SAVE"></span>
+          <app-savestate [state]="activityState?.state$"></app-savestate>
+        </button>
+        <app-delete-confirm (delete)="doDelete()">
+          <button type="button" class="srcs-navbutton srcs-button-secondary icon-right">
+            <span translate="ANNOTATION.DELETE"></span>
+            <icn name="delete"></icn>
+          </button>
+        </app-delete-confirm>
+      </div>
+
+    </form>
+  </div>
+</div>

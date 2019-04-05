@@ -1,0 +1,51 @@
+version: '3'
+
+#
+# Override file for development
+# Opens some otherwise closed ports for dev acccess.
+#
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+
+services:
+  webapp:
+    volumes:
+      # Mount the local code directory for development.
+      # (Changes will happen directly in the container and django will reload
+      # whenever there is a change in the codebase.)
+      - ./app:/code
+
+    # Allows to attach to container and e.g. use pdb debugging (does it?)
+    stdin_open: true
+    tty: true
+
+    # Expose django service for development only
+    ports:
+      - "8008:8000"
+
+    # command: gunicorn sources.wsgi --config gunicorn.conf --log-config logging.conf
+
+  celery:
+    volumes:
+      # Mount the local code directory for development.
+      - ./app:/code
+  nginx:
+    ports:
+      - "8083:80"
+      - "8084:8084"
+  db:
+    ports:
+      - "33068:3306"
+  elasticsearch:
+    ports:
+        - "9208:9200"
+        - "9308:9300"
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+  queue_broker:
+    ports:
+      - "5000:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest

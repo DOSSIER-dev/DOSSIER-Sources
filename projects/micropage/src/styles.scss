@@ -1,0 +1,159 @@
+/* You can add global styles to this file, and also import other style files */
+/*
+ basic styles
+ */
+
+@import './colors.scss';
+@import './layout.scss';
+@import './constants.scss';
+
+@import '../../../src/styles/utility-styles.scss';
+
+@mixin srcs-font-normal {
+    font-family: Lato, helvetica, arial, "sans-serif";
+}
+
+@mixin srcs-font-bold {
+    font-family: 'Lato-Bold', helvetica, arial, "sans-serif";
+    font-weight: normal; /* the font face is already bold */
+}
+
+@mixin srcs-fzs-normal {
+    font-size: 13px;
+    line-height: 1.38;
+}
+
+body {
+    @include srcs-font-normal();
+    @include srcs-fzs-normal();
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    height: 100%;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Lato-Bold', helvetica, arial, "sans-serif";
+    font-weight: normal; /* the font face is already bold */
+    margin: 0.2em 0;
+}
+
+a {
+    text-decoration: none;
+    color: $dark-1;
+}
+
+p {
+    margin: .5em 0;
+}
+
+label {
+    @include srcs-fzs-normal();
+    color: $dark-3;
+    display: block;
+    font-weight: lighter;
+    margin: initial;
+}
+
+.srcs-icon {
+    // display: inline-flex;
+    // align-self: center;
+    top: .125em;
+    position: relative;
+    svg {
+        width: 1em;
+        height: 1em;
+    }
+}
+
+.app-sidebar-bg {
+    background: $light-background;
+}
+
+.card {
+    background: $dark-1;
+    color: $text-light;
+}
+
+.srcs-section-bspace {
+    margin-bottom: 24px;
+}
+
+.srcs-label-header {
+    @include srcs-font-bold();
+    font-size:14px;
+    line-height: 1.71;
+
+    text-transform: uppercase;
+    color: $dark-3;
+    margin: 0;
+}
+
+.srcs-annotations-list {
+    a, a:hover, a:active, a:visited {
+        color: $primary-light-2;
+    }
+}
+
+.srcs-annotation-header {
+    @include srcs-font-bold;
+    font-size: 18px;
+    line-height: 1.33;
+}
+
+.srcs-annotation-panel {
+    @include srcs-font-normal;
+    @include srcs-fzs-normal;
+}
+
+.srcs-sidebar-annolink {
+    @include srcs-font-bold;
+    @include srcs-fzs-normal;
+}
+
+
+.srcs-copytext-input {
+    @include srcs-font-normal;
+    @include srcs-fzs-normal;
+    @include srcs-noclickborder;
+    &::selection { background: $primary-2; color: $text-light; }
+}
+.srcs-copytext {
+    @include srcs-input-pad;
+    border-bottom: 1px solid $dark-4;
+}
+
+
+// Sets the width of the annotation panel (for micropage, it is smaller).
+.srcs-panel-width {
+    width: 384px;
+}
+
+.srcs-grey {
+    color: $dark-4;
+    svg {
+        fill: $dark-4;
+    }
+
+    a:hover, a:active  {
+        color: $dark-1;
+        svg {
+            fill: $dark-1;
+        }
+    }
+}
+
+h1.srcs-small-h {
+    @include srcs-fzs-normal();
+}
+
+.annotation-layer-svg {
+    border: 1px solid $light-background;
+}

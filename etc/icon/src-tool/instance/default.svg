@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/src-tool/instance/default</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/src-tool/instance/default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M5,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,19 C20,19.5522847 19.5522847,20 19,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,5 C4,4.44771525 4.44771525,4 5,4 Z M7.09745391,11.046609 L11,11.046609 L11,10 L6.54872695,10 C6.24579309,10 6,10.2344055 6,10.5233045 L6,14.4766955 C6,14.7655945 6.24579309,15 6.54872695,15 L11,15 L11,13.953391 L7.09745391,13.953391 L7.09745391,11.046609 Z M17.9992665,10.5233045 C17.9992665,10.2344055 17.7534735,10 17.4505398,10 L13,10 L13,11.046609 L16.901813,11.046609 L16.901813,13.953391 L13,13.953391 L13,15 L17.4512714,15 C17.5970279,15 17.7363533,14.9448071 17.8392395,14.8466875 C17.9421258,14.7485679 18,14.6157009 18,14.4766938 L17.9992665,10.5233045 Z M9,13 L15,13 L15,12 L9,12 L9,13 Z" id="Combined-Shape" fill="#232323" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -1,0 +1,47 @@
+@import '../../../styles/utility-styles.scss';
+@import '../../../styles/colors.scss';
+
+.srcs-flexrow {
+  width: 100%;
+  justify-content: space-between;
+
+  // >*:first-child {
+  //   width: 40%;
+  // }
+  // >*:last-child {
+  //   width: 40%;
+  // }
+}
+
+label {
+  @include srcs-clickable;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+div.visibility-input__center-icon {
+  @include srcs-clickable;
+
+  width: 27px;
+  height: 17px;
+  border: 1px solid $dark-3;
+  border-radius: 9px;
+
+  position: relative;
+
+  svg {
+    width: 13px;
+    height: 13px;
+
+    position: absolute;
+    top: 1px;
+    left: 2px;
+  }
+}
+
+div.visibility-input__center-icon.public {
+  svg {
+    left: 10px;
+  }
+}

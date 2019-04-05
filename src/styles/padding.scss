@@ -1,0 +1,87 @@
+.srcs-leftpad {
+    padding-left: 18px
+}
+
+.srcs-rightpad {
+    padding-right: 18px
+}
+
+.srcs-pad {
+    @extend .srcs-leftpad;
+    @extend .srcs-rightpad;
+}
+
+.srcs-halfpad {
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.srcs-leftunpad {
+    margin-left: -18px;
+}
+
+.srcs-rightunpad {
+    margin-right: -18px;
+}
+
+.srcs-unpad {
+    @extend .srcs-leftunpad;
+    @extend .srcs-rightunpad;
+}
+
+.srcs-unhalfpad {
+    margin-left:-9px;
+    margin-right:-9px;
+}
+
+.srcs-vertpat {
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+
+// Element is at the top of a padded container - unset a top margin
+.srcs-top-element {
+    margin-top: 0;
+}
+
+// Element is at the bottom of a padded container - unset a top margin
+.srcs-bottom-element {
+   margin-bottom: 0;
+}
+
+.srcs-fullwidth {
+    width: 100%;
+}
+
+.srcs-topspace {
+    padding-top: 40px;
+}
+
+.srcs-hspace {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.srcs-section-hspace {  // TODO : should be named ..htopspace ?
+    padding-top: 1em;
+}
+
+.srcs-section-hspace3 {  // TODO : should be named ..htopspace ?
+    padding-top: 84px;
+}
+
+.srcs-section-hbotspace {
+    padding-bottom: 1em;
+}
+
+.srcs-box-padded {
+    padding: 12px;
+}
+
+.srcs-row-padded {
+    >*, >.srcs-navbutton {
+        margin: 0 6px;
+    }
+    margin-left: -6px;
+    margin-right: -6px;
+}

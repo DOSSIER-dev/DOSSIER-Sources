@@ -1,0 +1,5 @@
+<ul class="srcs-annotations-list" [ngClass]="[direction]">
+  <li *ngFor="let annotation of annotations">
+    <a (click)="selectAnnotation(annotation)" class="srcs-sidebar-annolink">{{annotation.title}}</a>
+  </li>
+</ul>

@@ -1,0 +1,86 @@
+@import '~@angular/material/theming';
+@import "./colors.scss";
+
+@include mat-core();
+
+// via http://mcg.mbitson.com palette generator,
+// starting color $primary-1: #168e9a;
+$palette: (
+    50 : #e3f1f3,
+    100 : #b9dde1,
+    200 : #8bc7cd,
+    300 : #5cb0b8,
+    400 : #399fa9,
+    500 : #168e9a,
+    600 : #138692,
+    700 : #107b88,
+    800 : #0c717e,
+    900 : #065f6c,
+    A100 : #9df0ff,
+    A200 : #6ae8ff,
+    A400 : #37e0ff,
+    A700 : #1dddff,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$accent: (
+    50 : #fcece7,
+    100 : #f9cec3,
+    200 : #f5ae9b,
+    300 : #f08e72,
+    400 : #ed7554,
+    500 : #ea5d36,
+    600 : #e75530,
+    700 : #e44b29,
+    800 : #e14122,
+    900 : #db3016,
+    A100 : #ffffff,
+    A200 : #ffddd9,
+    A400 : #ffafa6,
+    A700 : #ff998c,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+
+// Define the default theme (same as the example above).
+$sources-app-primary: mat-palette($palette);
+$sources-app-accent:  mat-palette($accent, A200, A100, A400);
+$sources-app-theme:   mat-light-theme($sources-app-primary, $sources-app-accent);
+@include angular-material-theme($sources-app-theme);
+
+
+
+$custom-typography: mat-typography-config(
+    $font-family: 'Lato'
+);
+@include mat-core($custom-typography);

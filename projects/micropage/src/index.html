@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DOSSIER Sources</title>
+  <base href="/">
+
+  <meta name="description" content="DOSSIER Sources">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="/assets/images/og-img-micropage.png">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
+
+  <link rel="manifest" href="/assets/favicons/manifest.json">
+  <meta name="msapplication-TileColor" content="#168E9A">
+  <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#168E9A">
+
+</head>
+<body>
+  <app-root>
+    <style type="text/css">
+      .loader {
+        margin: 50px auto;
+        width: 40px;
+        height: 40px;
+        background-color: #533;
+        border-radius: 100%;
+        -webkit-animation: loader1 1.0s infinite ease-in-out;
+        animation: loader1 1.0s infinite ease-in-out;
+      }
+
+      @-webkit-keyframes loader1 {
+        0% {
+          -webkit-transform: scale(0)
+        }
+
+        100% {
+          -webkit-transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+
+      @keyframes loader1 {
+        0% {
+          -webkit-transform: scale(0);
+          transform: scale(0);
+        }
+
+        100% {
+          -webkit-transform: scale(1.0);
+          transform: scale(1.0);
+          opacity: 0;
+        }
+      }
+    </style>
+    <div class="loader"></div>
+  </app-root>
+</body>
+</html>

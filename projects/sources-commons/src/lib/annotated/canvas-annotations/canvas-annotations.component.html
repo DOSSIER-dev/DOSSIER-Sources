@@ -1,0 +1,35 @@
+<div #svgOverlay class="annotation-layer-svg" [ngClass]="{'addMode': addMode}">
+
+  <svg #svgCanvas
+    version="1.1"
+    baseProfile="full"
+    xmlns="http://www.w3.org/2000/svg"
+    viewbox="0 0 100 100"
+    (mousedown)="globalMouseDown($event)"
+    (mousemove)="globalMouseMove($event)"
+    (mouseup)="globalMouseUp($event)"
+    (mouseleave)="globalMouseLeave()"
+    >
+
+    <rect
+      [attr.x]="rct.x"
+      [attr.y]="rct.y"
+      [attr.width]="rct.width"
+      [attr.height]="rct.height"
+      fill="transparent"
+      class="annotation"
+      [ngClass]="{selected: rct.selected}"
+      (mousedown)="annotationMouseDown($event, rct)"
+      *ngFor="let rct of _drawRects"/>
+
+    <rect *ngIf="inputRect"
+      class="input"
+      [attr.x]="inputRect.x"
+      [attr.y]="inputRect.y"
+      [attr.width]="inputRect.width"
+      [attr.height]="inputRect.height"
+      fill="transparent"/>
+
+  </svg>
+
+</div>

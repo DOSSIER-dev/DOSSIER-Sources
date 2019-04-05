@@ -1,0 +1,12 @@
+<section class="main-content">
+
+  <p *ngIf="currentResultSummary">{{currentResultSummary.translateKey | translate : currentResultSummary.params}}</p>
+
+  <app-source-item
+    *ngFor="let source of currentResult?.results"
+    [source]="source"
+    [backRoute]="selfRoute"
+    [searchState]="searializedSearchState">
+  </app-source-item>
+
+</section>

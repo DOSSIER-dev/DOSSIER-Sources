@@ -1,0 +1,65 @@
+@import '../../../colors.scss';
+@import '../../../constants.scss';
+
+.pdf-annotation-component-outer {
+  // set a background for function header to inherit
+  background: white;
+}
+
+.canvas-wrapper {
+  position: relative;
+
+  // Scrolling inside component UI : Alternate scroll behaviour would scroll inside
+  // the canvas wrapper, would leave the function-header block-inline
+  // in the DOM.
+  // height: 100%;
+  // overflow: scroll;
+}
+
+.function-header-wrapper {
+  // Pass background through
+  background: inherit;
+
+  // TODO:
+  // for a position:'fixed' function header, some wrapper needs to
+  // create the height-space
+  // OR, do not add the header-height when showing annotations
+
+  height: 35px;
+}
+
+.function-header {
+    // Scrolling inside component UI :
+    // sets function header fixed - but with the drawback that now
+    // the position neess top be changed for the various screen size versions
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    background: inherit;
+    height: 35px;
+    width: 100%;
+}
+
+.function-header-inner {
+  // For center aligning the form / input panel
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 800px;   // some default value (is set via JS, see template)
+                  // required for center aligning the controls in position:fixed
+  max-width: 100%;  // for small screens, when document (min)width is larger than screen
+  margin-top: 2px;
+
+  // vertical center
+  height: 100%;
+}
+
+// Mobile view annotator overrides
+.app-mode-mobile .function-header {
+  // Account for the headerbar in mobile views (micropage) and position
+  // the function header lower on the screen.
+  @media (max-width: 800px) {
+    top: $top-bar-height;
+  }
+}
+

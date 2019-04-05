@@ -1,0 +1,33 @@
+<div [ngClass]="{'expanded': expanded}" class="sidebar-inner-main">
+
+  <div class="sidebar1" *ngIf="source">
+    <micropage-sourcetype [sourcetype]="source.sourcetype" class="srcs-grey"></micropage-sourcetype>
+    <h1>{{source.title}}</h1>
+    <span (click)="toggleExpand()" class="small-control srcs-grey">
+      <a><i class="srcs-icon" [innerHtml]="expanded ? iconElementClose : iconElement"></i></a>
+    </span>
+  </div>
+
+  <div class="panel">
+    <div class="sidebar2 srcs-section-bspace">
+      <p *ngFor="let line of descriptionLines">{{line}}</p>
+    </div>
+
+    <div class="sidebar3 srcs-section-bspace" *ngIf="hasAnnotations">
+      <label class="srcs-label-header">Annotations</label>
+      <app-annotations [annotations]="source.annotations" (select)="selectAnnotation($event)"></app-annotations>
+    </div>
+
+    <div class="sidebar4 srcs-section-bspace">
+      <label class="srcs-label-header">Share Source</label>
+      <app-copytext-simple [value]="source?.shareUrl"></app-copytext-simple>
+    </div>
+  </div>
+</div>
+<div class="sidebar5">
+  <a [href]="aboutLink" target="_blank">
+    <img src="/assets/images/logo-dossier_sources-embed.png" class="sources-logo">
+  </a>
+</div>
+
+

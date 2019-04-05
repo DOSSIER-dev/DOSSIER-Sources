@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/various/add-source/default</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/various/add-source/default" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M7,7 L3,7 L3,9 L7,9 L7,13 L9,13 L9,9 L13,9 L13,7 L9,7 L9,3 L7,3 L7,7 Z M1,0 L15,0 C15.5522847,-1.01453063e-16 16,0.44771525 16,1 L16,15 C16,15.5522847 15.5522847,16 15,16 L1,16 C0.44771525,16 6.76353751e-17,15.5522847 0,15 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z" id="Combined-Shape" fill="#232323"></path>
+    </g>
+</svg>

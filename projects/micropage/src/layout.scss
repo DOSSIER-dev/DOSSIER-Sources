@@ -1,0 +1,81 @@
+@import './constants.scss';
+
+html, body {
+    height: 100%;
+}
+
+*, *:after, *:before { box-sizing: inherit; }
+
+html {
+    box-sizing: border-box;
+}
+
+/*
+ layout elements / layout + sizes
+ */
+.app-micropage-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    min-height: 95vh;
+}
+
+.column-level-1 {
+    width: $firstcol-width;
+    flex: 0 0 $firstcol-width;
+    height: 100%;
+    overflow: auto;
+    overflow-y: overlay;  // webkit: scrollbar will not change element size
+}
+
+.column-level-2 {
+    width: $secondcol-width;
+    flex: 0 0 $secondcol-width;
+    min-height: 0;
+    height: 100%;
+    overflow: auto;
+    overflow-y: overlay;  // webkit: scrollbar will not change element size
+}
+
+/* main layout */
+.main-content {
+    flex: 5 5 auto;
+    height: 100%;
+    overflow: auto;
+    overflow-y: overlay;  // webkit: scrollbar will not change element size
+}
+
+/* footer that is only visible in mobile views,
+   contains the annotations there */
+.app-micropage-footer {
+    display: none;
+}
+
+@media (max-width: 800px) {
+  .app-micropage-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      height: 100%;
+  }
+
+  .main-content, .column-level-2 {
+      height: unset;
+      width: 100%;
+  }
+
+  .column-level-2 {
+      height: $top-bar-height;
+      flex: 0 0 auto;
+  }
+
+  .app-micropage-footer {
+      display: block;
+      width: 100%;
+      overflow: auto;
+  }
+}

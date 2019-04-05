@@ -1,0 +1,24 @@
+a {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2em;
+}
+
+li {
+  padding: 0;
+}
+
+ul.compact li {
+  display: inline;
+  a.active-link {
+    font-weight: bold;
+  }
+}
+
+input {
+}

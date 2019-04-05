@@ -1,0 +1,27 @@
+<div class="pagination" [style.display]="isEnabled ? 'block' : 'none'">
+  <form>
+    <button class="flip-page" type="button" (click)="prevPage()" [disabled]="!hasPrev">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+        <path fill="#232323" fill-rule="evenodd"
+          d="M6.426 8.143L10.5 4.076c-.18-.307-.33-.518-.448-.636-.117-.117-.327-.263-.628-.44L4.676 7.741a.543.543 0 0 0-.176.402c.005.143.071.285.2.426l4.724 4.718c.297-.164.523-.321.675-.474.153-.152.286-.353.401-.603L6.426 8.143z" />
+      </svg>
+    </button>
+    <span class="pageof">
+      <span>Page</span>
+      <input [(ngModel)]="_pageValue"
+        onClick="this.select();"
+        (keyup)="pageKeyUp($event)"
+        #pageInputField
+        autocomplete="off"
+        name="pageInput">
+      <span>of</span>
+      <span>{{numPages}}</span>
+    </span>
+    <button class="flip-page" type="button" (click)="nextPage()" [disabled]="!hasNext">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+        <path fill="#232323" fill-rule="evenodd"
+          d="M9.574 8.143L5.5 4.076c.181-.307.33-.518.448-.636.117-.117.327-.263.628-.44l4.748 4.741c.122.125.18.258.176.402-.005.143-.071.285-.199.426l-4.725 4.718c-.297-.164-.523-.321-.675-.474a2.043 2.043 0 0 1-.401-.603l4.074-4.067z" />
+      </svg>
+    </button>
+  </form>
+</div>

@@ -1,0 +1,43 @@
+<div
+  class="pdf-annotation-component-outer app-gui-component"
+  [ngClass]="{'app-mode-mobile': mobileMode}">
+
+  <div class="function-header-wrapper">
+    <div #functionHeader class="function-header">
+      <div class="function-header-inner" [style.width]="outerWidth + 'px'">
+        <app-pagination
+          [page]="pageNumber"
+          [numPages]="numPages"
+          (gotoPage)="goToPage($event)">
+        </app-pagination>
+      </div>
+    </div>
+  </div>
+
+  <div class="pdf-annotation-inner" #pdfContainer>
+    <div class="canvas-wrapper">
+      <app-pdf-display
+        class="pdf-display-layer"
+        [url]="resourceUrl"
+        [width]="outerWidth"
+        [page]="pageNumber"
+        (viewport)="updateViewport($event)"
+        (loaded)="hasLoaded($event)">
+      </app-pdf-display>
+
+      <app-canvas-annotations
+        class="pdf-annotation-layer"
+        [width]="width"
+        [height]="height"
+        [scale]="scale"
+        [annotations]="_pageAnnotations"
+        [activeAnnotation]="activeAnnotation"
+        [addMode]="addMode"
+        (annotationChange)="annotationAdded($event)"
+        (annotationSelected)="annotationSelected($event)"
+        (screenInteraction)="setScreenInteraction($event)">
+      </app-canvas-annotations>
+    </div>
+  </div>
+
+</div>

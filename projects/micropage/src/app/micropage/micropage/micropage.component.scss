@@ -1,0 +1,35 @@
+:host {
+  width: 100%;
+  background: white;
+}
+
+.viewer {
+  position: relative;
+}
+
+.panel-positioning {
+  position: absolute;
+  z-index: 899;
+}
+
+.app-micropage-footer {
+  padding: 0.5em;
+}
+.footer-labels {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+
+  .sources-logo {
+    height: 1em;
+  }
+
+  > * {
+    flex: 1 1 50%;
+    line-height: 1.2em;
+  }
+
+  > *:last-child {
+    text-align: right;
+  }
+}

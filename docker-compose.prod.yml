@@ -1,0 +1,103 @@
+version: '3'
+
+#
+# Production/staging docker compose
+#
+
+services:
+
+  nginx:
+    image: registry.gitlab.com/dossier/sources/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      # certs are on the host
+      - /etc/letsencrypt:/etc/letsencrypt
+
+      # config
+      - ./conf/nginx/site.prod.conf:/etc/nginx/conf.d/site.conf
+
+      # Django static files
+      - ./app/static:/files/static
+
+      # Media files / sources apploads
+      - uploads:/files/media
+
+    depends_on:
+      - webapp
+
+    restart: unless-stopped
+
+  webapp:
+    image: registry.gitlab.com/dossier/sources/webapp
+    volumes:
+
+      # mount the same directory for media/uploads for the webapp as well
+      - uploads:/code/media
+      - ./app/static:/code/static
+
+      # mount local settings
+      - ./settings_local.prod.py:/code/sources/settings_local.py
+
+    depends_on:
+      - db
+      - elasticsearch
+
+    command: gunicorn sources.wsgi --config gunicorn.conf --log-config logging.conf
+    restart: unless-stopped
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./conf/mysql/custom:/etc/mysql/conf.d
+      - db-volume:/var/lib/mysql
+      - ./dump:/var/dump
+
+    restart: unless-stopped
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.5.3
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
+    restart: unless-stopped
+
+  celery:
+    image: registry.gitlab.com/dossier/sources/celery
+    command: celery -A sources worker -l info
+    volumes:
+      # Uploads
+      - uploads:/code/media
+    depends_on:
+      - db
+      - queue_broker
+
+    restart: unless-stopped
+
+  queue_broker:
+    image: rabbitmq:alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+    restart: unless-stopped
+
+  postfix:
+    image: catatnight/postfix
+    environment:
+      - maildomain=sources.dossier.at
+      - smtp_user=user:test123
+
+    restart: unless-stopped
+
+volumes:
+  db-volume:
+  esdata:
+  uploads:

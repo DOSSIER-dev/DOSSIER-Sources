@@ -1,0 +1,21 @@
+<div class="drop-container" ngFileDrop
+  [options]="options"
+  (uploadOutput)="onUploadOutput($event)"
+  [uploadInput]="uploadInput"
+  [ngClass]="{'is-drop-over': dragOver, 'is-rejected': rejected}">
+
+  <span *ngIf="progress" class="drop-progress">
+    {{progress.name}}: {{progress.percentage}}% ({{progress.speed}})
+    <mat-progress-bar mode="determinate" [value]="progress.percentage"></mat-progress-bar>
+  </span>
+  <div [style.display]="!progress ? 'block' : 'none'">
+    <h4 translate="SOURCE.UPLOAD.DROPZONE"></h4>
+    <div class="srcs-section-hspace">
+      <p class="srcs-small">or</p>
+      <input type="file" ngFileSelect
+        [options]="options"
+        (uploadOutput)="onUploadOutput($event)"
+        [uploadInput]="uploadInput">
+    </div>
+  </div>
+</div>

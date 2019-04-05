@@ -1,0 +1,37 @@
+<section class="main-content far-pad">
+
+  <div class="srcs-hspace srcs-section-hspace">
+    <h1 translate="WELCOME.HEADER" class="primary"></h1>
+  </div>
+
+  <hr class="far-pad-unpad srcs-section-hspace"/>
+
+  <section class="stats">
+    <h4 translate="WELCOME.MY_STATS"></h4>
+    <div class="stats-row">
+      <div class="stats-part" *ngFor="let stat of stats">
+        <span class="stats-val">{{stat.value}}</span>
+        <label [translate]="stat.title"></label>
+      </div>
+    </div>
+  </section>
+
+  <hr class="far-pad-unpad srcs-section-hspace"/>
+
+  <section class="srcs-hspace">
+    <span class="srcs-flexrow">
+      <h4 translate="WELCOME.HEADER_BOOKMARKS"></h4><icn class="ut-grey" name="bookmark"></icn>
+    </span>
+    <app-source-item [source]="source" *ngFor="let source of myBookmarks"></app-source-item>
+    <a routerLink="/bookmarks" class="srcs-button-tertiary" translate="WELCOME.ALL_BOOKMARKS"></a>
+  </section>
+
+  <hr class="far-pad-unpad srcs-section-hspace"/>
+
+  <section class="srcs-hspace">
+    <h4 translate="WELCOME.HEADER_MY_SOURCES"></h4>
+    <app-source-item [source]="source" *ngFor="let source of mySources"></app-source-item>
+    <a routerLink="/mysources" class="srcs-button-tertiary" translate="WELCOME.ALL_MY_SOURCES"></a>
+  </section>
+
+</section>

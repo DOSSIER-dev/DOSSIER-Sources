@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sources Demo Blog Post</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      pre {
+        background: lightgrey;
+        padding: 1em;
+      }
+
+      #footer {
+        margin: 1em;
+        border-top: 1px solid lightgrey;
+      }
+
+      h2 {
+        font-size: 10pt;
+      }
+    </style>
+  </head>
+
+  <body>
+    <article>
+      <h1>How To Use</h1>
+      <h2>Quickstart</h2>
+      Just include the library in the head or body section of the page:
+      <pre>
+          &lt;script type="text/javascript" src="https://localhost/embed/lib/sources.js"&gt;&lt;/script&gt;
+    </pre
+      >
+      <p>
+        'Sourcebox' and mouseover-panel are disabled by default, but can be enabled in the options.
+        Options can be set in the following manner:
+      </p>
+      <pre>
+      &lt;script&gt;
+        window.sourcesjs = {
+
+          // Render an element with a list of all sources found on the page
+          linkbox: false,
+
+          // Display an info-box when hovering over a source link
+          hoverbox: false,
+
+          // The hostname of the sources installation
+          appserver: 'https://localhost',
+
+          // A css-class that is added to a source link
+          linkClassName: 'sourcesjs-parsed',
+
+          // Add the sources svg icon to source links
+          linkIcon: true
+        };
+      &lt;/script&gt;
+    </pre
+      >
+      <p>
+        If enabled, the source box will be appended into an element with it 'sourcesjs-box', e.g.
+      </p>
+      <pre>
+        ...
+        &lt;div id="sourcesjs-box"&gt;&lt;/div&gt;
+        ...
+    </pre
+      >
+      <p>
+        If such an element does not exist, the source box gets appended to document body.
+      </p>
+    </article>
+    <article class="my-article">
+      <h2>Demo article</h2>
+      <p>
+        This section demonstrates the use of the library. After the page has been enriched, the
+        references are collected at the bottom of the section and an overlay showing the source and
+        added content when clicking on a reference.
+      </p>
+      <p>
+        -- content with sourcelinks goes here --
+      </p>
+    </article>
+
+    <section id="sourcesjs-box"></section>
+
+    <section id="footer">
+      Some Footer Section
+    </section>
+
+    <script src="https://localhost/embed/lib/sources.js"></script>
+  </body>
+</html>
