@@ -17,8 +17,6 @@ services:
       - ./app/static:/files/static
       - ./dist:/files/apps
       - ./demos/blog-usage/dist:/files/embed/demo
-      - ./dist/embed/lib:/files/embed/lib
-      - ./doc/_build:/files/doc
 
       # Uploads
       - ./app/media:/files/media

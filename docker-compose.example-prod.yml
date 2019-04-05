@@ -1,13 +1,16 @@
 version: '3'
 
 #
-# Production/staging docker compose
+# Example docker compose production file
 #
 
 services:
 
   nginx:
-    image: registry.gitlab.com/dossier/sources/nginx
+
+    # image: <some-docker-registry>/sources/nginx
+    build: .
+
     ports:
       - "80:80"
       - "443:443"
@@ -31,7 +34,10 @@ services:
     restart: unless-stopped
 
   webapp:
-    image: registry.gitlab.com/dossier/sources/webapp
+
+    # image: <some-docker-registry>/sources/webapp
+    build: app
+
     volumes:
 
       # mount the same directory for media/uploads for the webapp as well
@@ -70,7 +76,10 @@ services:
     restart: unless-stopped
 
   celery:
-    image: registry.gitlab.com/dossier/sources/celery
+
+    # image: <some-docker-registry>/sources/celery
+    build: app
+
     command: celery -A sources worker -l info
     volumes:
       # Uploads
