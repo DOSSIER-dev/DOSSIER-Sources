@@ -18,4 +18,4 @@ pycryptodome==3.6.6
 python-dateutil==2.7.3
 pytz==2018.4
 six==1.11.0
-urllib3==1.23
+urllib3~=1.24
