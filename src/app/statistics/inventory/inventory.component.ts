@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StatsData, StatisticsService } from '../statistics.service';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest } from 'rxjs';
+import { curveStepAfter } from 'd3';
 
 @Component({
   selector: 'app-inventory',
@@ -13,8 +14,6 @@ export class InventoryComponent implements OnInit {
 
   view = [700, 400];
 
-  // options for ngx-charts
-
   showYAxis = true;
   yAxisLabel = '';
   showYAxisLabel = false;
@@ -22,6 +21,8 @@ export class InventoryComponent implements OnInit {
   showXAxis = true;
   xAxisLabel = 'STATS.LABEL.WEEK';
   showXAxisLabel = true;
+
+  curve = curveStepAfter;
 
   gradient = false;
   showLegend = true;
@@ -73,18 +74,21 @@ export class InventoryComponent implements OnInit {
     });
   }
 
-  private _mapSeries(series) {
-    return series.map(v => ({ name: new Date(v.date), value: v.count }));
-  }
-
   /**
    * Map series, but aggregates all the values (sum up to that point in time)
    * @param series
    */
   private _mapSeriesAggregated(series) {
-    return series.reduce((cur, next) => {
+    const aggregatedSeries = series.reduce((cur, next) => {
       const agg = cur.length > 0 ? cur[cur.length - 1].value : 0;
       return cur.concat([{ name: new Date(next.date), value: agg + next.count }]);
     }, []);
+
+    // Add today's data point
+    aggregatedSeries.push({
+      name: new Date(),
+      value: aggregatedSeries.length > 0 ? aggregatedSeries[aggregatedSeries.length - 1].value : 0
+    });
+    return aggregatedSeries;
   }
 }
