@@ -30,6 +30,12 @@ file together with the development compose file:
 
    `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up -d`
 
+Next, create local configuration in the `conf` directory:
+
+  - create a local configuration for the django application by issuing
+    `cp conf/django/settings_local_default.py conf/django/settings_local.py`
+    and adapt settings.
+
 Some setup steps are required (such as initialising the databse) when starting
 the application the first time. See (and run) the setup script `./setup.sh` for
 help with that. (Alternatively, use django management commands such as
@@ -41,8 +47,8 @@ Using the `setup.sh` script, the follwing **test users** are created:
     test@tt4.at / test1234
 
 Now the services should be set up and running (try to access
-[http://localhost:8080/admin/](http://localhost:8080/admin/) or
-[http://localhost:8080/api/](http://localhost:8080/api/)).
+[http://localhost:8083/admin/](http://localhost:8083/admin/) or
+[http://localhost:8083/api/](http://localhost:8083/api/)).
 
 To shut down the containers, use `docker-compose down`.
 
@@ -68,7 +74,7 @@ Run a development setup
     npm run start
 
 Client : http://localhost:4200
-Backend: http://localhost:8008 (django directly), or simply http://localhost (via nginx).
+Backend: http://localhost:8008 (django directly), or http://localhost:8083 (via nginx).
 
 
 Documentation

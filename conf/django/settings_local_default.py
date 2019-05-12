@@ -9,10 +9,11 @@ SECRET_KEY = '....cgRBTVUc6LlSpLYxxZck.....'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'sources.tt4.at',
+    'localhost',
 ]
 
-SOURCES_PUBLIC_API_URL = 'https://sources.tt4.at'
+# In development, use webpack dev server proxy url
+SOURCES_PUBLIC_API_URL = 'http://localhost:4200'
 
 # Email backend
 # https://docs.djangoproject.com/en/2.1/topics/email/#email-backends

@@ -8,6 +8,7 @@ from uuid import uuid4
 
 DOWNLOAD_URL = SOURCES_PUBLIC_API_URL + '/api/files/get/{}'
 
+
 def get_download(model):
     return DOWNLOAD_URL.format(model.downloadId)
 

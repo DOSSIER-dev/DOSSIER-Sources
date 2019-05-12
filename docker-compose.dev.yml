@@ -15,6 +15,9 @@ services:
       # whenever there is a change in the codebase.)
       - ./app:/code
 
+      # mount local settings
+      - ./conf/django/settings_local.py:/code/sources/settings_local.py
+
     # Allows to attach to container and e.g. use pdb debugging (does it?)
     stdin_open: true
     tty: true
@@ -29,6 +32,9 @@ services:
     volumes:
       # Mount the local code directory for development.
       - ./app:/code
+
+      # mount local settings
+      - ./conf/django/settings_local.py:/code/sources/settings_local.py
   nginx:
     ports:
       - "8083:80"
