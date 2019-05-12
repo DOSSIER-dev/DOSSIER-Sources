@@ -34,7 +34,6 @@ describe('MainmenuComponent', () => {
       imports: [RouterTestingModule.withRoutes([])],
       declarations: [MainmenuComponent, MockIconComponent, MockUsernamePipe],
       providers: [
-        { provide: AuthService, useValue: {} },
         { provide: AuthService, useValue: authServiceStub }
       ]
     }).compileComponents();
