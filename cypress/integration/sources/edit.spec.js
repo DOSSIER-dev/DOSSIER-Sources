@@ -44,6 +44,7 @@ describe('Edit Sources', () => {
     // cy.get('section.srcs-source-sidebar').contains(SOURCE_ID);
 
     cy.visit('/search');
+    cy.wait(200);
     cy.get('section.main-content')
       .contains(TITLE)
       .click();

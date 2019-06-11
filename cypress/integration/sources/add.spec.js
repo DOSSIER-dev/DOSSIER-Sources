@@ -211,7 +211,7 @@ describe('Add Sources', () => {
 
     // Check listing
     cy.visit('/type?_s_type=VIDEO');
-    cy.wait(100);
+    cy.wait(200);
     cy.get('section.main-content')
       .contains(SOURCE_TITLE)
       .click();
@@ -291,7 +291,7 @@ describe('Add Sources', () => {
 
     // Check listing
     cy.visit('/type?_s_type=VIDEO');
-    cy.wait(100);
+    cy.wait(200);
     cy.get('section.main-content')
       .contains(SOURCE_TITLE)
       .click();
