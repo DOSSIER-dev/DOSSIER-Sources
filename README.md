@@ -20,6 +20,9 @@ About
 Installation
 ------------
 
+Configuration is best done via environment variables - rename `env_example`
+to `.env` .
+
 ### Services / Backend
 
 Probably the easiest way to start up all involved parts and services is to
