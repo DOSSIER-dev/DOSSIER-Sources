@@ -172,24 +172,10 @@ class PermissionUserDetailsSerializer(UserDetailsSerializer):
     Replaces the default django-rest-auth serializer
     Includes the permission settings (admin).
     """
-    class Meta:
-        model = User
-        fields = (
-            'pk',
-            'username',
-            'email',
-            'first_name',
-            'last_name',
-            'isManager'
-        )
-        read_only_fields = (
-            'pk',
-            'username',
-            'email',
-            'isManager'
-        )
+    isManager = serializers.BooleanField(source='staffprofile.isManager')
 
-    isManager = serializers.SerializerMethodField()
+    class Meta(UserDetailsSerializer.Meta):
+        fields = UserDetailsSerializer.Meta.fields + ('isManager', )
+        read_only_fields = UserDetailsSerializer.Meta.read_only_fields + ('isManager', )
 
-    def get_isManager(self, obj):
-        return obj.staffprofile.isManager
+
