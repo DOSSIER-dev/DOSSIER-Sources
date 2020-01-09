@@ -1,4 +1,8 @@
 describe('Edit Sources', () => {
+  // before(() => {
+  //   cy.db_reset();
+  // });
+
   beforeEach(() => {
     cy.db_reset();
     cy.login();
@@ -39,9 +43,9 @@ describe('Edit Sources', () => {
     //cy.get('app-source-meta .title').should('have.text',TITLE);
     cy.get('section.srcs-source-sidebar').contains(TITLE);
     cy.get('section.srcs-source-sidebar').contains(DESCRIPTION);
-    //cy.get('section.srcs-source-sidebar').contains(COLLECTION);
-    //cy.get('section.srcs-source-sidebar').contains(LANGUAGE);
-    // cy.get('section.srcs-source-sidebar').contains(SOURCE_ID);
+    cy.get('section.srcs-source-sidebar').contains(COLLECTION);
+    cy.get('section.srcs-source-sidebar').contains(LANGUAGE);
+    cy.get('section.srcs-source-sidebar').contains(SOURCE_ID);
 
     cy.visit('/search');
     cy.wait(200);
@@ -71,7 +75,7 @@ describe('Edit Sources', () => {
     cy.location('pathname').should('eq', '/source/1');
     cy.get('section.srcs-source-sidebar app-multiselect[name="tags"]').contains(TAG);
 
-    // Listed
+    // New tag shows up in the sidebar menu list
     cy.visit('/tags');
     cy.get('section.srcs-list')
       .contains(TAG)
@@ -98,13 +102,10 @@ describe('Edit Sources', () => {
     // Submit
     cy.get('section.srcs-source-sidebar button[type="submit"]').click();
 
-    // Result
+    // Redirects to view page
     cy.location('pathname').should('eq', '/source/1');
 
-    // Listed
-    cy.visit('/tags');
-    cy.get('section.srcs-list')
-      .contains(TAG)
-      .should('not.exist');
+    // No tag in the sidebar
+    cy.get('section.srcs-source-sidebar app-multiselect[name="tags"]').contains(TAG);
   });
 });
