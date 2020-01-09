@@ -46,7 +46,7 @@ export class MicropageComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { source: Source; annotationId?: number }) => {
       this.source = data.source;
-      this.hasAnnotations = this.source.annotations.length > 0;
+      this.hasAnnotations = (this.source && this.source.annotations || []).length > 0;
       if (data.annotationId) {
         // annotation id was found in route
         const preselectedAnnotation = this.source.annotations.find(

@@ -22,7 +22,7 @@ export class AnnotationComponentResolver {
 
 export interface AnnotationComponentMap {
   [key: string]: Type<AnnotationComponent>;
-};
+}
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class AnnotatorFactoryService {
   }
   getComponentClass(source: SourceRef) {
     let type = '';
-    if (source.fileRef) {
+    if (source && source.fileRef) {
       const mime = source.fileRef.mimeType;
       if (/image\/.*/.test(mime)) {
         type = 'IMG';
@@ -43,7 +43,7 @@ export class AnnotatorFactoryService {
       } else {
         type = 'MISC';
       }
-    } else if (source.sourcetype === 'VIDEO') {
+    } else if (source && source.sourcetype === 'VIDEO') {
       // TODO: properly resolve the component type from the serviceName field
       if (source.sourceURL.match(/vimeo/)) {
         type = 'VIMEO';
@@ -55,12 +55,12 @@ export class AnnotatorFactoryService {
     }
     const componentClass = this.components[type] || undefined;
     if (!componentClass) {
+      console.log(source);
       throw Error(`No annotation component for type '${type}'`);
     }
     return componentClass;
   }
 }
-
 
 export const COMPONENTS: AnnotationComponentMap = {
   PDF: PdfAnnotationComponent,

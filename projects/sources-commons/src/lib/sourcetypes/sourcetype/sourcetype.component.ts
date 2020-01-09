@@ -7,13 +7,8 @@ import { SourceTypeService } from '../sourcetype.service';
  */
 @Component({
   selector: 'sources-sourcetype',
-  template: `
-    <span>
-      <mat-icon size="small" svgIcon="{{_iconName}}" [matTooltip]="_sourcetype?.name">{{_iconName}}</mat-icon>
-      <span *ngIf="!iconOnly">{{_sourcetype?.name}}</span>
-    </span>
-  `,
-  styleUrls: ['./sourcetype.component.scss', ]
+  templateUrl: './sourcetype.component.html',
+  styleUrls: ['./sourcetype.component.scss']
 })
 export class SourceTypeComponent implements OnInit {
   _sourcetype: SourceType;
@@ -25,9 +20,7 @@ export class SourceTypeComponent implements OnInit {
     this._iconName = this._sourcetype && this._sourcetype.icon ? this._sourcetype.icon : 'default';
   }
 
-  constructor(private sourceTypeService: SourceTypeService) { }
+  constructor(private sourceTypeService: SourceTypeService) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 }

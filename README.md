@@ -39,7 +39,7 @@ Next, create local configuration in the `conf` directory:
     `cp conf/django/settings_local_default.py conf/django/settings_local.py`
     and adapt settings.
 
-Some setup steps are required (such as initialising the databse) when starting
+Some setup steps are required (such as initialising the database) when starting
 the application the first time. See (and run) the setup script `./setup.sh` for
 help with that. (Alternatively, use django management commands such as
 `createsuperuser` and `migrate` to start with an empty database).
@@ -105,8 +105,10 @@ end-to-end / integration tests using the Cypress project.
        `docker-compose exec webapp /code/manage.py test organisation.tests`
 
  - frontend unit tests
+   Tests of a specific project can be run with `ng test --project PROJECT`, e.g.
+   `ng test --project sources-app`. To run the complete suite run with `--watch=False` -
+   or use `npm run test-all`.
 
-       `npm run test` or `npm run test --project sources-app` (for a specific project)
 
  - cypress e2e tests: a test suit using the cypress runner is included. To run it,
 

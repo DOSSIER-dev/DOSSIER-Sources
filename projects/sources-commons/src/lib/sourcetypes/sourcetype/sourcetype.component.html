@@ -1,0 +1,6 @@
+<span>
+  <mat-icon size="small" svgIcon="{{ _iconName }}" [matTooltip]="_sourcetype?.name">{{
+    _iconName
+  }}</mat-icon>
+  <span *ngIf="!iconOnly">{{ _sourcetype?.name }}</span>
+</span>

@@ -16,6 +16,7 @@
     "build:release": "node scripts/lib-release.js",
     "build-all": "npm-run-all -s build:commons build build:lib build:micropage",
     "test": "ng test",
+    "test-all": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "doc:init": "docker build ./doc --tag sphinx-makedoc",

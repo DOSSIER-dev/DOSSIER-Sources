@@ -66,7 +66,7 @@ describe('MicropageComponent', () => {
         MockAnnotationDetailComponent
       ],
       providers: [
-        { provide: ActivatedRoute, useValue: { data: of({ source: {} }) } },
+        { provide: ActivatedRoute, useValue: { data: of({ source: { fileRef : 'test.pdf'} }) } },
         { provide: HttpClient, useValue: httpClient }
       ]
     }).compileComponents();
