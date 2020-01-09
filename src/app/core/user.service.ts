@@ -51,7 +51,7 @@ export class UserService {
    * Set personal data of user (and username).
    */
   setPersonalData(firstname: string, lastname: string) {
-    return this.httpClient.put('/api/rest-auth/user/', {
+    return this.httpClient.patch('/api/rest-auth/user/', {
       first_name: firstname,
       last_name: lastname
     });
