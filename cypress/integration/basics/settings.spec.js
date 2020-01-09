@@ -1,16 +1,15 @@
 describe('Settings', () => {
-  beforeEach(() => {
+  before(() => {
     cy.db_reset();
+  });
+
+  beforeEach(() => {
     cy.login();
     cy.visit('/usersettings');
   });
 
   afterEach(() => {
     cy.logout();
-  });
-
-  after(() => {
-    cy.db_reset();
   });
 
   it('Change username', () => {
