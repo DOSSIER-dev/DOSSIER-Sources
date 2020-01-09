@@ -22,7 +22,7 @@ describe('Add Sources', () => {
     cy.get('textarea[name="title"]').type(SOURCE_TITLE);
     cy.get('textarea[name="description"]').type(SOURCE_DESCRIPTION);
     cy.get('input[formcontrolname="collection"]').type(SOURCE_COLLECTION + '{enter}');
-    cy.get('app-multiselect[formcontrolname="tags"] input').type(SOURCE_TAG + '{enter}');
+    cy.get('app-multiselect[formcontrolname="tags"] input').type(SOURCE_TAG + '{enter}' + '{esc}');
     cy.get('input[formcontrolname="country"]').type(SOURCE_COUNTRY + '{enter}');
     cy.get('input[formcontrolname="language"]').type(SOURCE_LANGUAGE + '{enter}');
     cy.get('input[formcontrolname="date"]').type(SOURCE_DATE);
@@ -76,7 +76,7 @@ describe('Add Sources', () => {
     cy.get('textarea[name="title"]').type(SOURCE_TITLE);
     cy.get('textarea[name="description"]').type(SOURCE_DESCRIPTION);
     cy.get('input[formcontrolname="collection"]').type(SOURCE_COLLECTION + '{enter}');
-    cy.get('app-multiselect[formcontrolname="tags"] input').type(SOURCE_TAG + '{enter}');
+    cy.get('app-multiselect[formcontrolname="tags"] input').type(SOURCE_TAG + '{enter}' + '{esc}');
     cy.get('input[formcontrolname="country"]').type(SOURCE_COUNTRY + '{enter}');
     cy.get('input[formcontrolname="language"]').type(SOURCE_LANGUAGE + '{enter}');
     cy.get('input[formcontrolname="date"]').type(SOURCE_DATE);
@@ -166,7 +166,7 @@ describe('Add Sources', () => {
       SOURCE_COLLECTION + '{enter}'
     );
     cy.get('app-source-form app-multiselect[formcontrolname="tags"] input').type(
-      SOURCE_TAG + '{enter}'
+      SOURCE_TAG + '{enter}' + '{esc}'
     );
     cy.get('app-source-form input[name="sourceId"]').type(SOURCE_ID);
 
@@ -245,7 +245,7 @@ describe('Add Sources', () => {
       SOURCE_COLLECTION + '{enter}'
     );
     cy.get('app-source-form app-multiselect[formcontrolname="tags"] input').type(
-      SOURCE_TAG + '{enter}'
+      SOURCE_TAG + '{enter}' + '{esc}'
     );
     cy.get('app-source-form input[name="sourceId"]').type(SOURCE_ID);
 
