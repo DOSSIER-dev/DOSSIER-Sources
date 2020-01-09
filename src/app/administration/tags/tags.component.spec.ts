@@ -2,11 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TagsComponent } from './tags.component';
 import { PipeTransform, Pipe, Component, Input } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { LoginStatus, AuthService } from 'src/app/core/auth.service';
+import { TagService } from 'src/app/shared/tag.service';
 
-const httpClient = jasmine.createSpyObj('HttpClient', ['post']);
+const tagService = jasmine.createSpyObj('TagService', {
+  getList: of([]),
+});
 
 @Pipe({ name: 'translate' })
 class MockTranslatePipe implements PipeTransform {
@@ -49,7 +51,7 @@ describe('TagsComponent', () => {
       declarations: [TagsComponent, MockTagForm, MockIconComponent, MockTranslatePipe],
       providers: [
         { provide: AuthService, useValue: authServiceStub },
-        { provide: HttpClient, useValue: httpClient }
+        { provide: TagService, useValue: tagService }
       ]
     }).compileComponents();
   }));

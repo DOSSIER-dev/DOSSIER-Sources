@@ -3,8 +3,8 @@ import { StoriesComponent } from './stories.component';
 import { PipeTransform, Pipe, Component, Input } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-
-const httpClient = jasmine.createSpyObj('HttpClient', ['post']);
+import { of } from 'rxjs';
+import { StoryService } from 'src/app/shared/story.service';
 
 @Pipe({ name: 'translate' })
 class MockTranslatePipe implements PipeTransform {
@@ -12,6 +12,10 @@ class MockTranslatePipe implements PipeTransform {
     return value;
   }
 }
+
+const storyService = jasmine.createSpyObj('StoryService', {
+  getList: of([])
+});
 
 @Component({
   selector: 'app-story-form',
@@ -39,7 +43,7 @@ describe('StoriesComponent', () => {
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, FormsModule],
       declarations: [StoriesComponent, MockStoryForm, MockIconComponent, MockTranslatePipe],
-      providers: [{ provide: HttpClient, useValue: httpClient }]
+      providers: [{ provide: StoryService, useValue: storyService }]
     }).compileComponents();
   }));
 
