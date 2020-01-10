@@ -1,10 +1,9 @@
 describe('Edit Sources', () => {
-  // before(() => {
-  //   cy.db_reset();
-  // });
+  before(() => {
+    cy.db_reset();
+  });
 
   beforeEach(() => {
-    cy.db_reset();
     cy.login();
   });
 
@@ -57,10 +56,15 @@ describe('Edit Sources', () => {
   });
 
   it('Add tag', () => {
-    const SOURCE_TITLE = 'Test Document';
+    const SOURCE_TITLE = 'Test Document With Added Tag';
     const TAG = 'TestTag';
 
     cy.visit('/source/1?edit=1');
+
+    // Set title
+    cy.get('app-source-form textarea[name="title"]')
+      .clear()
+      .type(SOURCE_TITLE);
 
     // Add
     cy.get('section.srcs-source-sidebar app-multiselect[name="tags"] input').type(TAG + '{enter}');
@@ -71,15 +75,20 @@ describe('Edit Sources', () => {
     // Submit
     cy.get('section.srcs-source-sidebar button[type="submit"]').click();
 
-    // Result
+    // Result (redirects)
     cy.location('pathname').should('eq', '/source/1');
-    cy.get('section.srcs-source-sidebar app-multiselect[name="tags"]').contains(TAG);
+    cy.location('search').should('eq', '');
+
+    // Check for the tag in the detail view (not edit) site
+    cy.get('section.srcs-source-sidebar .tag').contains(TAG);
 
     // New tag shows up in the sidebar menu list
     cy.visit('/tags');
     cy.get('section.srcs-list')
       .contains(TAG)
       .click();
+
+    // Tag filters works
     cy.contains(SOURCE_TITLE);
   });
 
@@ -104,8 +113,9 @@ describe('Edit Sources', () => {
 
     // Redirects to view page
     cy.location('pathname').should('eq', '/source/1');
+    cy.location('search').should('eq', '');
 
     // No tag in the sidebar
-    cy.get('section.srcs-source-sidebar app-multiselect[name="tags"]').contains(TAG);
+    cy.get('section.srcs-source-sidebar').should('not.contain', TAG);
   });
 });
