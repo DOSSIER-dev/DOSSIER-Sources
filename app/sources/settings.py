@@ -110,11 +110,11 @@ WSGI_APPLICATION = 'sources.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('SOURCES_MYSQL_DATABASE'),
-        'USER': os.environ.get('SOURCES_MYSQL_USER'),
-        'PASSWORD': os.environ.get('SOURCES_MYSQL_PASSWORD'),
-        'HOST': os.environ.get('SOURCES_MYSQL_HOST'),
-        'PORT': os.environ.get('SOURCES_MYSQL_PORT'),
+        'NAME': os.environ.get('SOURCES_MYSQL_DATABASE', 'sources'),
+        'USER': os.environ.get('SOURCES_MYSQL_USER', 'root'),
+        'PASSWORD': os.environ.get('SOURCES_MYSQL_PASSWORD', 'root'),
+        'HOST': os.environ.get('SOURCES_MYSQL_HOST', 'db'),
+        'PORT': os.environ.get('SOURCES_MYSQL_PORT', '3306'),
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
