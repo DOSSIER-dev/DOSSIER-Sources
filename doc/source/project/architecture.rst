@@ -51,8 +51,12 @@ Client - Angular App
 --------------------
 
 The frontend code is an angular application, mangaged with the `angular-cli`.
-The application uses multiple projects: `sources-main`, `embed-lib`, `micropage`
-and one common library `sources-commons`.
+The application uses multiple projects and one common library:
+
+  - `sources-main`
+  - `embed-lib`
+  - `micropage`
+  - `sources-commons` (library)
 
 The main app is the client application that allows teams to upload and organise
 sources and create annotations.

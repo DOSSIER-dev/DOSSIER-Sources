@@ -1,6 +1,6 @@
 **/node_modules
 **/dist
-doc/_build
+doc/build
 *.pyc
 
 # compiled output

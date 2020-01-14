@@ -1,5 +1,5 @@
-.. Sources documentation master file, created by
-   sphinx-quickstart on Wed Mar 14 10:34:21 2018.
+.. sphinx test documentation master file, created by
+   sphinx-quickstart on Tue Jan 14 18:00:49 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -10,16 +10,13 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
 
-   project/architecture
+   usage/embedlibrary
    usage/setup
-   design/model
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   project/design
+   project/architecture
+   project/build
+   project/design
 

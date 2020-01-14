@@ -4,7 +4,7 @@ Data Model
 Overview
 --------
 
-There are five modules (django apps) :
+The app consists of five modules (django apps):
 
  - sources_main
  - filestorage

@@ -85,9 +85,10 @@ Documentation
 
 See documentation in `/doc` directory for more information.
 
-To be able to build the documentation, run `npm run doc:init` once (builds the docker container),
-afterwards build documentation with `npm run doc:build`.
-Next, find the documentation in HTML format in `doc/_build/index.html`.
+Build documentation:
+
+    pip install sphinx sphinx_rtd_theme
+    make
 
 Tests
 -----
@@ -105,9 +106,12 @@ end-to-end / integration tests using the Cypress project.
        `docker-compose exec webapp /code/manage.py test organisation.tests`
 
  - frontend unit tests
+
    Tests of a specific project can be run with `ng test --project PROJECT`, e.g.
-   `ng test --project sources-app`. To run the complete suite run with `--watch=False` -
-   or use `npm run test-all`.
+   `ng test --project sources-app`. To run the complete suite run with `--watch=False`
+   or use
+
+        `npm run test-all`
 
 
  - cypress e2e tests: a test suit using the cypress runner is included. To run it,

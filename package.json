@@ -19,8 +19,6 @@
     "test-all": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "doc:init": "docker build ./doc --tag sphinx-makedoc",
-    "doc:build": "docker run -it --rm -u `id -u $USER` -v $PWD/doc:/doc/ sphinx-makedoc sphinx-build -b html doc/ doc/_build",
     "extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json --sort --format namespaced-json",
     "cypress": "cypress run --config-file cypress.container.json ",
     "cypress:open": "cypress open",
