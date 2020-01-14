@@ -87,8 +87,10 @@ See documentation in `/doc` directory for more information.
 
 Build documentation:
 
+    # Sphinx and rtd theme required
     pip install sphinx sphinx_rtd_theme
-    make
+    cd doc
+    make html
 
 Tests
 -----
@@ -99,11 +101,11 @@ end-to-end / integration tests using the Cypress project.
 
  - django tests
 
-       `docker-compose exec webapp /code/manage.py test`
+       docker-compose exec webapp /code/manage.py test
 
  - run a single django test
 
-       `docker-compose exec webapp /code/manage.py test organisation.tests`
+       docker-compose exec webapp /code/manage.py test organisation.tests
 
  - frontend unit tests
 
@@ -111,7 +113,7 @@ end-to-end / integration tests using the Cypress project.
    `ng test --project sources-app`. To run the complete suite run with `--watch=False`
    or use
 
-        `npm run test-all`
+        npm run test-all
 
 
  - cypress e2e tests: a test suit using the cypress runner is included. To run it,
