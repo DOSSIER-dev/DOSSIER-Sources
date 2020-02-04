@@ -119,7 +119,7 @@ end-to-end / integration tests using the Cypress project.
  - cypress e2e tests: a test suit using the cypress runner is included. To run it,
 
      - start all containers (e.g. `./startdev.sh` or with `docker-compose up`)
-     - start the frontend project(s) (e.g. `npm run start`).
+     - start the frontend project(s) (e.g. `npm run start-all`).
      - finally run tests `npm run cypress` , or open cypress browser `npm run cypress:open`
 
 Contributing
