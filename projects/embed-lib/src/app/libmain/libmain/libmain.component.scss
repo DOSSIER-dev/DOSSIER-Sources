@@ -55,7 +55,7 @@
 // iframe and sizing overlay/iframe
 //
 
-iframe {
+iframe.sourcesjs-iframe {
   border: none;
   overflow: hidden;
   width: 100%;
@@ -79,7 +79,7 @@ iframe {
     height: 90%;
   }
 
-  iframe {
+  iframe.sourcesjs-iframe {
     height: 100%;
   }
 }
