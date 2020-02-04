@@ -1,7 +1,7 @@
 @import '../../../constants.scss';
 
 // fixed element to contain overlay + backdrop
-.overlayContainer {
+.sourcesjs-overlayContainer {
   position: fixed;
   z-index: $z-index-high;
   top: 0;
@@ -13,7 +13,7 @@
 }
 
 // overlay partly hiding the original site when overlay is present
-.overlayContainerBackdrop {
+.sourcesjs-overlayContainerBackdrop {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -23,7 +23,7 @@
 }
 
 // actual overlay box inside the overlay container
-.sourceOverlay {
+.sourcesjs-sourceOverlay {
   margin-top: 5vh;
   background: #f0f0f0;
   color: #333;
@@ -36,7 +36,7 @@
 //
 
 // hover elements (non-overlay)
-.hoverElement {
+.sourcesjs-hoverElement {
   position: fixed;
   display: none;
   z-index: $z-index-hover;
@@ -64,17 +64,17 @@ iframe.sourcesjs-iframe {
 
 // Setting size for all involved elements
 
-.sourceOverlay {
+.sourcesjs-sourceOverlay {
   width: 800px;
   height: 90%;
 }
 
-.iframe-wrapper {
+.sourcesjs-iframeWrapper {
   height: 100%;
 }
 
 @media (min-width: 1200px) {
-  .sourceOverlay {
+  .sourcesjs-sourceOverlay {
     width: 1024px;
     height: 90%;
   }

@@ -14,6 +14,6 @@ describe('Embed', () => {
     cy.get('sourcesjs-root sourcesjs-libmain')
       .children()
       .should('have.length', 1);
-    cy.get('sourcesjs-root sourcesjs-libmain div.overlayContainer');
+    cy.get('sourcesjs-root sourcesjs-libmain div.sourcesjs-overlayContainer');
   });
 });
