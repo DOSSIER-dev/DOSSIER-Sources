@@ -5,15 +5,16 @@ import {
   ViewEncapsulation,
   HostListener,
   ElementRef,
-  Inject
+  Inject,
+  OnDestroy
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ParserService } from '../parser.service';
 import { SourceElement } from '../source-element';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Source } from 'src/app/sources/source';
-import { mergeMap, concatAll, catchError, filter } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { mergeMap, concatAll, catchError, filter, takeUntil } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
 import { OptionsService } from '../options.service';
 
 import { DOCUMENT } from '@angular/common';
@@ -26,12 +27,13 @@ const SOURCE_FETCH_API_URL = '/api/sources/prefetch';
   styleUrls: ['./libmain.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LibmainComponent implements OnInit {
+export class LibmainComponent implements OnInit, OnDestroy {
   source: SourceElement;
   sources: SourceElement[];
   fetchUrl: string;
   iframeUrl: SafeResourceUrl;
   hoverSource: SourceElement;
+  destroyed$ = new Subject();
 
   showLinkbox: boolean;
   showHover: boolean;
@@ -80,23 +82,33 @@ export class LibmainComponent implements OnInit {
   ngOnInit() {
     if (this.showHover) {
       // Hover over source link in article
-      this.parserService.hover$.pipe(filter(v => v.state)).subscribe(v => {
-        this.hoverSource = v.element;
-        this.hoverElement.nativeElement.style.left = v.event.clientX + 'px';
-        this.hoverElement.nativeElement.style.top = v.event.clientY + 10 + 'px';
-      });
-      this.parserService.hover$.pipe(filter(v => !v.state)).subscribe(_ => {
-        this.hoverSource = null;
-      });
+      this.parserService.hover$
+        .pipe(
+          filter(v => v.state),
+          takeUntil(this.destroyed$)
+        )
+        .subscribe(v => {
+          this.hoverSource = v.element;
+          this.hoverElement.nativeElement.style.left = v.event.clientX + 'px';
+          this.hoverElement.nativeElement.style.top = v.event.clientY + 10 + 'px';
+        });
+      this.parserService.hover$
+        .pipe(
+          filter(v => !v.state),
+          takeUntil(this.destroyed$)
+        )
+        .subscribe(_ => {
+          this.hoverSource = null;
+        });
     }
 
     // Click on source link - show the overlay
-    this.parserService.activate$.subscribe(v => {
+    this.parserService.activate$.pipe(takeUntil(this.destroyed$)).subscribe(v => {
       this.activateSource(v);
     });
 
     // TODO: this sets the sources list
-    this.parserService.sources$.subscribe(sources => {
+    this.parserService.sources$.pipe(takeUntil(this.destroyed$)).subscribe(sources => {
       this.sources = sources;
     });
 
@@ -115,7 +127,8 @@ export class LibmainComponent implements OnInit {
             })
           );
         }),
-        filter(v => v !== null)
+        filter(v => v !== null),
+        takeUntil(this.destroyed$)
       )
       .subscribe(source => {
         // Full source object came back, now store it to the sourceElement
@@ -127,5 +140,9 @@ export class LibmainComponent implements OnInit {
 
     // Initiate parsing / loading
     this.parserService.load();
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
   }
 }
