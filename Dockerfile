@@ -1,4 +1,4 @@
-FROM nginx:1.15
+FROM nginx:1.17
 
 # Remove unwanted default files
 RUN rm /etc/nginx/conf.d/default.conf -f
