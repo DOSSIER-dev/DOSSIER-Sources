@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, ViewChild, EventEmitter, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  ViewChild,
+  EventEmitter,
+  SimpleChanges
+} from '@angular/core';
 
 import pdfjsLib from 'pdfjs-dist/webpack';
 
@@ -7,25 +15,31 @@ import pdfjsLib from 'pdfjs-dist/webpack';
   template: `
     <div class="canvas-wrapper">
       <canvas #pdfCanvas class="pdf-layer"></canvas>
-    </div>`,
+    </div>
+  `,
   styles: [
-    `.canvas-wrapper { position: relative; }`,
-    `.pdf-layer {
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      z-index: 1;
-    }`
+    `
+      .canvas-wrapper {
+        position: relative;
+      }
+    `,
+    `
+      .pdf-layer {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 1;
+      }
+    `
   ]
 })
 export class PdfDisplayComponent implements OnInit {
-
   canvas: any;
   context: any;
   loaderPromise: any;
 
   renderInPogress = false;
-  renderAttemptMade = false;  // TODO: use this to queue render attempt
+  renderAttemptMade = false; // TODO: use this to queue render attempt
 
   _page = 1;
   _width: number;
@@ -46,11 +60,11 @@ export class PdfDisplayComponent implements OnInit {
 
   @Input() url;
   @Output() viewport = new EventEmitter<any>();
-  @Output() loaded = new EventEmitter<{pages: number, title: string}>();
+  @Output() loaded = new EventEmitter<{ pages: number; title: string }>();
 
   @ViewChild('pdfCanvas') pdfCanvas;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.canvas = this.pdfCanvas.nativeElement;
@@ -61,24 +75,24 @@ export class PdfDisplayComponent implements OnInit {
     if (!!changes.url && !!this.url) {
       this.loaderPromise = pdfjsLib.getDocument(this.url).promise;
       this.loaderPromise.then(
-        (pdf) => {
+        pdf => {
           const numPages = pdf.numPages;
-          pdf.getMetadata()
-            .then(data => {
-              const pdfTitle = (data.info && data.info.Title) ?
-                data.info.Title : '';
-              this.loaded.emit({ pages: numPages, title: pdfTitle });
-            });
+          pdf.getMetadata().then(data => {
+            const pdfTitle = data.info && data.info.Title ? data.info.Title : '';
+            this.loaded.emit({ pages: numPages, title: pdfTitle });
+          });
 
           this.getPage();
-        }, (err) => console.warn(err)
+        },
+        err => console.warn(err)
       );
     }
   }
 
   render() {
-    if (this.loaderPromise) { // clumsy check, but have to make sure that
-                              // the promise has been created and is not null
+    if (this.loaderPromise) {
+      // clumsy check, but have to make sure that
+      // the promise has been created and is not null
       this.getPage();
     }
   }
@@ -91,16 +105,12 @@ export class PdfDisplayComponent implements OnInit {
     }
 
     this.renderInPogress = true;
-    return this.loaderPromise.then((pdf) => {
-      return pdf.getPage(this._page)
-        .then((pdfPage) => {
+    return this.loaderPromise.then(
+      pdf => {
+        return pdf.getPage(this._page).then(pdfPage => {
           const viewport = this.getViewport(pdfPage);
           this.setCanvasSize(viewport.width, viewport.height);
-          this.viewport.emit([
-            viewport.width,
-            viewport.height,
-            viewport.scale
-          ]);
+          this.viewport.emit([viewport.width, viewport.height, viewport.scale]);
           const renderTask = pdfPage.render({
             canvasContext: this.context,
             viewport: viewport
@@ -110,13 +120,15 @@ export class PdfDisplayComponent implements OnInit {
             this.renderInPogress = false;
             if (this.renderAttemptMade) {
               this.renderAttemptMade = false;
-              this.getPage();   // render again
+              this.getPage(); // render again
             }
           });
 
           return renderTask.promise;
         });
-    }, (err) => console.warn(err));
+      },
+      err => console.warn(err)
+    );
   }
 
   private setCanvasSize(x, y) {
@@ -127,9 +139,9 @@ export class PdfDisplayComponent implements OnInit {
   private getViewport(pdfPage) {
     const containerWidth = this._width;
     const desiredWidth = containerWidth * 0.98;
-    const viewport = pdfPage.getViewport({scale: 1});
+    const viewport = pdfPage.getViewport({ scale: 1 });
     const scale = desiredWidth / viewport.width;
-    const scaledViewport = pdfPage.getViewport({scale: scale});
+    const scaledViewport = pdfPage.getViewport({ scale: scale });
     return scaledViewport;
   }
 }
