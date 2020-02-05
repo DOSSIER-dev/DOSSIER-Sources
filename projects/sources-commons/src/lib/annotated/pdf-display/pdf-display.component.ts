@@ -108,7 +108,7 @@ export class PdfDisplayComponent implements OnInit {
     return this.loaderPromise.then(
       pdf => {
         return pdf.getPage(this._page).then(pdfPage => {
-          const viewport = this.getViewport(pdfPage);
+          const viewport = this.getCurrentViewport(pdfPage);
           this.setCanvasSize(viewport.width, viewport.height);
           this.viewport.emit([viewport.width, viewport.height, viewport.scale]);
           const renderTask = pdfPage.render({
@@ -136,7 +136,7 @@ export class PdfDisplayComponent implements OnInit {
     this.canvas.height = y;
   }
 
-  private getViewport(pdfPage) {
+  private getCurrentViewport(pdfPage) {
     const containerWidth = this._width;
     const desiredWidth = containerWidth * 0.98;
     const viewport = pdfPage.getViewport({ scale: 1 });
