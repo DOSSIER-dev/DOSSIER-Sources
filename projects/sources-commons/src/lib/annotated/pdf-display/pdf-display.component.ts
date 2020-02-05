@@ -59,7 +59,7 @@ export class PdfDisplayComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     if (!!changes.url && !!this.url) {
-      this.loaderPromise = pdfjsLib.getDocument(this.url);
+      this.loaderPromise = pdfjsLib.getDocument(this.url).promise;
       this.loaderPromise.then(
         (pdf) => {
           const numPages = pdf.numPages;
@@ -127,9 +127,9 @@ export class PdfDisplayComponent implements OnInit {
   private getViewport(pdfPage) {
     const containerWidth = this._width;
     const desiredWidth = containerWidth * 0.98;
-    const viewport = pdfPage.getViewport(1);
+    const viewport = pdfPage.getViewport({scale: 1});
     const scale = desiredWidth / viewport.width;
-    const scaledViewport = pdfPage.getViewport(scale);
+    const scaledViewport = pdfPage.getViewport({scale: scale});
     return scaledViewport;
   }
 }
