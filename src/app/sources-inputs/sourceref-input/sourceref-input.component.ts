@@ -35,7 +35,7 @@ export class SourcerefInputComponent implements OnInit, OnChanges {
 
   @Input() sourcetype: SourceType;
   @Output() created: EventEmitter<SourceRef> = new EventEmitter<SourceRef>();
-  @ViewChild(ComponentHostDirective) appComponentHost: ComponentHostDirective;
+  @ViewChild(ComponentHostDirective, { static: true }) appComponentHost: ComponentHostDirective;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 

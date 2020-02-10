@@ -23,7 +23,7 @@ export class TagFormComponent implements OnInit, OnChanges {
   @Output() delete = new EventEmitter<Editable<Tag>>();
   @Output() cancel = new EventEmitter<Editable<Tag>>();
 
-  @ViewChild('firstInput') firstInput;
+  @ViewChild('firstInput', { static: false }) firstInput;
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required])

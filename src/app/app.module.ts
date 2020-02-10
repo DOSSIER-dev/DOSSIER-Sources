@@ -18,7 +18,7 @@ import { SourcesModule } from './sources/sources.module';
 import { CoreModule } from './core/core.module';
 import { AdministrationModule } from './administration/administration.module';
 import { StatisticsModule } from './statistics/statistics.module';
-import { MatNativeDateModule } from '@angular/material';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { environment } from '../environments/environment';
 

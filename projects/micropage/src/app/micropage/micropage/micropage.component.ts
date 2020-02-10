@@ -21,7 +21,7 @@ export class MicropageComponent implements OnInit {
   aboutLink = environment.sourcesProjectPage;
   timestamp: number;
 
-  @ViewChild('panel') panel;
+  @ViewChild('panel', { static: true }) panel;
 
   hasAnnotations = false;
 

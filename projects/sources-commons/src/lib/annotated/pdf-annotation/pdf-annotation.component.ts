@@ -55,8 +55,8 @@ export class PdfAnnotationComponent implements AnnotationComponent, OnInit,
   MAX_COMPONENT_WIDTH = 800; // pdf display size constraint
   MIN_COMPONENT_WIDTH = 200; // pdf display size constraint
 
-  @ViewChild('pdfContainer') pdfContainer;
-  @ViewChild('functionHeader') functionHeader;
+  @ViewChild('pdfContainer', { static: true }) pdfContainer;
+  @ViewChild('functionHeader', { static: true }) functionHeader;
 
   @HostListener('window:resize')
   onResize() {

@@ -10,7 +10,7 @@ import {
 import { Source } from '../source';
 import { environment } from '../../../environments/environment';
 import { Annotation } from '../annotation';
-import { MatIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-sidebar',

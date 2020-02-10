@@ -25,7 +25,7 @@ export class OrganisationViewComponent implements OnInit, CanComponentDeactivate
     // 'color': new FormControl('', []),
   });
 
-  @ViewChild('submitButton') submitButton;
+  @ViewChild('submitButton', { static: false }) submitButton;
 
   constructor(
     private organisationService: OrganisationService,

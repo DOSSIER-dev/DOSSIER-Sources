@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./delete-confirm.component.scss']
 })
 export class DeleteConfirmComponent implements OnDestroy {
-  @ViewChild('confirmAnchor') confirmAnchor;
+  @ViewChild('confirmAnchor', { static: true }) confirmAnchor;
   @Output() delete = new EventEmitter<any>();
 
   constructor(private panelService: DeleteConfirmPanelService) {}

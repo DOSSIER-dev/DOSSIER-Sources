@@ -18,7 +18,7 @@ export class PaginationComponent implements OnInit, OnChanges {
   _pageValue = '';
 
   keepNumsRegex = /[^\d]/gi;
-  @ViewChild('pageInputField') pageInputField;
+  @ViewChild('pageInputField', { static: true }) pageInputField;
   pageKeyInputs$ = new Subject<string>();
 
   constructor() { }

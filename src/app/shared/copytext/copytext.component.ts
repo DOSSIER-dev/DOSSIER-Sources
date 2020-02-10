@@ -46,8 +46,8 @@ import { Component, Input, ViewChild } from '@angular/core';
 })
 export class CopytextComponent {
   @Input() value = '';
-  @ViewChild('copyField') copyField;
-  @ViewChild('tooltip') tooltip;
+  @ViewChild('copyField', { static: true }) copyField;
+  @ViewChild('tooltip', { static: true }) tooltip;
   disabled = true;
 
   constructor() {}

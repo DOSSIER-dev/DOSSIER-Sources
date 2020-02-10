@@ -38,7 +38,7 @@ export class CollectionsComponent implements OnInit, CanComponentDeactivate {
 
   noCanAdd = false;
 
-  @ViewChild(CollectionFormComponent) activeForm: CollectionFormComponent;
+  @ViewChild(CollectionFormComponent, { static: false }) activeForm: CollectionFormComponent;
 
   constructor(private itemService: CollectionsService) {}
 

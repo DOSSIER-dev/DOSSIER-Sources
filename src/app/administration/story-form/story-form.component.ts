@@ -23,7 +23,7 @@ export class StoryFormComponent implements OnInit, OnChanges {
   @Output() delete = new EventEmitter<Editable<Story>>();
   @Output() cancel = new EventEmitter<Editable<Story>>();
 
-  @ViewChild('firstInput') firstInput;
+  @ViewChild('firstInput', { static: false }) firstInput;
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required])

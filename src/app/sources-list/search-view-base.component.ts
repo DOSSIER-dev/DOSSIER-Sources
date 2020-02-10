@@ -25,7 +25,7 @@ export interface DerivedSearchViewComponent extends OnInit {
 
  */
 export class SearchViewBaseComponent implements DerivedSearchViewComponent, OnDestroy {
-  @ViewChild(RankingSelectComponent) ranking: RankingSelectComponent;
+  @ViewChild(RankingSelectComponent, { static: true }) ranking: RankingSelectComponent;
   searchInput: FormControl = new FormControl();
 
   // Local search/ui state

@@ -44,7 +44,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 })
 export class CopytextComponent implements OnInit {
   @Input() value = '';
-  @ViewChild('copyField') copyField;
+  @ViewChild('copyField', { static: true }) copyField;
   constructor() { }
 
   ngOnInit() {

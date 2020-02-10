@@ -38,7 +38,7 @@ export class LibmainComponent implements OnInit, OnDestroy {
   showLinkbox: boolean;
   showHover: boolean;
 
-  @ViewChild('hoverElement') hoverElement: ElementRef;
+  @ViewChild('hoverElement', { static: false }) hoverElement: ElementRef;
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {

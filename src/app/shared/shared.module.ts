@@ -7,15 +7,10 @@ import { CoreModule } from '../core/core.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  MatProgressBarModule,
-  MatTooltipModule,
-  MatTooltipDefaultOptions,
-  MAT_TOOLTIP_DEFAULT_OPTIONS,
-  MatSnackBarModule,
-  MAT_SNACK_BAR_DEFAULT_OPTIONS,
-  MatProgressSpinnerModule
-} from '@angular/material';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MatTooltipModule, MatTooltipDefaultOptions, MAT_TOOLTIP_DEFAULT_OPTIONS } from '@angular/material/tooltip';
 
 import { ActivityStateComponent } from './activity-state/activity-state.component';
 import { ColumnLayoutComponent } from './column-layout/column-layout.component';

@@ -51,8 +51,8 @@ export class CanvasAnnotationsComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  @ViewChild('svgOverlay') svgOverlay;
-  @ViewChild('svgCanvas') svgCanvas;
+  @ViewChild('svgOverlay', { static: true }) svgOverlay;
+  @ViewChild('svgCanvas', { static: true }) svgCanvas;
 
   ngOnInit() {
   }

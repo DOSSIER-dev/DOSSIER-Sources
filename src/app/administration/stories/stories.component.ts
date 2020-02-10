@@ -28,7 +28,7 @@ export class StoriesComponent implements OnInit, CanComponentDeactivate {
   triggerLoad$ = new BehaviorSubject<boolean>(true);
   noCanAdd = false;
 
-  @ViewChild(StoryFormComponent) activeForm: StoryFormComponent;
+  @ViewChild(StoryFormComponent, { static: false }) activeForm: StoryFormComponent;
 
   constructor(private itemService: StoryService) {}
 

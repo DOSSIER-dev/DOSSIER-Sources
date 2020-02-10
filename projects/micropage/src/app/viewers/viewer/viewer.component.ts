@@ -38,7 +38,7 @@ export class ViewerComponent implements OnInit, OnChanges, OnDestroy, AfterViewI
   _subscriptions: Subscriber<any>[] = [];
 
   // Dynamically load annotation-gui (per document type)
-  @ViewChild(ComponentHostDirective) appComponentHost: ComponentHostDirective;
+  @ViewChild(ComponentHostDirective, { static: true }) appComponentHost: ComponentHostDirective;
   annotatorComponentImpl: ViewerBaseComponent;
 
   constructor(

@@ -24,8 +24,8 @@ export class ImageAnnotationComponent implements AnnotationComponent, OnInit {
    */
   headerHeight = 5;
 
-  @ViewChild('imgElement') imgElement;
-  @ViewChild('wrapperElement') wrapperElement;
+  @ViewChild('imgElement', { static: true }) imgElement;
+  @ViewChild('wrapperElement', { static: true }) wrapperElement;
   @Input() resourceUrl: string;
 
   // TODO: subtle gotcha here : when source is getting set, the resource url

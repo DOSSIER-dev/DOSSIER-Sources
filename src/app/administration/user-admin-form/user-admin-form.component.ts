@@ -26,7 +26,7 @@ export class UserAdminFormComponent implements OnInit, OnChanges {
   @Output() cancel = new EventEmitter<Editable<Staffer>>();
   @Output() edit = new EventEmitter<Editable<Staffer>>();
 
-  @ViewChild('firstInput') firstInput;
+  @ViewChild('firstInput', { static: true }) firstInput;
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email, Validators.maxLength(150)]),

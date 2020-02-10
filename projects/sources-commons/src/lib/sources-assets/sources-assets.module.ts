@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry, MatIconModule } from '@angular/material';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 
 /**
  * Sets up icon registry.

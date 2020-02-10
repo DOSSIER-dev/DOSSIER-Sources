@@ -62,7 +62,7 @@ export class PdfDisplayComponent implements OnInit {
   @Output() viewport = new EventEmitter<any>();
   @Output() loaded = new EventEmitter<{ pages: number; title: string }>();
 
-  @ViewChild('pdfCanvas') pdfCanvas;
+  @ViewChild('pdfCanvas', { static: true }) pdfCanvas;
 
   constructor() {}
 

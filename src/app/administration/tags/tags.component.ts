@@ -30,7 +30,7 @@ export class TagsComponent implements OnInit, CanComponentDeactivate {
   noCanAdd = false;
   isManager = false;
 
-  @ViewChild(TagFormComponent) activeForm: TagFormComponent;
+  @ViewChild(TagFormComponent, { static: false }) activeForm: TagFormComponent;
 
   constructor(private itemService: TagService, private authService: AuthService) {
     this.authService.currentStatus$

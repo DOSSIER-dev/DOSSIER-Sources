@@ -54,7 +54,7 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
   backRoute = '';
   backState = {};
 
-  @ViewChild('sourceEditForm') sourceEditForm;
+  @ViewChild('sourceEditForm', { static: false }) sourceEditForm;
 
   constructor(
     private route: ActivatedRoute,

@@ -23,7 +23,7 @@ export class CollectionFormComponent implements OnInit, OnChanges {
   @Output() delete = new EventEmitter<Editable<Collection>>();
   @Output() cancel = new EventEmitter<Editable<Collection>>();
 
-  @ViewChild('firstInput') firstInput;
+  @ViewChild('firstInput', { static: false }) firstInput;
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required])

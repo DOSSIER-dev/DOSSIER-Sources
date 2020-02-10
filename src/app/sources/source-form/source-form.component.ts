@@ -45,7 +45,7 @@ export class SourceFormComponent implements OnInit, OnChanges {
   @Output() save = new EventEmitter<Source>();
   @Output() dirty = new EventEmitter<boolean>();
 
-  @ViewChild('submitButton') submitButton;
+  @ViewChild('submitButton', { static: false }) submitButton;
 
   tags$: Observable<Tag[]>;
   stories$: Observable<Story[]>;

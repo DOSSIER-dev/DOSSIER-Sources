@@ -64,7 +64,7 @@ export class AnnotationFormComponent implements OnInit {
     public: new FormControl(false)
   });
   // Dynamically load location part of annotation
-  @ViewChild(ComponentHostDirective) appComponentHost: ComponentHostDirective;
+  @ViewChild(ComponentHostDirective, { static: false }) appComponentHost: ComponentHostDirective;
   locationInputImplementation: LocationInputComponent;
 
   // Map of location type to location type component

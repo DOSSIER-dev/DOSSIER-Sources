@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MultiselectComponent } from './multiselect.component';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'icn',

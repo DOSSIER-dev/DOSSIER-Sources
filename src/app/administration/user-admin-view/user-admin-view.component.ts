@@ -20,7 +20,7 @@ export class UserAdminViewComponent implements OnInit {
   triggerLoad$ = new BehaviorSubject<boolean>(true);
   noCanAdd = false;
 
-  @ViewChild(UserAdminFormComponent) activeForm: UserAdminFormComponent;
+  @ViewChild(UserAdminFormComponent, { static: false }) activeForm: UserAdminFormComponent;
   errors: any;
 
   constructor(

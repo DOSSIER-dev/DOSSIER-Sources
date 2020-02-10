@@ -37,11 +37,11 @@ export class AnnotatorComponent implements OnInit, OnChanges, AfterViewInit, OnD
   @Input() source: Source;
 
   // Dynamically load annotation-gui (per document type)
-  @ViewChild(ComponentHostDirective) appComponentHost: ComponentHostDirective;
+  @ViewChild(ComponentHostDirective, { static: true }) appComponentHost: ComponentHostDirective;
   annotatorComponentImpl: AnnotationComponent;
 
   // The annotation form.
-  @ViewChild('annotationPanel')
+  @ViewChild('annotationPanel', { static: true })
   private annotationPanel;
 
   // Type of panel / panel positioning
