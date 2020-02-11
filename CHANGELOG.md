@@ -1,3 +1,23 @@
+#### 1.3.0 (2020-02-11)
+
+##### Bug Fixes
+
+*  positioning of directly opened (via url) annotations (e373723f)
+*  tolerate missing database (37bb62b6)
+*  change edit route, allows correctly start/end edit of source metadata (539ac58c)
+
+##### Other Changes
+
+*  remove console.log output (8f720886)
+
+##### Refactors
+
+*  take care of unsubscription of observable (045db90a)
+
+##### Code Style Changes
+
+*  minor code style changes (7f11209d)
+
 ### 1.2.1 (2020-02-10)
 
 ##### Build System / Dependencies
