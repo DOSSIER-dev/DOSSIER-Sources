@@ -16,5 +16,7 @@ const containerElement = document.getElementById(containerElementId) || document
 containerElement.appendChild(appElement);
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .then(_ => { console.log('sources.js bootstrapped'); })
+  .then(_ => {
+    // pass
+  })
   .catch(err => console.log(err));
