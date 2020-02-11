@@ -39,7 +39,7 @@ export class PdfDisplayComponent implements OnInit {
   loaderPromise: any;
 
   renderInPogress = false;
-  renderAttemptMade = false; // TODO: use this to queue render attempt
+  renderAttemptMade = false;
 
   _page = 1;
   _width: number;
@@ -99,7 +99,7 @@ export class PdfDisplayComponent implements OnInit {
 
   getPage() {
     if (this.renderInPogress) {
-      console.warn('queue render attempt');
+      // console.warn('queue render attempt');
       this.renderAttemptMade = true;
       return;
     }

@@ -59,12 +59,10 @@ export class CanvasAnnotationsComponent implements OnInit, OnChanges {
 
   /**
    * Changes from the outside - do a re-set size & re-render annotations.
-   * TODO: is this in use ? what about the set handlers that
-   * use `render()` ?
    */
   ngOnChanges(changes: SimpleChanges) {
-
-    if (changes.width || changes.height || changes.scale) {
+    const hasSizeChange = changes.width || changes.height || changes.scale;
+    if (hasSizeChange) {
       this.render();
     }
 
@@ -72,13 +70,18 @@ export class CanvasAnnotationsComponent implements OnInit, OnChanges {
       this.updateRects();
     }
 
-    if (changes.activeAnnotation && changes.activeAnnotation.currentValue) {
-      // selection from outside, emit the screen coordinates
+    if (
+      // A new active annotation has been set
+      (changes.activeAnnotation && changes.activeAnnotation.currentValue) ||
+      // .. or a size change happend, and we have an active Annotation (corrects the position)
+      (hasSizeChange && this.activeAnnotation)
+    ) {
+      // Emit the screen coordinates, so that the annotation can be placed
+      // by the component that is responsible.
       this.screenInteraction.emit(
-        this.annotationToScreenRect(changes.activeAnnotation.currentValue)
+        this.annotationToScreenRect(this.activeAnnotation)
       );
     }
-
   }
 
   /**
