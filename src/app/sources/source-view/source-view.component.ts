@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Source } from '../source';
 import { ActivatedRoute, Router, CanDeactivate } from '@angular/router';
 
@@ -6,8 +6,8 @@ import { Annotation } from '../../annotation/annotation';
 
 import { SourceTypeService, SourceType } from 'sources-commons';
 
-import { switchMap, map, filter, mergeMap } from 'rxjs/operators';
-import { of, BehaviorSubject, combineLatest, merge, Observable } from 'rxjs';
+import { switchMap, map, filter, mergeMap, takeUntil, take } from 'rxjs/operators';
+import { of, BehaviorSubject, combineLatest, merge, Observable, Subject } from 'rxjs';
 import { SourceService } from '../source.service';
 import { SourceRef } from '../../sources-inputs/sourceref';
 import { AnnotationStateService } from '../../annotation/annotation-state.service';
@@ -38,7 +38,7 @@ import { StatisticsService } from 'src/app/statistics/statistics.service';
   templateUrl: './source-view.component.html',
   styleUrls: ['./source-view.component.scss']
 })
-export class SourceViewComponent implements OnInit, CanComponentDeactivate {
+export class SourceViewComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   source: Source;
   annotations$: BehaviorSubject<Annotation[]> = new BehaviorSubject<Annotation[]>([]);
   activeAnnotation: Annotation;
@@ -50,6 +50,7 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
   sourcetypes$: Observable<SourceType[]>;
   sourcetype: SourceType;
   sourceStatistics$: Observable<{ hitsCount: number }>;
+  destroyed$ = new Subject();
 
   backRoute = '';
   backState = {};
@@ -106,7 +107,7 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
         })
       ),
       this.route.paramMap.pipe(map(paramMap => +paramMap.get('annotationId')))
-    ).subscribe(([source, annotationId]) => {
+    ).pipe(takeUntil(this.destroyed$)).subscribe(([source, annotationId]) => {
       this.source = source;
 
       // Setting initial state of annotations for state-service
@@ -123,10 +124,12 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
     merge(
       this.route.queryParamMap.pipe(filter(params => !!params.get('edit'))),
       this.route.data.pipe(filter(data => !!data['add']))
-    ).subscribe(_ => (this.sourceEditing = true));
+    )
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(_ => (this.sourceEditing = true));
 
     // Search parameters via query parameters
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.pipe(takeUntil(this.destroyed$)).subscribe(params => {
       params.keys
         .filter(k => k.startsWith('_s_'))
         .forEach(k => {
@@ -135,11 +138,15 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
     });
 
     // Collect back route and search params, if any
-    this.route.paramMap.subscribe(paramMap => {
+    this.route.paramMap.pipe(takeUntil(this.destroyed$)).subscribe(paramMap => {
       if (paramMap.get('_br')) {
         this.backRoute = paramMap.get('_br');
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
   }
 
   /**
@@ -170,7 +177,7 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
     }
 
     const watched = this.requestWatcher.watchRequest(req, this.sourceSaveActivityState.state$);
-    watched.request.subscribe(
+    watched.request.pipe(takeUntil(this.destroyed$)).subscribe(
       resp => {
         this.sourceEditing = false;
         this.sourceEditTouched = false;
@@ -229,7 +236,7 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
    * Sends delete request to backend.
    */
   deleteSource() {
-    this.sourceService.deleteSource(this.source).subscribe(_ => {
+    this.sourceService.deleteSource(this.source).pipe(take(1)).subscribe(_ => {
       this.router.navigate(['/']);
     });
   }
@@ -249,6 +256,7 @@ export class SourceViewComponent implements OnInit, CanComponentDeactivate {
       // the source, we have to get the type object that contains configuration)
       this.sourcetypeService
         .getSourceTypeFromCode$(this.source.sourcetype)
+        .pipe(takeUntil(this.destroyed$))
         .subscribe(sourcetype => (this.sourcetype = sourcetype));
     } else {
       this.source.sourcetype = null;

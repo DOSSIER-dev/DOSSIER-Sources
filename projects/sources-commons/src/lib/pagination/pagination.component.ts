@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges, ViewChild } from '@angular/core';
-import { map, debounceTime } from 'rxjs/operators';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges, ViewChild, OnDestroy } from '@angular/core';
+import { map, debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit, OnChanges {
+export class PaginationComponent implements OnInit, OnChanges, OnDestroy {
   @Input() page: number;
   @Input() numPages: number;
   @Output() gotoPage = new EventEmitter<number>();
@@ -21,10 +21,16 @@ export class PaginationComponent implements OnInit, OnChanges {
   @ViewChild('pageInputField', { static: true }) pageInputField;
   pageKeyInputs$ = new Subject<string>();
 
-  constructor() { }
+  destroyed$ = new Subject();
+
+  constructor() {}
 
   ngOnInit() {
     this._setupPagenumberInput();
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
   }
 
   ngOnChanges(_: SimpleChanges) {
@@ -79,13 +85,14 @@ export class PaginationComponent implements OnInit, OnChanges {
       .pipe(
         map(key => {
           // Cleanup the input (numbers only)
-          const current = +(this._pageValue.replace(this.keepNumsRegex, ''));
+          const current = +this._pageValue.replace(this.keepNumsRegex, '');
           // Up and Down arrow can be used to decrement / increment
-          const next = key === 'ArrowUp'
-            ? current - 1 : (key === 'ArrowDown' ? current + 1 : current);
+          const next =
+            key === 'ArrowUp' ? current - 1 : key === 'ArrowDown' ? current + 1 : current;
           return next;
         }),
-        debounceTime(300)
+        debounceTime(300),
+        takeUntil(this.destroyed$)
       )
       .subscribe(pageNum => {
         let input = +pageNum || +this._pageValue;

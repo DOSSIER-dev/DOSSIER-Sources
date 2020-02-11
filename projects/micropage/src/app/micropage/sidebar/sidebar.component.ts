@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environment';
 import { Annotation } from '../annotation';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -56,12 +57,18 @@ export class SidebarComponent implements OnInit, OnChanges {
 
   // Load the two icon elements directly from the registry
   private _loadIcons() {
-    this.iconRegistry.getNamedSvgIcon('circle-info').subscribe(el => {
-      this.iconElement = this.sanitizer.bypassSecurityTrustHtml(el.outerHTML);
-    });
+    this.iconRegistry
+      .getNamedSvgIcon('circle-info')
+      .pipe(take(1))
+      .subscribe(el => {
+        this.iconElement = this.sanitizer.bypassSecurityTrustHtml(el.outerHTML);
+      });
 
-    this.iconRegistry.getNamedSvgIcon('circle-cancel').subscribe(el => {
-      this.iconElementClose = this.sanitizer.bypassSecurityTrustHtml(el.outerHTML);
-    });
+    this.iconRegistry
+      .getNamedSvgIcon('circle-cancel')
+      .pipe(take(1))
+      .subscribe(el => {
+        this.iconElementClose = this.sanitizer.bypassSecurityTrustHtml(el.outerHTML);
+      });
   }
 }

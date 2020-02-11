@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { CollectionsService } from '../collections.service';
 import { Collection } from '../collection';
 import { FormControl } from '@angular/forms';
-import { debounceTime, startWith, mergeMap, map } from 'rxjs/operators';
-import { combineLatest, BehaviorSubject } from 'rxjs';
+import { debounceTime, startWith, mergeMap, map, take, takeUntil } from 'rxjs/operators';
+import { combineLatest, BehaviorSubject, Subject } from 'rxjs';
 import { Editable } from '../editable';
 import { CollectionFormComponent } from '../collection-form/collection-form.component';
 import { CanComponentDeactivate } from 'src/app/core/can-deactivate.guard';
@@ -28,14 +28,14 @@ class ItemType extends Collection {}
     `
   ]
 })
-export class CollectionsComponent implements OnInit, CanComponentDeactivate {
+export class CollectionsComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   filteredItems: Editable<ItemType>[] = [];
   newItem: Editable<ItemType>;
   searchInput: FormControl = new FormControl();
 
   // Triggers (re)load from the backend
   triggerLoad$ = new BehaviorSubject<boolean>(true);
-
+  destroyed$ = new Subject();
   noCanAdd = false;
 
   @ViewChild(CollectionFormComponent, { static: false }) activeForm: CollectionFormComponent;
@@ -43,10 +43,7 @@ export class CollectionsComponent implements OnInit, CanComponentDeactivate {
   constructor(private itemService: CollectionsService) {}
 
   ngOnInit() {
-    const searchString$ = this.searchInput.valueChanges.pipe(
-      debounceTime(500),
-      startWith('')
-    );
+    const searchString$ = this.searchInput.valueChanges.pipe(debounceTime(500), startWith(''));
 
     combineLatest(
       this.triggerLoad$.pipe(
@@ -54,17 +51,24 @@ export class CollectionsComponent implements OnInit, CanComponentDeactivate {
         map(items => items.map(item => new Editable<ItemType>(item)))
       ),
       searchString$
-    ).subscribe(([items, query]) => {
-      this.filteredItems = !!query
-        ? items.filter(
-            editable =>
-              editable.payload.name.toLowerCase().includes(query.toLowerCase()) || editable.editing
-          )
-        : items;
-      this.filteredItems = this.filteredItems.sort((a, b) =>
-        a.payload.name.localeCompare(b.payload.name)
-      );
-    });
+    )
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(([items, query]) => {
+        this.filteredItems = !!query
+          ? items.filter(
+              editable =>
+                editable.payload.name.toLowerCase().includes(query.toLowerCase()) ||
+                editable.editing
+            )
+          : items;
+        this.filteredItems = this.filteredItems.sort((a, b) =>
+          a.payload.name.localeCompare(b.payload.name)
+        );
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next();
   }
 
   addItem() {
@@ -75,16 +79,22 @@ export class CollectionsComponent implements OnInit, CanComponentDeactivate {
 
   save(item) {
     if (item.payload.id) {
-      this.itemService.update(item.payload).subscribe(_ => {
-        this.triggerLoad$.next(true);
-        this._setIsEditing(false);
-      });
+      this.itemService
+        .update(item.payload)
+        .pipe(take(1))
+        .subscribe(_ => {
+          this.triggerLoad$.next(true);
+          this._setIsEditing(false);
+        });
     } else {
-      this.itemService.add(item.payload).subscribe(_ => {
-        this.newItem = null;
-        this.triggerLoad$.next(true);
-        this._setIsEditing(false);
-      });
+      this.itemService
+        .add(item.payload)
+        .pipe(take(1))
+        .subscribe(_ => {
+          this.newItem = null;
+          this.triggerLoad$.next(true);
+          this._setIsEditing(false);
+        });
     }
   }
 
@@ -97,10 +107,13 @@ export class CollectionsComponent implements OnInit, CanComponentDeactivate {
   }
 
   delete(item) {
-    this.itemService.delete(item.payload).subscribe(_ => {
-      this.triggerLoad$.next(true);
-      this._setIsEditing(false);
-    });
+    this.itemService
+      .delete(item.payload)
+      .pipe(take(1))
+      .subscribe(_ => {
+        this.triggerLoad$.next(true);
+        this._setIsEditing(false);
+      });
   }
 
   edit(item) {
