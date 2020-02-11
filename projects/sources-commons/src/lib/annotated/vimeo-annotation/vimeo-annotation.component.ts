@@ -61,7 +61,7 @@ export class VimeoAnnotationComponent implements AnnotationComponent, OnInit {
   }
 
   @Input() set addMode(state: boolean) {
-    if( state ) {
+    if ( state ) {
       // create annotation at the current player position
       const annotation = new Annotation();
       this.player.getCurrentTime().then(
@@ -88,7 +88,7 @@ export class VimeoAnnotationComponent implements AnnotationComponent, OnInit {
   @Output() interacted: EventEmitter<any> = new EventEmitter<any>();
   @Output() loaded: EventEmitter<any> = new EventEmitter<any>();
 
-  player : Player;
+  player: Player;
 
   constructor() {
   }

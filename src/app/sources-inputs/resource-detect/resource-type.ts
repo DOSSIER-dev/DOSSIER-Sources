@@ -1,5 +1,5 @@
 export class ResourceType {
-  sourcetypecode: string = 'MISC';
+  sourcetypecode = 'MISC';
   service: string;
   embedId: string;
   hasMatch = false;

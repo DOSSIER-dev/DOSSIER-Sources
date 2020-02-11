@@ -8,7 +8,7 @@ import { Annotation } from '../annotation';
 })
 export class AnnotationsComponent implements OnInit {
   @Input() annotations: Annotation[];
-  @Input() direction: string = 'vertical';
+  @Input() direction = 'vertical';
   @Output() select = new EventEmitter<Annotation>();
   constructor() {}
 
