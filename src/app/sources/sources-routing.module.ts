@@ -22,7 +22,8 @@ const sourceRoutes: Routes = [
     path: 'source/:id/edit',
     component: SourceViewComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [CanDeactivateGuard]
+    canDeactivate: [CanDeactivateGuard],
+    data: { edit: true }
   },
   {
     path: 'source/:id/annotation/:annotationId',

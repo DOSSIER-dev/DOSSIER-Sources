@@ -15,7 +15,7 @@ describe('Edit Sources', () => {
     const LANGUAGE = 'Acoli';
     const SOURCE_ID = '666-ZZZ-AAA';
 
-    cy.visit('/source/1?edit=1');
+    cy.visit('/source/1/edit');
 
     cy.get('app-source-form textarea[name="title"]')
       .clear()
@@ -59,7 +59,7 @@ describe('Edit Sources', () => {
     const SOURCE_TITLE = 'Test Document With Added Tag';
     const TAG = 'TestTag';
 
-    cy.visit('/source/1?edit=1');
+    cy.visit('/source/1/edit');
 
     // Set title
     cy.get('app-source-form textarea[name="title"]')
@@ -95,7 +95,7 @@ describe('Edit Sources', () => {
   it('Delete tag', () => {
     const TAG = 'Tag1';
 
-    cy.visit('/source/1?edit=1');
+    cy.visit('/source/1/edit');
 
     // Delete
     cy.get('app-source-form app-multiselect[name="tags"]')

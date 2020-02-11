@@ -122,7 +122,7 @@ export class SourceViewComponent implements OnInit, OnDestroy, CanComponentDeact
 
     // Edit state via query (edit) or route (add) parameters
     merge(
-      this.route.queryParamMap.pipe(filter(params => !!params.get('edit'))),
+      this.route.data.pipe(filter(data => !!data['edit'])),
       this.route.data.pipe(filter(data => !!data['add']))
     )
       .pipe(takeUntil(this.destroyed$))
@@ -267,9 +267,7 @@ export class SourceViewComponent implements OnInit, OnDestroy, CanComponentDeact
   }
 
   beginEdit() {
-    this.router.navigate(['source', this.source.id], {
-      queryParams: { edit: 1 }
-    });
+    this.router.navigate(['source', this.source.id, 'edit']);
   }
 
   /**
