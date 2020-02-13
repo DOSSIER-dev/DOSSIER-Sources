@@ -23,6 +23,11 @@
         font-size: 10pt;
       }
     </style>
+    <script>
+      window.sourcesjs = {
+        appserver: '${app_server}'
+      };
+    </script>
   </head>
 
   <body>
@@ -82,6 +87,8 @@
       </p>
       <p>
         -- content with sourcelinks goes here --
+        <a href="${app_server}/s/GeKlJqM4/9">Test with Annotation</a>
+        <a href="${app_server}/s/GeKlJqM4">Test with Source Only</a>
       </p>
     </article>
 
@@ -91,6 +98,7 @@
       Some Footer Section
     </section>
 
-    <script src="https://localhost/embed/lib/sources.js"></script>
+    <!-- replace with actual URL -->
+    <script src="${scriptlocation}/sources.js"></script>
   </body>
 </html>
