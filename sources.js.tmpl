@@ -11,6 +11,10 @@
         var scripts = ${scripts};
         var styles = ${styles};
 
+        // Differential loading
+        var es2015 = /es2015/;
+        var es5 = /es5/;
+
         function linkResource(name) {
             return prefix + name;
         }
@@ -18,7 +22,13 @@
         for (var i = 0; i < scripts.length; i++) {
             var scriptTag = document.createElement('script');
             scriptTag.src = linkResource(scripts[i]);
-            scriptTag.type = 'text/javascript';
+            if (es2015.test(scripts[i])) {
+                scriptTag.type = 'module';
+            }
+            if (es5.test(scripts[i])) {
+                scriptTag.setAttribute('nomodule', '');
+                scriptTag.setAttribute('defer', '');
+            }
             document.body.appendChild(scriptTag);
         }
 
