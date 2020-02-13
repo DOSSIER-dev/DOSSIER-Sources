@@ -127,7 +127,11 @@ DATABASES = {
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'elasticsearch:9200'
+        'hosts': 'elasticsearch:9200',
+
+        # Re-indexing needs longer timeout
+        # (TODO: use separate settings module for the index task only)
+        'timeout': 25,
     },
 }
 
