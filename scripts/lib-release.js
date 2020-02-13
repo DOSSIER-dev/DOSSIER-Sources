@@ -1,3 +1,17 @@
+/**
+ * lib-release.js
+ *
+ * The purpose of this script is to create the single javascript file that
+ * needs to be included when using sourcesjs on a website.
+ * The library is then bootstrapped by adding the actual project files
+ * as script tags.
+ * The project files are collected and copied to a versioned directory (based
+ * on a timestamp).
+ * It can be run with two optional arguments, hostname and folder-prefix.
+ *
+ *  npm lib-release.js SOURCES_DOMAIN FOLDER_NAME
+ *
+ */
 const fs = require('fs');
 const path = require('path');
 const template = require('es6-template-strings');
