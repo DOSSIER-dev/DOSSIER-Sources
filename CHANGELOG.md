@@ -1,3 +1,14 @@
+#### 1.3.1 (2020-02-13)
+
+Fixes double-parsing caused by loading the embed-lib twice (es2015/es5).
+
+* **embedlib:**
+  *  set a data-attribiute. prevents double parsing (75b6b3c4)
+  *  loading script - account for angular 8 differential loading (69c7e7bc)
+* **buildscript:**  improve lib-release script, takes parameters (70cabd89)
+*  documentation added to lib-release.js helper script (a7d31e30)
+*  remove duplicate cypress configuration. (18ee4a2f)
+
 #### 1.3.0 (2020-02-11)
 
 ##### Bug Fixes
