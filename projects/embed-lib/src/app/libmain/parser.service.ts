@@ -10,7 +10,7 @@ export interface SourceInteraction {
 }
 
 /**
- * More than just parser, this sets event handlers to existing DOM , thus
+ * More than just parser, this sets event handlers to existing DOM, thus
  * becoming a kind of interface between the existing DOM and the angular app.
  */
 @Injectable({
@@ -29,7 +29,7 @@ export class ParserService {
       </path>
     </svg>`;
 
-  constructor(private options: OptionsService) {
+  constructor(options: OptionsService) {
     this.linkClassName = options.options.linkClassName;
     this.linkIcon = options.options.linkIcon;
   }
@@ -38,7 +38,11 @@ export class ParserService {
   activate$: Subject<SourceElement> = new Subject<SourceElement>();
   sources$: Subject<SourceElement[]> = new Subject<SourceElement[]>();
 
-  findSourceLinks() {
+  /**
+   * Go over all <A>-elements in the DOM and look for sources links.
+   * @return list of found sources links
+   */
+  findSourceLinks(): [HTMLAnchorElement, SourceElement][] {
     const aTags = document.getElementsByTagName('a');
     const result = [];
     for (const link of Array.from(aTags)) {
@@ -54,7 +58,13 @@ export class ParserService {
     return result;
   }
 
-  processSourceLink(hrefDomTag: HTMLAnchorElement, sourceElement) {
+  processSourceLink(hrefDomTag: HTMLAnchorElement, sourceElement: SourceElement) {
+    // Parsed status: check and mark
+    if (hrefDomTag.hasAttribute('data-sources-parsed')) {
+      return;
+    }
+    hrefDomTag.setAttribute('data-sources-parsed', '');
+
     // Add an element to highlight the parsed links
     if (this.linkIcon) {
       const el = this._getSvgElement();

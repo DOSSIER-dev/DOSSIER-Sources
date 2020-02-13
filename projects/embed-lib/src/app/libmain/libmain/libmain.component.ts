@@ -38,7 +38,7 @@ export class LibmainComponent implements OnInit, OnDestroy {
   showLinkbox: boolean;
   showHover: boolean;
 
-  @ViewChild('hoverElement', { static: false }) hoverElement: ElementRef;
+  @ViewChild('hoverElement', { static: true }) hoverElement: ElementRef;
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -50,7 +50,7 @@ export class LibmainComponent implements OnInit, OnDestroy {
   constructor(
     private httpClient: HttpClient,
     private domSanitizer: DomSanitizer,
-    private optionsService: OptionsService,
+    optionsService: OptionsService,
     private parserService: ParserService,
     @Inject(DOCUMENT) private document: Document
   ) {
