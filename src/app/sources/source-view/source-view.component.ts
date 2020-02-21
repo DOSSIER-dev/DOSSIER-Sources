@@ -43,6 +43,7 @@ export class SourceViewComponent implements OnInit, OnDestroy, CanComponentDeact
   annotations$: BehaviorSubject<Annotation[]> = new BehaviorSubject<Annotation[]>([]);
   activeAnnotation: Annotation;
   sourceEditing = false;
+  sourceAdding = false;
   sourceEditTouched = false;
   sourceSaveActivityState: BackendActivityState = new BackendActivityState();
   dummyErrMessage = '';
@@ -107,26 +108,33 @@ export class SourceViewComponent implements OnInit, OnDestroy, CanComponentDeact
         })
       ),
       this.route.paramMap.pipe(map(paramMap => +paramMap.get('annotationId')))
-    ).pipe(takeUntil(this.destroyed$)).subscribe(([source, annotationId]) => {
-      this.source = source;
-
-      // Setting initial state of annotations for state-service
-      this.annotationState.reset(source.annotations);
-      const activeAnnotation = this.source.annotations.find(ann => ann.id === annotationId);
-      if (activeAnnotation) {
-        this.annotationState.setAnnotationWhenLoaded(activeAnnotation);
-      }
-
-      this.sourceStatistics$ = this.statistitcsService.getSourceStats(source);
-    });
-
-    // Edit state via query (edit) or route (add) parameters
-    merge(
-      this.route.data.pipe(filter(data => !!data['edit'])),
-      this.route.data.pipe(filter(data => !!data['add']))
     )
       .pipe(takeUntil(this.destroyed$))
-      .subscribe(_ => (this.sourceEditing = true));
+      .subscribe(([source, annotationId]) => {
+        this.source = source;
+
+        // Setting initial state of annotations for state-service
+        this.annotationState.reset(source.annotations);
+        const activeAnnotation = this.source.annotations.find(ann => ann.id === annotationId);
+        if (activeAnnotation) {
+          this.annotationState.setAnnotationWhenLoaded(activeAnnotation);
+        }
+
+        this.sourceStatistics$ = this.statistitcsService.getSourceStats(source);
+      });
+
+    // Set edit/add state from route parameters
+    this.route.data
+      .pipe(
+        filter(data => !!data['edit'] || !!data['add']),
+        takeUntil(this.destroyed$)
+      )
+      .subscribe(data => {
+        this.sourceEditing = true;
+        if (data['add']) {
+          this.sourceAdding = true;
+        }
+      });
 
     // Search parameters via query parameters
     this.route.queryParamMap.pipe(takeUntil(this.destroyed$)).subscribe(params => {
@@ -236,9 +244,12 @@ export class SourceViewComponent implements OnInit, OnDestroy, CanComponentDeact
    * Sends delete request to backend.
    */
   deleteSource() {
-    this.sourceService.deleteSource(this.source).pipe(take(1)).subscribe(_ => {
-      this.router.navigate(['/']);
-    });
+    this.sourceService
+      .deleteSource(this.source)
+      .pipe(take(1))
+      .subscribe(_ => {
+        this.router.navigate(['/']);
+      });
   }
 
   /**

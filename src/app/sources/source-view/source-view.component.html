@@ -9,7 +9,7 @@
 
 -->
 
-<section class="column-level-2 srcs-rightpad srcs-list" *ngIf="sourceEditing && !hasSourceType()">
+<section class="column-level-2 srcs-rightpad srcs-list" *ngIf="sourceAdding && !hasSourceType()">
   <!-- in "add" mode, when there's no sourcetype selected yet -->
   <app-selectlist
     [items]="sourcetypes$ | async"
