@@ -99,7 +99,7 @@
 
   </div>
 
-  <div *ngIf="source && sourceEditing && hasSourceType()">
+  <div *ngIf="sourceEditing && hasSourceType()">
     <!-- source editing -->
     <a (click)="closeEdit()" class="srcs-navbutton icon-left srcs-top-element">
       <icn name="back"></icn> <span translate="SHARED.BACK"></span>
@@ -109,8 +109,7 @@
       [source]="source"
       [activityState]="sourceSaveActivityState"
       (save)="saved(source)"
-      (dirty)="sourceEditTouched=$event"
-      *ngIf="source">
+      (dirty)="sourceEditTouched=$event">
     </app-source-form>
 
   </div>
